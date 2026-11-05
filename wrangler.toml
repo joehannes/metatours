@@ -21,7 +21,7 @@
 # now Workers-shaped. worker/index.ts dispatches to the same functions/*
 # handlers the Pages deployment used, so no endpoint logic is duplicated.
 
-name = "elcortecito"
+name = "tourcanard"
 main = "worker/index.ts"
 compatibility_date = "2024-05-01"
 
@@ -110,8 +110,8 @@ binding = "AI"
 # serving another's pages there is otherwise nothing to read: these two lines
 # make a wrongly-routed domain say so in one request. They are labels, not
 # settings — nothing reads them but the health endpoint.
-SITE = "elcortecito"
-SITE_BRANCH = "elcortecito"
+SITE = "tourcanard"
+SITE_BRANCH = "tourcanrd"
 
 ADMIN_PASSWORD = "admin"
 CLOUDINARY_CLOUD_NAME = "dkxlhxpe4"
