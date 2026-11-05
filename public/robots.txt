@@ -1,0 +1,11 @@
+# Served by the Worker from live data (shared/seo.ts robotsResponse); this
+# copy is only the fallback, and says the same.
+User-agent: *
+Allow: /api/data
+Allow: /api/blog
+Disallow: /api/
+Disallow: /admin
+Disallow: /cart
+Disallow: /payment
+
+Sitemap: https://elcortecito.johannes-neugschwentner.workers.dev/sitemap.xml

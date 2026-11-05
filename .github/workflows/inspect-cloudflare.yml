@@ -1,0 +1,62 @@
+# Who last deployed each Worker, and which domains point at it.
+#
+# Read-only, manual, and deploys nothing. It exists because a site serving
+# another site's pages has two possible causes that look identical from a
+# browser — the wrong build was written INTO the Worker, or the domain is
+# attached to a different Worker — and neither can be told apart without
+# Cloudflare's own records.
+
+name: Inspect Cloudflare deployments
+
+on:
+  workflow_dispatch:
+    inputs:
+      workers:
+        description: 'Comma-separated Worker names, or * for every Worker on the account.'
+        required: false
+        default: 'nahiatours,beautifull,transporturist,ldvip,amigotours'
+      lookup_host:
+        description: 'A hostname to trace — checks Pages projects, zone routes and Workers, and lists the KV namespaces.'
+        required: false
+        default: ''
+      domains_only:
+        description: 'Skip the deployment history and list only which Worker owns which hostname.'
+        required: false
+        type: boolean
+        default: false
+      kv_titles:
+        description: >-
+          Comma-separated KV namespace titles to inventory — prints each
+          namespace's key NAMES (never a value). Use it to see what a
+          namespace holds before binding a site to it.
+        required: false
+        default: ''
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN || secrets.CF_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID || secrets.CF_ACCOUNT_ID }}
+      WORKER_NAMES: ${{ inputs.workers }}
+      DOMAINS_ONLY: ${{ inputs.domains_only == true && 'true' || 'false' }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Trace a hostname
+        if: inputs.lookup_host != ''
+        run: node scripts/find-domain.mjs
+        env:
+          LOOKUP_HOST: ${{ inputs.lookup_host }}
+
+      - name: Read the deployment history
+        if: inputs.lookup_host == ''
+        run: node scripts/worker-deployments.mjs
+
+      # Which keys a namespace actually holds. Binding a site to somebody
+      # else's namespace is a decision that should be made with the key list
+      # in front of you, not after the site is live on it.
+      - name: Inventory the KV namespaces
+        if: inputs.kv_titles != ''
+        run: node scripts/kv-inventory.mjs
+        env:
+          KV_INVENTORY_TITLES: ${{ inputs.kv_titles }}

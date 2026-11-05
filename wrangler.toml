@@ -1,0 +1,133 @@
+# ==============================================================================
+# Tour Cana RD VIP — Cloudflare Worker (static assets + API routes)
+# ==============================================================================
+#
+# A SEPARATE SITE out of the same repository, not a change to any existing one.
+# `nahiatours` is production; this is the clean Bavaro-inspired design for
+# Tour Cana RD VIP. `wrangler deploy` addresses a Worker by name, so the
+# name below is the only thing that decides where this lands, and the deploy
+# workflow asserts it before it uploads anything.
+#
+# Served at https://tourcanard.johannes-neugschwentner.workers.dev
+#
+# The Cloudflare project deploys with `npx wrangler deploy`, the Workers
+# command. It needs `main` (a script entry point) and `[assets]` (a directory to
+# upload); a Pages config with `pages_build_output_dir` provides neither, which
+# is what produced:
+#
+#   ✘ [ERROR] Missing entry-point to Worker script or to assets directory
+#
+# `main` and `pages_build_output_dir` are mutually exclusive, so this file is
+# now Workers-shaped. worker/index.ts dispatches to the same functions/*
+# handlers the Pages deployment used, so no endpoint logic is duplicated.
+
+name = "tourcanard"
+main = "worker/index.ts"
+compatibility_date = "2024-05-01"
+
+# Pinned so wrangler never has to work out which account this is. Left unset it
+# calls /memberships to discover one, and a token scoped to Workers cannot read
+# that endpoint — the deploy then dies on `Authentication error [code: 10000]`
+# even though the token is perfectly able to do the deploy itself.
+#
+# An account id is an identifier, not a credential.
+account_id = "d5272033401c64f8cc6ce650a8321cb2"
+
+# A brand-new Worker is not guaranteed a workers.dev subdomain unless it asks.
+workers_dev = true
+
+# Static build output. `single-page-application` serves index.html for paths
+# with no matching file, which is what React Router needs for /tours, /plan and
+# the rest. API routes never reach this: worker/index.ts matches them first.
+[assets]
+directory = "./dist"
+binding = "ASSETS"
+not_found_handling = "single-page-application"
+# Without this, the asset server answers before the Worker for any path that
+# matches a file, so the canonical-host redirect would silently stop applying
+# to page loads. Pages ran _middleware.ts on every path (_routes.json includes
+# "/*"), and this keeps that true.
+run_worker_first = true
+
+# ==============================================================================
+# Workers AI
+# ==============================================================================
+#
+# The blog generator used to need an account id and an API token typed into the
+# admin panel before it would produce a sentence — on a fresh deployment that
+# meant the feature was present and dead. This binding is the account's own
+# Workers AI, granted to the Worker at deploy time, so /api/ai can run a model
+# with no credentials at all.
+#
+# Nothing to create and nothing to paste: the binding exists because this line
+# does.
+[ai]
+binding = "AI"
+
+# ==============================================================================
+# KV
+# ==============================================================================
+#
+# Uncomment once the namespace exists and paste its id. Create it with either:
+#
+#   npx wrangler kv namespace create nahiatours-data
+#   ./scripts/deploy-cloudflare.sh      (creates, binds and deploys in one go)
+#
+# The handlers read DATA_KV_F first and fall back to DATA_KV
+# (functions/api/data.ts), so binding either name is enough.
+#
+# Until then the site still works: reads fall back to the JSON bundled at
+# /data/*.json. Only admin writes and /api/init-data need KV.
+#
+# Note this is a Worker, so wrangler.toml is the source of truth for bindings —
+# a binding added in the dashboard is overwritten by the next deploy.
+#
+# Resolved by title at build time: scripts/provision-kv.mjs creates
+# tourcanard-data if it does not exist and writes the binding here. The deploy
+# workflow sets KV_NAMESPACE_TITLE=tourcanard-data so the correct namespace is
+# always used, even on Cloudflare's own git integration which has no env vars.
+[[kv_namespaces]]
+binding = "DATA_KV_F"
+
+# ==============================================================================
+# Environment variables
+# ==============================================================================
+#
+# ADMIN_PASSWORD is read only on the server (shared/adminAuth.ts) and never
+# reaches the browser — but it is committed here in plaintext, so treat it as
+# public. It is the default, not a secret.
+#
+# To use a real one without putting it in the repo:
+#   1. delete the ADMIN_PASSWORD line below
+#   2. npx wrangler secret put ADMIN_PASSWORD
+# Do both: a [vars] entry and a secret of the same name collide, and the
+# plaintext var can win on deploy.
+#
+# TODO: the same goes for CLOUDINARY_API_SECRET. Its VITE_ copy is compiled
+# into the client bundle where any visitor can read it, so that one needs
+# rotating, not just relocating.
+
+[vars]
+# Which site and which branch this configuration belongs to, reported by
+# /api/health. Six sites share this repository, and when one of them starts
+# serving another's pages there is otherwise nothing to read: these two lines
+# make a wrongly-routed domain say so in one request. They are labels, not
+# settings — nothing reads them but the health endpoint.
+SITE = "tourcanard"
+SITE_BRANCH = "tourcanrd"
+# The address search engines should find this site under: every canonical
+# link, sitemap entry and social card points here (shared/seo.ts), and a
+# workers.dev host that is not this address is kept out of the index.
+SITE_URL = "https://tourcanard.johannes-neugschwentner.workers.dev"
+# The language the site opens in, and so the language of its page titles.
+SITE_LOCALE = "en"
+
+ADMIN_PASSWORD = "admin"
+CLOUDINARY_CLOUD_NAME = "dkxlhxpe4"
+CLOUDINARY_API_KEY = "896279918126553"
+CLOUDINARY_API_SECRET = "stWvhkCOQi_2Q_Ko0d1it8LXWr8"
+CLOUDINARY_UPLOAD_PRESET = ""
+VITE_CLOUDINARY_CLOUD_NAME = "dkxlhxpe4"
+VITE_CLOUDINARY_API_KEY = "896279918126553"
+VITE_CLOUDINARY_API_SECRET = "stWvhkCOQi_2Q_Ko0d1it8LXWr8"
+VITE_CLOUDINARY_UPLOAD_PRESET = ""

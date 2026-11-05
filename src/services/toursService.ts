@@ -1,0 +1,291 @@
+import { tours as staticTours } from '../data/tours';
+import { transportServices as staticTransportServices } from '../data/transportServices';
+import type { TransferRoute } from '../types/transport';
+import { ApiError, apiGet, apiPut } from './apiClient';
+import { getAdminPassword } from './authStore';
+
+export type Locale = 'en' | 'es' | 'de' | 'fr';
+export type ServiceCategory = 'tours' | 'transport';
+
+interface RawPricingTier {
+  tier?: string;
+  price?: string;
+}
+
+interface RawImage {
+  role?: string;
+  localPath?: string;
+}
+
+interface RawTransferRoute {
+  id?: string;
+  origin?: string;
+  destination?: string;
+  price?: string;
+  amount?: number;
+  distanceKm?: number;
+  durationMinutes?: number;
+}
+
+interface RawService {
+  id?: number;
+  title?: string;
+  description?: string;
+  price?: string;
+  pricing?: RawPricingTier[];
+  images?: RawImage[];
+  image?: string;
+  transferRoutes?: RawTransferRoute[];
+}
+
+export interface PricingOption {
+  tier: string;
+  price: string;
+  amount: number | null;
+}
+
+export interface ServiceDetails {
+  description: string;
+  images: string[];
+}
+
+export interface Tour {
+  id: number;
+  image: string;
+  title: string;
+  description: string;
+  price: string;
+  pricingOptions: PricingOption[];
+  details: ServiceDetails;
+  transferRoutes?: TransferRoute[];
+}
+
+const extractAmountFromPrice = (price: string): number | null => {
+  const normalizedPrice = String(price ?? '').replace(/[^\d.]/g, '');
+  const numericValue = Number(normalizedPrice);
+  return Number.isFinite(numericValue) && numericValue > 0 ? numericValue : null;
+};
+
+const normalizeImagePath = (input: string): string => {
+  if (!input) {
+    return '';
+  }
+
+  if (/^https?:\/\//.test(input)) {
+    return input;
+  }
+
+  return input.startsWith('/') ? input : `/${input}`;
+};
+
+const toLocalPath = (input: string): string =>
+  /^https?:\/\//.test(input) ? input : input.replace(/^\//, '');
+
+const slugify = (value: string) =>
+  value
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+
+/** The single per-person label, in the reader's language. */
+export const perPersonTier = (locale: Locale): string => {
+  if (locale === 'es') return 'Personas';
+  if (locale === 'de') return 'Personen';
+  if (locale === 'fr') return 'Personnes';
+  return 'Persons';
+};
+
+/**
+ * Every service is priced at one rate per person.
+ *
+ * Services used to carry a list of tiers — typically "Adults" and "Children"
+ * at different rates. That is gone: there is one price and everybody pays it.
+ * Stored data may still hold several tiers (KV, JSONBin and the seed files
+ * predate the change), so they are collapsed here rather than migrated, which
+ * means old and new records both load. The first tier with a usable price
+ * wins, since that was the adult/full rate.
+ */
+const normalizePricingOptions = (raw: RawService, locale: Locale): PricingOption[] => {
+  const rawPricing = Array.isArray(raw.pricing) ? raw.pricing : [];
+
+  const price =
+    rawPricing.map((item) => item.price?.trim()).find((value) => Boolean(value)) ||
+    String(raw.price ?? '').trim();
+
+  return price
+    ? [{ tier: perPersonTier(locale), price, amount: extractAmountFromPrice(price) }]
+    : [];
+};
+
+const normalizeService = (
+  rawService: RawService,
+  index: number,
+  category: ServiceCategory,
+  locale: Locale
+): Tour => {
+  const detailImages = Array.isArray(rawService.images)
+    ? rawService.images
+        .map((image) => normalizeImagePath(String(image.localPath ?? '').trim()))
+        .filter(Boolean)
+    : [];
+  const pricingOptions = normalizePricingOptions(rawService, locale);
+  const fallbackImage = normalizeImagePath(String(rawService.image ?? '').trim());
+  const image = detailImages[0] || fallbackImage || '/imgs/placeholder.jpg';
+  const price = pricingOptions[0]?.price || String(rawService.price ?? '').trim();
+  const title = String(rawService.title ?? '').trim();
+  const description = String(rawService.description ?? '').trim();
+
+  const transferRoutes = Array.isArray(rawService.transferRoutes)
+    ? rawService.transferRoutes.map((route) => ({
+        id: String(route.id ?? ''),
+        origin: String(route.origin ?? '').trim(),
+        destination: String(route.destination ?? '').trim(),
+        price: String(route.price ?? '').trim(),
+        amount: Number.isFinite(Number(route.amount)) ? Number(route.amount) : extractAmountFromPrice(String(route.price ?? '')),
+        distanceKm: route.distanceKm ?? null,
+        durationMinutes: route.durationMinutes ?? null,
+      }))
+    : undefined;
+
+  return {
+    id: Number(rawService.id ?? index + 1),
+    image,
+    title,
+    description,
+    price,
+    pricingOptions,
+    details: {
+      description,
+      images: detailImages.length > 0 ? detailImages : [image],
+    },
+    transferRoutes,
+  };
+};
+
+const normalizeServices = (
+  services: unknown,
+  fallback: Tour[],
+  category: ServiceCategory,
+  locale: Locale
+): Tour[] => {
+  if (!Array.isArray(services)) {
+    return fallback;
+  }
+
+  return services.map((service, index) => normalizeService(service as RawService, index, category, locale));
+};
+
+const fetchServices = async (
+  resource: string,
+  fallback: Tour[],
+  category: ServiceCategory,
+  locale: Locale,
+  allowFallback: boolean,
+  strict = false
+): Promise<Tour[]> => {
+  try {
+    // `exact`: a list that is about to be written back must be this
+    // language's own, never the English one served in its place.
+    const data = await apiGet<unknown>(resource, strict ? { locale, exact: 1 } : { locale });
+    return normalizeServices((data as Record<string, unknown>)?.record ?? data, fallback, category, locale);
+  } catch (error) {
+    // A list that is about to be written back must not be an empty stand-in
+    // for one that failed to load, or the save would wipe the real one. A
+    // language that has no list yet is the exception: it really is empty.
+    if (strict && error instanceof ApiError && error.status === 404) return [];
+    if (strict) throw error;
+    console.error(`Failed to fetch services for ${resource}:`, error);
+    return allowFallback ? fallback : [];
+  }
+};
+
+export const getExampleTours = async (locale: Locale): Promise<Tour[]> =>
+  fetchServices('example-tours', staticTours, 'tours', locale, true);
+
+/** `strict`: throw when the list cannot be read, for callers that write it back. */
+export const getTours = async (locale: Locale, strict = false): Promise<Tour[]> =>
+  fetchServices('tours', [], 'tours', locale, false, strict);
+
+export const getTransportServices = async (locale: Locale, strict = false): Promise<Tour[]> =>
+  fetchServices('transport-services', [], 'transport', locale, false, strict);
+
+export const getServicesByCategory = async (
+  category: ServiceCategory,
+  locale: Locale
+): Promise<Tour[]> =>
+  category === 'transport' ? getTransportServices(locale) : getTours(locale);
+
+const serializeToursForSave = (services: Tour[]): RawService[] =>
+  services.map((service) => ({
+    title: service.title,
+    description: service.description,
+    pricing: service.pricingOptions.map((option) => ({ tier: option.tier, price: option.price })),
+    images: service.details.images.map((image, index) => ({
+      role: `detail_${index + 1}`,
+      localPath: toLocalPath(image),
+    })),
+  }));
+
+const serializeTransportForSave = (services: Tour[]): RawService[] =>
+  services.map((service) => ({
+    title: service.title,
+    description: service.description,
+    price: service.pricingOptions[0]?.price || service.price,
+    images: service.details.images.map((image, index) => ({
+      role: `detail_${index + 1}`,
+      localPath: toLocalPath(image),
+    })),
+    transferRoutes: service.transferRoutes?.map((route) => ({
+      id: route.id,
+      origin: route.origin,
+      destination: route.destination,
+      price: route.price,
+      amount: route.amount ?? null,
+      distanceKm: route.distanceKm ?? null,
+      durationMinutes: route.durationMinutes ?? null,
+    })),
+  }));
+
+export const saveTours = async (tours: Tour[], locale: Locale): Promise<void> => {
+  await apiPut<unknown>('tours', serializeToursForSave(tours), { locale });
+};
+
+export const saveTransportServices = async (services: Tour[], locale: Locale): Promise<void> => {
+  await apiPut<unknown>('transport-services', serializeTransportForSave(services), { locale });
+};
+
+export const uploadImage = async (file: File): Promise<string> => {
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('folder', 'tours');
+
+  const adminPassword = getAdminPassword() ?? '';
+
+  try {
+    const response = await fetch('/api/upload', {
+      method: 'POST',
+      headers: {
+        'X-Admin-Password': adminPassword,
+      },
+      body: formData,
+    });
+
+    const data = await response.json();
+
+    if (!data.secure_url) {
+      throw new Error('Cloudinary upload failed');
+    }
+
+    return data.secure_url;
+  } catch (error) {
+    console.error('Image upload failed:', error);
+    return 'https://dummyimage.com/600x600/cccccc/000000&text=Upload+Failed';
+  }
+};
+
+export const getServiceSlug = (service: Pick<Tour, 'title' | 'id'>): string => {
+  const slug = slugify(service.title);
+  return slug ? `${service.id}-${slug}` : String(service.id);
+};
