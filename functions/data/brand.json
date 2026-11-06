@@ -1,11 +1,32 @@
 {
-  "brandName": "MyN Excursiones",
-  "contactName": "",
-  "phoneNumber": "+1 (829) 783-8842",
+  "brandName": "Tour Cana RD VIP",
+  "contactName": "Simon",
+  "phoneNumber": "+1 (809) 354-9206",
+  "contactEmail": "laodiosa545@gmail.com",
   "paypalMeLink": "",
   "verifoneLink": "",
-  "brandicon": "https://res.cloudinary.com/dkxlhxpe4/image/upload/v1792552944/brand-icons/bf8zdtazh56sw9wy20lc.png",
+  "brandicon": "/brand/tourcanard.jpg",
   "heroMedia": [
+    {
+      "url": "/imgs/tourcanard/hero/saona-beach.jpg",
+      "type": "image",
+      "alt": "Turquoise sea and white sand in Saona"
+    },
+    {
+      "url": "/imgs/tourcanard/hero/buggy-adventure.webp",
+      "type": "image",
+      "alt": "Buggy adventure through Punta Cana"
+    },
+    {
+      "url": "/imgs/tourcanard/hero/caribbean-1.webp",
+      "type": "image",
+      "alt": "Caribbean coast in the Dominican Republic"
+    },
+    {
+      "url": "/imgs/tourcanard/hero/caribbean-2.webp",
+      "type": "image",
+      "alt": "A sunlit Dominican escape"
+    },
     {
       "url": "/imgs/edt/banners/hero-palm-beach.webp",
       "type": "image",
@@ -67,5 +88,9 @@
     "min": 3,
     "max": 5
   },
-  "showBrandName": false
+  "showBrandName": true,
+  "brandNameCase": "asis",
+  "partnerHotelsUrl": "",
+  "partnerFlightsUrl": "",
+  "partnerCruisesUrl": ""
 }

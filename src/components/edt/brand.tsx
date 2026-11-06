@@ -25,7 +25,7 @@ export const BrandLogo: React.FC<{ tone?: 'colour' | 'white'; className?: string
 
   return (
     <span className={`inline-flex items-center gap-2.5 ${className}`}>
-      {icon && <img src={icon} alt={withName ? '' : name} className={`${height} w-auto select-none`} draggable={false} />}
+      {icon && <img src={icon} alt={withName ? '' : name} className={`${height} aspect-square w-auto select-none rounded-full bg-white object-contain p-0.5 ring-1 ring-lagoon/20 shadow-sm`} draggable={false} />}
       {withName && (
         <span
           className={`max-w-[12rem] font-display text-lg leading-none ${tone === 'white' ? 'text-white' : 'text-ink'}`}
@@ -105,12 +105,13 @@ export const CONTACT = {
   address: 'Punta Cana, Dominican Republic',
 };
 
-/** The footer's partner sites: Admin › Marca's, else the site's own; empty means none. */
+/** The footer's partner sites: configured explicitly in Admin › Marca; empty means none. */
 export const usePartners = () => {
   const { brandSettings } = useBrand();
   const fallback = SITE_DEFAULTS.partners;
   return {
     hotels: brandSettings.partnerHotelsUrl ?? fallback?.hotels ?? '',
     flights: brandSettings.partnerFlightsUrl ?? fallback?.flights ?? '',
+    cruises: brandSettings.partnerCruisesUrl ?? fallback?.cruises ?? '',
   };
 };

@@ -1,17 +1,21 @@
 [
   {
     "title": "Saona Island Tour",
-    "description": "**Your dream Caribbean escape, just a boat ride away.** Sail away to **Saona Island**, a jewel of the Dominican Republic nestled within the protected waters of **Cotubanamá National Park**. With its powdery white-sand beaches, turquoise waters, and towering coconut palms, Saona offers the ultimate tropical experience that feels straight out of a postcard.\n\n### What’s in Store\n\nDeparting from Bayahibe, this full-day adventure takes you to the **largest island** in the Dominican Republic — a serene haven covering over 110 km². Whether you’re here to relax, explore, or snorkel, there’s something for every kind of traveler.\n\n**Catamaran & Speedboat Ride** — Enjoy two scenic rides — one relaxing, one thrilling — to and from the island.\n\n**Natural Pool Stop** — Wade into shallow, crystal-clear waters known for their giant starfish. A picture-perfect moment!\n\n**Beach Time** — Lounge under palm trees, swim in the warm Caribbean Sea, or stroll along the untouched coastline.\n\n**Marine Life** — Snorkel in calm waters and discover colorful coral reefs and tropical fish.\n\n**Island Lunch** — Savor a delicious Dominican buffet lunch served right on the beach. An open bar is included!\n\n**Duration:** 9 hours\n\n**Departs from:** Bayahíbe\n\n**Prices:** Adults (11+ years) $65 · Children $40 · Infants (0–2 years) free\n\n**Included:**\n• Round-trip hotel transportation\n• Round-trip catamaran and speedboat rides\n• Stop at the natural swimming pool\n• Beach time on Saona Island\n• Buffet lunch and open bar\n• Entertainment and music onboard\n• Certified guides\n\n**What to bring:**\n• Beach clothes\n• Towels\n• Sunglasses\n• Sun protection\n• Cash for tipping",
+    "description": "**Your dream Caribbean escape, just a boat ride away.** Sail away to **Saona Island**, a jewel of the Dominican Republic nestled within the protected waters of **Cotubanamá National Park**. With its powdery white-sand beaches, turquoise waters, and towering coconut palms, Saona offers the ultimate tropical experience that feels straight out of a postcard.\n\n### What’s in Store\n\nDeparting from Bayahibe, this full-day adventure takes you to the **largest island** in the Dominican Republic — a serene haven covering over 110 km². Whether you’re here to relax, explore, or snorkel, there’s something for every kind of traveler.\n\n**Catamaran & Speedboat Ride** — Enjoy two scenic rides — one relaxing, one thrilling — to and from the island.\n\n**Natural Pool Stop** — Wade into shallow, crystal-clear waters known for their giant starfish. A picture-perfect moment!\n\n**Beach Time** — Lounge under palm trees, swim in the warm Caribbean Sea, or stroll along the untouched coastline.\n\n**Marine Life** — Snorkel in calm waters and discover colorful coral reefs and tropical fish.\n\n**Island Lunch** — Savor a delicious Dominican buffet lunch served right on the beach. An open bar is included!\n\n**Duration:** 9 hours\n\n**Departs from:** Bayahíbe\n\n**Prices:** Adults (11+) $55 · Children (3–11) $40\n\n**Included:**\n• Round-trip hotel transportation\n• Round-trip catamaran and speedboat rides\n• Stop at the natural swimming pool\n• Beach time on Saona Island\n• Buffet lunch and open bar\n• Entertainment and music onboard\n• Certified guides\n\n**What to bring:**\n• Beach clothes\n• Towels\n• Sunglasses\n• Sun protection\n• Cash for tipping",
     "pricing": [
       {
-        "tier": "Persons",
-        "price": "$65"
+        "tier": "Adults (11+)",
+        "price": "$55"
+      },
+      {
+        "tier": "Children (3–11)",
+        "price": "$40"
       }
     ],
     "images": [
       {
         "role": "detail_1",
-        "localPath": "imgs/edt/tours/saona-island-tour/1.webp"
+        "localPath": "imgs/tourcanard/tours/saona.webp"
       },
       {
         "role": "detail_2",
@@ -107,11 +111,15 @@
   },
   {
     "title": "Santo Domingo Tour",
-    "description": "**Step Into History and Culture in the Heart of the Caribbean**\n\nSanto Domingo de Guzmán, the vibrant capital of the Dominican Republic, is the oldest continuously inhabited city in the Americas. As the birthplace of the New World, it is a treasure trove of history, culture, and stunning colonial architecture. The city’s historic center, the Colonial Zone, is a UNESCO World Heritage Site filled with relics of its 16th-century past. Among the most famous landmarks is the **Catedral Primada de América**, the first cathedral ever built in the Americas.\n\nThe city is a bustling metropolis with a population of around 3 million, divided into various municipalities, including Santo Domingo Este, the National District, Santo Domingo Oeste, and Santo Domingo Norte. While the city thrives with modern developments, its past is never too far from view.\n\n**Duration:** 10 hours\n\n**Departs from:** Santo Domingo\n\n**Prices:** Adults (11+ years) $90 · Children (3–11 years) $45 · Infants (0–2 years) free\n\n**Included:**\n• Hotel pick-up and drop-off\n• Air-conditioned transportation\n• Certified guide\n• Visits to the Colonial Zone landmarks, including:\n• Catedral Primada de América\n• Alcázar de Colón\n• Ozama Fortress\n• Parque Colón and Plaza de España\n• A walking tour through the cobblestone streets of the Colonial Zone\n• Time to explore local markets, squares, and cafes\n• Hotel pick-up and dropoff\n• Soft Drinks\n• Typical dominican lunch\n\n**What to bring:**\n• Beach clothes\n• Towels\n• Sunglasses\n• Sun protection\n• Cash for tipping",
+    "description": "**Step Into History and Culture in the Heart of the Caribbean**\n\nSanto Domingo de Guzmán, the vibrant capital of the Dominican Republic, is the oldest continuously inhabited city in the Americas. As the birthplace of the New World, it is a treasure trove of history, culture, and stunning colonial architecture. The city’s historic center, the Colonial Zone, is a UNESCO World Heritage Site filled with relics of its 16th-century past. Among the most famous landmarks is the **Catedral Primada de América**, the first cathedral ever built in the Americas.\n\nThe city is a bustling metropolis with a population of around 3 million, divided into various municipalities, including Santo Domingo Este, the National District, Santo Domingo Oeste, and Santo Domingo Norte. While the city thrives with modern developments, its past is never too far from view.\n\n**Duration:** 10 hours\n\n**Departs from:** Santo Domingo\n\n**Prices:** Adults (11+) $55 · Children (3–11) $45\n\n**Included:**\n• Hotel pick-up and drop-off\n• Air-conditioned transportation\n• Certified guide\n• Visits to the Colonial Zone landmarks, including:\n• Catedral Primada de América\n• Alcázar de Colón\n• Ozama Fortress\n• Parque Colón and Plaza de España\n• A walking tour through the cobblestone streets of the Colonial Zone\n• Time to explore local markets, squares, and cafes\n• Hotel pick-up and dropoff\n• Soft Drinks\n• Typical dominican lunch\n\n**What to bring:**\n• Beach clothes\n• Towels\n• Sunglasses\n• Sun protection\n• Cash for tipping",
     "pricing": [
       {
-        "tier": "Persons",
-        "price": "$90"
+        "tier": "Adults (11+)",
+        "price": "$55"
+      },
+      {
+        "tier": "Children (3–11)",
+        "price": "$45"
       }
     ],
     "images": [
@@ -154,17 +162,17 @@
   },
   {
     "title": "Punta Cana Party Boat",
-    "description": "Get ready to dance, snorkel, and party aboard the most exciting **Party Boat in Punta Cana** — an unforgettable tropical adventure on the crystal-clear Caribbean waters.\n\nWe’ll cruise along the breathtaking coastline, surrounded by swaying palm trees and vibrant scenery. Our energetic crew of entertainers will keep the vibes high with a mix of bachata, merengue, reggaeton, salsa, and international hits. The music, the views, and the energy are unmatched!\n\n**Duration:** 9 hours\n\n**Departs from:** Punta Cana\n\n**Prices:** Adults (11+ years) $95\n\n**Included:**\n• Hotel pick-up and drop-off\n• Catamaran ride along Punta Cana’s coast\n• Snorkeling with equipment included\n• Stop at the natural pool\n• Open bar (local drinks)\n• Onboard snack\n• Certified guides and entertainment crew\n\n**What to bring:**\n• Towel\n• Sunglasses\n• Sunscreen\n• Cash for tips or extras",
+    "description": "Get ready to dance, snorkel, and party aboard the most exciting **Party Boat in Punta Cana** — an unforgettable tropical adventure on the crystal-clear Caribbean waters.\n\nWe’ll cruise along the breathtaking coastline, surrounded by swaying palm trees and vibrant scenery. Our energetic crew of entertainers will keep the vibes high with a mix of bachata, merengue, reggaeton, salsa, and international hits. The music, the views, and the energy are unmatched!\n\n**Duration:** 9 hours\n\n**Departs from:** Punta Cana\n\n**Prices:** Rider $45\n\n**Included:**\n• Hotel pick-up and drop-off\n• Catamaran ride along Punta Cana’s coast\n• Snorkeling with equipment included\n• Stop at the natural pool\n• Open bar (local drinks)\n• Onboard snack\n• Certified guides and entertainment crew\n\n**What to bring:**\n• Towel\n• Sunglasses\n• Sunscreen\n• Cash for tips or extras",
     "pricing": [
       {
-        "tier": "Persons",
-        "price": "$95"
+        "tier": "Rider",
+        "price": "$45"
       }
     ],
     "images": [
       {
         "role": "detail_1",
-        "localPath": "imgs/edt/tours/punta-cana-party-boat/1.webp"
+        "localPath": "imgs/tourcanard/tours/party-boat.webp"
       },
       {
         "role": "detail_2",
@@ -193,17 +201,17 @@
   },
   {
     "title": "Adventure Boogies",
-    "description": "Choose Your Style of Adventure — An Unforgettable Off-Road Experience!. Get ready for an adrenaline-packed day on the rugged roads of Punta Cana! With **Adventure Boogies**, you’ll have the opportunity to explore the stunning landscapes, immerse yourself in Dominican culture, and unleash your adventurous spirit on an off-road tour like no other.\n\nYou’ll drive through muddy trails, vibrant local villages, and lush tropical paths, visiting fascinating locations like a **natural cave** with crystal-clear waters. To top it off, you’ll enjoy some relaxation time at **Macao Beach**, one of the Dominican Republic’s most beautiful beaches.\n\nThis tour caters to every kind of adventurer, whether you’re going solo, as a couple, with family, or as a group of friends. Choose from four different ride options, each designed to suit your needs and make your experience memorable:\n\n### Choose Your Ride\n\n### 🚙 Single Buggy – $85 per person\n\nPerfect for those who love the thrill of full control. Drive solo and navigate the trails on your own!\n\n### 🚙 Double Buggy – $60 per person\n\nIdeal for couples or friends who want to share the ride and the adventure.\n\n### 🚙 Family Buggy – $45 per person (up to 4 people)\n\nThe best option for families or small groups looking for extra space and safety while exploring the countryside.\n\n### 🚜 Safari Buggy – $89 per person\n\nFor those who want a longer, more immersive tour with added cultural stops, tastings of local products, and deeper interaction with rural communities. This version of the tour also includes a **horseback ride**, a **zipline adventure**, and **refreshments** along the way.\n\n**Duration:** 4 hours\n\n**Departs from:** Punta Cana\n\n**Prices:** Single boogie $85 · Double boogie (60 x pax) $60 · Family boogie $45 · Boogie + safari $89\n\n**Included:**\n• Hotel pick-up and dropoff\n• Exciting buggie ride\n• Swim in a cenote\n• Visit to a typical store\n• Specialized equipment included\n• Entrance to domitai\n• Certified guides\n\n**What to bring:**\n• Beach clothes\n• Towels\n• Sunglasses\n• Sun protection\n• Cash for tipping\n• Safety gear\n• Clothes you don’t mind getting muddy (it’s part of the fun!)",
+    "description": "Choose Your Style of Adventure — An Unforgettable Off-Road Experience!. Get ready for an adrenaline-packed day on the rugged roads of Punta Cana! With **Adventure Boogies**, you’ll have the opportunity to explore the stunning landscapes, immerse yourself in Dominican culture, and unleash your adventurous spirit on an off-road tour like no other.\n\nYou’ll drive through muddy trails, vibrant local villages, and lush tropical paths, visiting fascinating locations like a **natural cave** with crystal-clear waters. To top it off, you’ll enjoy some relaxation time at **Macao Beach**, one of the Dominican Republic’s most beautiful beaches.\n\nThis tour caters to every kind of adventurer, whether you’re going solo, as a couple, with family, or as a group of friends. Choose from four different ride options, each designed to suit your needs and make your experience memorable:\n\n### Choose Your Ride\n\n### 🚙 Single Buggy – $85 per person\n\nPerfect for those who love the thrill of full control. Drive solo and navigate the trails on your own!\n\n### 🚙 Double Buggy – $60 per person\n\nIdeal for couples or friends who want to share the ride and the adventure.\n\n### 🚙 Family Buggy – $45 per person (up to 4 people)\n\nThe best option for families or small groups looking for extra space and safety while exploring the countryside.\n\n### 🚜 Safari Buggy – $89 per person\n\nFor those who want a longer, more immersive tour with added cultural stops, tastings of local products, and deeper interaction with rural communities. This version of the tour also includes a **horseback ride**, a **zipline adventure**, and **refreshments** along the way.\n\n**Duration:** 4 hours\n\n**Departs from:** Punta Cana\n\n**Prices:** Rider $45\n\n**Included:**\n• Hotel pick-up and dropoff\n• Exciting buggie ride\n• Swim in a cenote\n• Visit to a typical store\n• Specialized equipment included\n• Entrance to domitai\n• Certified guides\n\n**What to bring:**\n• Beach clothes\n• Towels\n• Sunglasses\n• Sun protection\n• Cash for tipping\n• Safety gear\n• Clothes you don’t mind getting muddy (it’s part of the fun!)",
     "pricing": [
       {
-        "tier": "Persons",
-        "price": "$85"
+        "tier": "Rider",
+        "price": "$45"
       }
     ],
     "images": [
       {
         "role": "detail_1",
-        "localPath": "imgs/edt/tours/adventure-boogies/1.webp"
+        "localPath": "imgs/tourcanard/tours/buggies.webp"
       },
       {
         "role": "detail_2",
@@ -232,17 +240,21 @@
   },
   {
     "title": "Catalina Island Tour",
-    "description": "**A Hidden Gem of the Caribbean.** Discover the magic of Catalina Island — a stunning tropical escape located just off the southeastern coast of the Dominican Republic, near La Romana. Famous for its crystal-clear turquoise waters, powdery white sand, and vibrant coral reefs, Catalina Island is a dream destination for beach lovers, snorkeling enthusiasts, and those simply in search of peace and natural beauty.\n\nYour journey begins with a scenic speed boat ride across the Caribbean Sea. Along the way, we’ll stop at the breathtaking **Natural Pool**, a shallow sandbar where you can wade in the water, sip a drink, and soak in the sunshine — a true slice of paradise!\n\nOnce on Catalina Island, you’ll enjoy a **laid-back beach day** with plenty of time to relax, swim, explore the island, or snorkel in the vibrant reefs teeming with marine life. Keep an eye out for colorful tropical fish and perhaps even the remains of the legendary “Captain Kidd” shipwreck!\n\n**Duration:** 9 hours\n\n**Departs from:** Bayahíbe\n\n**Prices:** Adults (11+ years) $115 · Children (3–11 years) $60 · Infants (0–2 years) free\n\n**Included:**\n• Hotel pick-up and drop-off\n• Round-trip speed boat ride\n• Stop at the Natural Pool\n• Delicious buffet lunch on the island\n• Open bar (beer, rum, water, soft drinks)\n• Free time to enjoy Catalina Island’s beach and reef\n• Entertainment staff and certified guides\n• Animation and entertainment staff\n\n**What to bring:**\n• Beach clothes\n• Towels\n• Sunglasses\n• Sun protection\n• Cash for tipping",
+    "description": "**A Hidden Gem of the Caribbean.** Discover the magic of Catalina Island — a stunning tropical escape located just off the southeastern coast of the Dominican Republic, near La Romana. Famous for its crystal-clear turquoise waters, powdery white sand, and vibrant coral reefs, Catalina Island is a dream destination for beach lovers, snorkeling enthusiasts, and those simply in search of peace and natural beauty.\n\nYour journey begins with a scenic speed boat ride across the Caribbean Sea. Along the way, we’ll stop at the breathtaking **Natural Pool**, a shallow sandbar where you can wade in the water, sip a drink, and soak in the sunshine — a true slice of paradise!\n\nOnce on Catalina Island, you’ll enjoy a **laid-back beach day** with plenty of time to relax, swim, explore the island, or snorkel in the vibrant reefs teeming with marine life. Keep an eye out for colorful tropical fish and perhaps even the remains of the legendary “Captain Kidd” shipwreck!\n\n**Duration:** 9 hours\n\n**Departs from:** Bayahíbe\n\n**Prices:** Adults (11+) $80 · Children (3–11) $60\n\n**Included:**\n• Hotel pick-up and drop-off\n• Round-trip speed boat ride\n• Stop at the Natural Pool\n• Delicious buffet lunch on the island\n• Open bar (beer, rum, water, soft drinks)\n• Free time to enjoy Catalina Island’s beach and reef\n• Entertainment staff and certified guides\n• Animation and entertainment staff\n\n**What to bring:**\n• Beach clothes\n• Towels\n• Sunglasses\n• Sun protection\n• Cash for tipping",
     "pricing": [
       {
-        "tier": "Persons",
-        "price": "$115"
+        "tier": "Adults (11+)",
+        "price": "$80"
+      },
+      {
+        "tier": "Children (3–11)",
+        "price": "$60"
       }
     ],
     "images": [
       {
         "role": "detail_1",
-        "localPath": "imgs/edt/tours/catalina-island-tour/1.webp"
+        "localPath": "imgs/tourcanard/tours/catalina.webp"
       },
       {
         "role": "detail_2",
@@ -311,11 +323,15 @@
   },
   {
     "title": "Scape Park · Full Admission",
-    "description": "**Escape to Adventure and Culture**\n\nImmerse yourself in an adventure that blends thrilling activities with a deep dive into the cultural heritage of the island. From exhilarating ziplining across cliffs to exploring hidden caves and swimming in underground pools, this full admission package to Scape Park offers an unforgettable experience. Glide through the air on water zip lines, bounce on splash hammocks, and uncover the vibrant beauty of this lush paradise. Along the way, you’ll also discover the rich history and culture that shape this incredible destination.\n\n### What’s Included\n\nAll land attractions\n\nRound-trip transportation\n\n### What to Bring\n\nWater shoes\n\nComfortable clothing\n\nSwimwear\n\nCash or card for food, drinks, souvenirs, and photos\n\n### Restrictions\n\nNot suitable for people with disabilities, pregnant women, or those with major illnesses\n\nZipline participants must be at least 6 years old\n\nMaximum weight for zipline: 330 pounds\n\nNo alcohol or substances allowed\n\nFood, selfie sticks, and drones are not permitted in the park\n\n### Included Attractions\n\n**Cultural Route**\nStep back in time and explore replicas of homes from the island’s past, spanning the ancient Taino Indians, Spanish conquistadors, African slaves, and Dominican peasants. This unique blend of history and nature is a captivating way to connect with the island’s heritage.\n\n**Cave Swim**\nTake a refreshing dip in a mystical underground spring, once sacred to native cultures. The cool, crystal-clear waters offer a truly peaceful experience, perfect for reconnecting with nature.\n\n**Saltos Azules**\nEnjoy thrilling adventures, including the Mabo rope swing, Macuya Swing, and Monkey Bar zipline. Ride water hammocks that splash through cool waters, surrounded by dramatic caves and waterfalls—a refreshing and exhilarating ride.\n\n**Hoyo Azul**\nWitness the breathtaking beauty of a turquoise cenote, a natural wonder that showcases the island’s unique ecosystem. This unforgettable experience offers you a direct connection to nature’s wonders.\n\n**Zip Line Eco Splash**\nFeel the rush of adrenaline as you soar across eight zip lines, flying above treetops along a stunning cliffside. This high-flying adventure is a must for thrill-seekers.\n\n**Cave Expedition**\nExplore the underground world, navigating a network of chambers and tunnels with remarkable geological formations. This journey into the depths offers an awe-inspiring experience of nature’s hidden wonders.\n\n**Iguanaland**\nMeet the majestic rhinoceros iguanas, native to the island, in this interactive exhibit. With trained handlers guiding you, you’ll get a closer look at these fascinating creatures in a fun and educational setting for all ages.\n\n**Duration:** 9 hours\n\n**Departs from:** Punta Cana\n\n**Prices:** Adults (11+ years) $129 · Children (3–11 years) $65 · Infants (0–2 years) free\n\n**Included:**\n• Hotel pick-up and dropoff\n• Certified guides\n\n**What to bring:**\n• Beach clothes\n• Towels\n• Sunglasses\n• Sun protection\n• Cash for tipping",
+    "description": "**Escape to Adventure and Culture**\n\nImmerse yourself in an adventure that blends thrilling activities with a deep dive into the cultural heritage of the island. From exhilarating ziplining across cliffs to exploring hidden caves and swimming in underground pools, this full admission package to Scape Park offers an unforgettable experience. Glide through the air on water zip lines, bounce on splash hammocks, and uncover the vibrant beauty of this lush paradise. Along the way, you’ll also discover the rich history and culture that shape this incredible destination.\n\n### What’s Included\n\nAll land attractions\n\nRound-trip transportation\n\n### What to Bring\n\nWater shoes\n\nComfortable clothing\n\nSwimwear\n\nCash or card for food, drinks, souvenirs, and photos\n\n### Restrictions\n\nNot suitable for people with disabilities, pregnant women, or those with major illnesses\n\nZipline participants must be at least 6 years old\n\nMaximum weight for zipline: 330 pounds\n\nNo alcohol or substances allowed\n\nFood, selfie sticks, and drones are not permitted in the park\n\n### Included Attractions\n\n**Cultural Route**\nStep back in time and explore replicas of homes from the island’s past, spanning the ancient Taino Indians, Spanish conquistadors, African slaves, and Dominican peasants. This unique blend of history and nature is a captivating way to connect with the island’s heritage.\n\n**Cave Swim**\nTake a refreshing dip in a mystical underground spring, once sacred to native cultures. The cool, crystal-clear waters offer a truly peaceful experience, perfect for reconnecting with nature.\n\n**Saltos Azules**\nEnjoy thrilling adventures, including the Mabo rope swing, Macuya Swing, and Monkey Bar zipline. Ride water hammocks that splash through cool waters, surrounded by dramatic caves and waterfalls—a refreshing and exhilarating ride.\n\n**Hoyo Azul**\nWitness the breathtaking beauty of a turquoise cenote, a natural wonder that showcases the island’s unique ecosystem. This unforgettable experience offers you a direct connection to nature’s wonders.\n\n**Zip Line Eco Splash**\nFeel the rush of adrenaline as you soar across eight zip lines, flying above treetops along a stunning cliffside. This high-flying adventure is a must for thrill-seekers.\n\n**Cave Expedition**\nExplore the underground world, navigating a network of chambers and tunnels with remarkable geological formations. This journey into the depths offers an awe-inspiring experience of nature’s hidden wonders.\n\n**Iguanaland**\nMeet the majestic rhinoceros iguanas, native to the island, in this interactive exhibit. With trained handlers guiding you, you’ll get a closer look at these fascinating creatures in a fun and educational setting for all ages.\n\n**Duration:** 9 hours\n\n**Departs from:** Punta Cana\n\n**Prices:** Adults (11+) $129 · Children (3–11) $65\n\n**Included:**\n• Hotel pick-up and dropoff\n• Certified guides\n\n**What to bring:**\n• Beach clothes\n• Towels\n• Sunglasses\n• Sun protection\n• Cash for tipping",
     "pricing": [
       {
-        "tier": "Persons",
+        "tier": "Adults (11+)",
         "price": "$129"
+      },
+      {
+        "tier": "Children (3–11)",
+        "price": "$65"
       }
     ],
     "images": [
@@ -772,11 +788,15 @@
   },
   {
     "title": "Monkeyland Punta Cana",
-    "description": "Embark on a one-of-a-kind adventure at Monkeyland Punta Cana, where nature, culture, and wildlife come together in a fun and unforgettable experience! This guided tour offers the perfect mix of Dominican culture and close-up encounters with our friendly squirrel monkeys in a lush tropical setting.\n\n### Up Close with Squirrel Monkeys\n\nStep into the monkeys’ natural habitat and interact freely with these curious, playful creatures. They’ll happily jump on your shoulders, pose for selfies, and even eat from your hands — all under the supervision of our trained staff to ensure a safe and respectful experience.\n\n### Cultural Experience\n\nYour tour begins with a visit to a traditional Dominican countryside home. Learn how local families live off the land, grow organic crops, and prepare traditional products like coffee and cacao. This part of the tour offers a unique window into the daily life and heritage of the Dominican Republic.\n\n### What to Expect\n\nVisit to a Dominican country house\n\nCultural demonstration of farming and local products\n\nInteractive visit with squirrel monkeys in a natural habitat\n\nTour conducted on 5 beautiful acres of mountain land\n\nAvailable as a guided tour with transportation or drive-yourself option (please note: guided tour has a specific start time)\n\n**Duration:** 5 hours\n\n**Departs from:** Punta Cana\n\n**Prices:** Adults (11+ years) $95 · Children (3–11 years) $60 · Infants (0–2 years) free\n\n**Included:**\n• Hotel pick-up and drop-off (optional with transportation package)\n• Safari truck transport (if selected)\n• Entry to Monkeyland and cultural areas\n• Certified, bilingual guides\n\n**What to bring:**\n• Beach clothes\n• Towels\n• Sunglasses\n• Sun protection\n• Cash for tipping",
+    "description": "Embark on a one-of-a-kind adventure at Monkeyland Punta Cana, where nature, culture, and wildlife come together in a fun and unforgettable experience! This guided tour offers the perfect mix of Dominican culture and close-up encounters with our friendly squirrel monkeys in a lush tropical setting.\n\n### Up Close with Squirrel Monkeys\n\nStep into the monkeys’ natural habitat and interact freely with these curious, playful creatures. They’ll happily jump on your shoulders, pose for selfies, and even eat from your hands — all under the supervision of our trained staff to ensure a safe and respectful experience.\n\n### Cultural Experience\n\nYour tour begins with a visit to a traditional Dominican countryside home. Learn how local families live off the land, grow organic crops, and prepare traditional products like coffee and cacao. This part of the tour offers a unique window into the daily life and heritage of the Dominican Republic.\n\n### What to Expect\n\nVisit to a Dominican country house\n\nCultural demonstration of farming and local products\n\nInteractive visit with squirrel monkeys in a natural habitat\n\nTour conducted on 5 beautiful acres of mountain land\n\nAvailable as a guided tour with transportation or drive-yourself option (please note: guided tour has a specific start time)\n\n**Duration:** 5 hours\n\n**Departs from:** Punta Cana\n\n**Prices:** Adults (11+) $95 · Children (3–11) $60\n\n**Included:**\n• Hotel pick-up and drop-off (optional with transportation package)\n• Safari truck transport (if selected)\n• Entry to Monkeyland and cultural areas\n• Certified, bilingual guides\n\n**What to bring:**\n• Beach clothes\n• Towels\n• Sunglasses\n• Sun protection\n• Cash for tipping",
     "pricing": [
       {
-        "tier": "Persons",
+        "tier": "Adults (11+)",
         "price": "$95"
+      },
+      {
+        "tier": "Children (3–11)",
+        "price": "$60"
       }
     ],
     "images": [
@@ -857,11 +877,15 @@
   },
   {
     "title": "Parasailing",
-    "description": "Fly High and Soar Over the Crystal-Clear Waters of the Caribbean!. Get ready for an exhilarating adventure that combines the thrill of flight with stunning aerial views of Punta Cana’s pristine beaches! **Parasailing Punta Cana** is the ultimate way to enjoy the beautiful coastline from a completely new perspective, making it an unforgettable experience for thrill-seekers and nature lovers alike.\n\nYour adventure begins with a brief but important safety briefing from our experienced guides, ensuring you’re fully prepared for the flight. After boarding a speedboat, you’ll be equipped with a harness and parachute before being lifted high into the sky — over 100 meters above the Caribbean waters! As you ascend, you’ll be treated to panoramic views of the breathtaking coastline, white sandy beaches, and the vibrant turquoise sea. You may even catch glimpses of the exclusive resorts and the lush tropical vegetation lining the shores.\n\nThe parasail ride typically lasts between 10 and 15 minutes, giving you plenty of time to relax, take in the awe-inspiring scenery, and feel the excitement of flying through the air. For those craving a little extra adventure, some operators offer the option to dip down toward the water before lifting you back up for the return journey.\n\nThis activity is ideal for **families**, **couples**, or **friends** looking to share a thrilling, yet relaxing experience while enjoying the beauty of the Dominican Republic from above.\n\nAfter your flight, you’ll return to the boat and can unwind while heading back to shore, reflecting on the unforgettable moments of your parasailing adventure.\n\n**Duration:** 3 hours\n\n**Departs from:** Punta Cana\n\n**Prices:** Adults (11+ years) $75 · Children (3–11 years) $38 · Infants (0–2 years) free\n\n**Included:**\n• Hotel pick-up and dropoff\n• Arrival at the parasailing center\n• Equipment\n• Landing\n• Parasailing flight\n• Security briefing\n• Certified guides\n\n**What to bring:**\n• Beach clothes\n• Towels\n• Sunglasses\n• Sun protection\n• Cash for tipping",
+    "description": "Fly High and Soar Over the Crystal-Clear Waters of the Caribbean!. Get ready for an exhilarating adventure that combines the thrill of flight with stunning aerial views of Punta Cana’s pristine beaches! **Parasailing Punta Cana** is the ultimate way to enjoy the beautiful coastline from a completely new perspective, making it an unforgettable experience for thrill-seekers and nature lovers alike.\n\nYour adventure begins with a brief but important safety briefing from our experienced guides, ensuring you’re fully prepared for the flight. After boarding a speedboat, you’ll be equipped with a harness and parachute before being lifted high into the sky — over 100 meters above the Caribbean waters! As you ascend, you’ll be treated to panoramic views of the breathtaking coastline, white sandy beaches, and the vibrant turquoise sea. You may even catch glimpses of the exclusive resorts and the lush tropical vegetation lining the shores.\n\nThe parasail ride typically lasts between 10 and 15 minutes, giving you plenty of time to relax, take in the awe-inspiring scenery, and feel the excitement of flying through the air. For those craving a little extra adventure, some operators offer the option to dip down toward the water before lifting you back up for the return journey.\n\nThis activity is ideal for **families**, **couples**, or **friends** looking to share a thrilling, yet relaxing experience while enjoying the beauty of the Dominican Republic from above.\n\nAfter your flight, you’ll return to the boat and can unwind while heading back to shore, reflecting on the unforgettable moments of your parasailing adventure.\n\n**Duration:** 3 hours\n\n**Departs from:** Punta Cana\n\n**Prices:** Adults (11+) $60 · Children (3–11) $38\n\n**Included:**\n• Hotel pick-up and dropoff\n• Arrival at the parasailing center\n• Equipment\n• Landing\n• Parasailing flight\n• Security briefing\n• Certified guides\n\n**What to bring:**\n• Beach clothes\n• Towels\n• Sunglasses\n• Sun protection\n• Cash for tipping",
     "pricing": [
       {
-        "tier": "Persons",
-        "price": "$75"
+        "tier": "Adults (11+)",
+        "price": "$60"
+      },
+      {
+        "tier": "Children (3–11)",
+        "price": "$38"
       }
     ],
     "images": [
@@ -950,11 +974,15 @@
   },
   {
     "title": "Safari Tour",
-    "description": "### Safari Adventure Through the Dominican Countryside\n\nDiscover the heart and soul of the Dominican Republic on this immersive safari style journey through its rich rural landscapes. Climb aboard a specially equipped open-air truck and set off through the rolling hills and colorful countryside for a day full of cultural discovery, natural beauty, and local flavor.\n\nYour adventure begins with visits to local plantations where you’ll explore how coffee, cocoa, and sugarcane are grown and processed three staples that have shaped the island’s history. Along the way, stop in the vibrant town of Higüey to sample fresh tropical fruits and other local treats.\n\nOne of the highlights of the day is the visit to a Dominican family home, where you’ll be warmly welcomed to share a cup of freshly brewed coffee and gain insight into the everyday life and traditions of the island’s rural communities.\n\nLater, take in the fresh mountain air as you explore scenic ranches in the Anamuya hills. Cool off with a refreshing swim in the Anamuya River and enjoy a hearty Dominican-style lunch featuring traditional dishes.\n\nThe experience wraps up at the breathtaking Macao Beach, where you can unwind on powdery white sand or take a dip in the turquoise Caribbean waters. With stops for handmade cigars and sugarcane tasting along the way, this excursion offers the perfect blend of culture, nature, and relaxation.\n\n**Duration:** 6 hours\n\n**Departs from:** Punta Cana\n\n**Prices:** Adults (11+ years) $89 · Children $50 · Infants (0–2 years) free\n\n**Included:**\n• Hotel pick-up and dropoff\n• Visit to the basilica of Higüey\n• Typical dominican lunch\n• Fresh fruit tasting\n• Visit to local plantations\n• Tour of a typical house\n• Guide and staff to accompany you throughout the entire journey\n\n**What to bring:**\n• Beach clothes\n• Towels\n• Sunglasses\n• Sun protection\n• Cash for tipping",
+    "description": "### Safari Adventure Through the Dominican Countryside\n\nDiscover the heart and soul of the Dominican Republic on this immersive safari style journey through its rich rural landscapes. Climb aboard a specially equipped open-air truck and set off through the rolling hills and colorful countryside for a day full of cultural discovery, natural beauty, and local flavor.\n\nYour adventure begins with visits to local plantations where you’ll explore how coffee, cocoa, and sugarcane are grown and processed three staples that have shaped the island’s history. Along the way, stop in the vibrant town of Higüey to sample fresh tropical fruits and other local treats.\n\nOne of the highlights of the day is the visit to a Dominican family home, where you’ll be warmly welcomed to share a cup of freshly brewed coffee and gain insight into the everyday life and traditions of the island’s rural communities.\n\nLater, take in the fresh mountain air as you explore scenic ranches in the Anamuya hills. Cool off with a refreshing swim in the Anamuya River and enjoy a hearty Dominican-style lunch featuring traditional dishes.\n\nThe experience wraps up at the breathtaking Macao Beach, where you can unwind on powdery white sand or take a dip in the turquoise Caribbean waters. With stops for handmade cigars and sugarcane tasting along the way, this excursion offers the perfect blend of culture, nature, and relaxation.\n\n**Duration:** 6 hours\n\n**Departs from:** Punta Cana\n\n**Prices:** Adults (11+) $75 · Children (3–11) $50\n\n**Included:**\n• Hotel pick-up and dropoff\n• Visit to the basilica of Higüey\n• Typical dominican lunch\n• Fresh fruit tasting\n• Visit to local plantations\n• Tour of a typical house\n• Guide and staff to accompany you throughout the entire journey\n\n**What to bring:**\n• Beach clothes\n• Towels\n• Sunglasses\n• Sun protection\n• Cash for tipping",
     "pricing": [
       {
-        "tier": "Persons",
-        "price": "$89"
+        "tier": "Adults (11+)",
+        "price": "$75"
+      },
+      {
+        "tier": "Children (3–11)",
+        "price": "$50"
       }
     ],
     "images": [
@@ -1362,11 +1390,15 @@
   },
   {
     "title": "Zipline Punta Cana",
-    "description": "Get ready to feel the rush of adrenaline as you soar above the treetops with our **Zipline Punta Cana** adventure — a thrilling journey through the lush landscapes of the Dominican Republic. Located in the heart of the **Anamuya Mountains**, this experience offers the perfect mix of excitement, natural beauty, and unforgettable views.\n\nDesigned for both adventure seekers and first-time zipliners, this tour features a **series of double-cable zip lines**, allowing you to fly side by side with a friend or family member. With lines stretching over **800 meters long** and up to **200 feet high**, you’ll glide across the jungle canopy while enjoying panoramic views of the surrounding mountains and tropical forests.\n\nOur professional guides ensure a **safe and fun** experience from start to finish. Whether you’re conquering your fear of heights or chasing your next thrill, Zipline Punta Cana delivers an exhilarating escape that will leave you breathless — in the best way.\n\n**Duration:** 5 hours\n\n**Departs from:** Punta Cana\n\n**Prices:** Adults (11+ years) $90 · Children (3–11 years) $45 · Infants (0–2 years) free\n\n**Included:**\n• Hotel pick-up and drop-off\n• All zipline equipment and safety gear\n• Bottled water\n• Briefing and orientation\n• Certified guides\n\n**What to bring:**\n• Beach clothes\n• Towels\n• Sunglasses\n• Sun protection\n• Cash for tipping",
+    "description": "Get ready to feel the rush of adrenaline as you soar above the treetops with our **Zipline Punta Cana** adventure — a thrilling journey through the lush landscapes of the Dominican Republic. Located in the heart of the **Anamuya Mountains**, this experience offers the perfect mix of excitement, natural beauty, and unforgettable views.\n\nDesigned for both adventure seekers and first-time zipliners, this tour features a **series of double-cable zip lines**, allowing you to fly side by side with a friend or family member. With lines stretching over **800 meters long** and up to **200 feet high**, you’ll glide across the jungle canopy while enjoying panoramic views of the surrounding mountains and tropical forests.\n\nOur professional guides ensure a **safe and fun** experience from start to finish. Whether you’re conquering your fear of heights or chasing your next thrill, Zipline Punta Cana delivers an exhilarating escape that will leave you breathless — in the best way.\n\n**Duration:** 5 hours\n\n**Departs from:** Punta Cana\n\n**Prices:** Adults (11+) $65 · Children (3–11) $45\n\n**Included:**\n• Hotel pick-up and drop-off\n• All zipline equipment and safety gear\n• Bottled water\n• Briefing and orientation\n• Certified guides\n\n**What to bring:**\n• Beach clothes\n• Towels\n• Sunglasses\n• Sun protection\n• Cash for tipping",
     "pricing": [
       {
-        "tier": "Persons",
-        "price": "$90"
+        "tier": "Adults (11+)",
+        "price": "$65"
+      },
+      {
+        "tier": "Children (3–11)",
+        "price": "$45"
       }
     ],
     "images": [

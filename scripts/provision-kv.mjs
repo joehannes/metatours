@@ -29,7 +29,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const CONFIG_PATH = join(ROOT, 'wrangler.toml');
 const API = 'https://api.cloudflare.com/client/v4';
 
-const NAMESPACE_TITLE = process.env.KV_NAMESPACE_TITLE || 'nahiatours-data';
+const NAMESPACE_TITLE = process.env.KV_NAMESPACE_TITLE || 'tourcanardvip-data';
 const BINDING = process.env.KV_BINDING || 'DATA_KV_F';
 
 // The generated block is delimited so re-runs replace it rather than stacking

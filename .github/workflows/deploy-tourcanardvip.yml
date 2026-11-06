@@ -1,0 +1,56 @@
+name: Deploy Tour Cana RD VIP
+
+on:
+  push:
+    branches: [tourcanardvip]
+  workflow_dispatch:
+    inputs:
+      cloudflare_api_token:
+        description: One-off Cloudflare API token with Workers Scripts and Workers KV Storage edit permission.
+        required: false
+        default: ''
+
+concurrency:
+  group: deploy-tourcanardvip
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN || secrets.CF_API_TOKEN || inputs.cloudflare_api_token }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID || secrets.CF_ACCOUNT_ID || 'd5272033401c64f8cc6ce650a8321cb2' }}
+      KV_NAMESPACE_TITLE: tourcanardvip-data
+      SITE_URL: ${{ vars.TOURCANARDVIP_SITE_URL || 'https://tourcanardvip.johannes-neugschwentner.workers.dev' }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Require a token
+        if: env.CLOUDFLARE_API_TOKEN == ''
+        run: |
+          echo "::error::No Cloudflare API token is configured."
+          exit 1
+      - name: Normalize the token
+        run: |
+          clean="$(printf '%s' "$CLOUDFLARE_API_TOKEN" | tr -d '[:space:]')"
+          echo "::add-mask::$clean"
+          echo "CLOUDFLARE_API_TOKEN=$clean" >> "$GITHUB_ENV"
+      - name: Assert worker target
+        run: test "$(grep -m1 '^name *= *' wrangler.toml | sed 's/.*= *"\(.*\)"/\1/')" = "tourcanardvip"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Assert isolated KV binding
+        run: |
+          test "$(grep -c '^\[\[kv_namespaces\]\]' wrangler.toml)" = "1"
+          grep -q 'Namespace "tourcanardvip-data"' wrangler.toml
+      - name: Deploy to Cloudflare
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ env.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ env.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: '4'
+          command: deploy --var BUILD_COMMIT:${{ github.sha }} --var BUILD_TIME:${{ github.event.repository.updated_at }}

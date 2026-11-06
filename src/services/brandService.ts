@@ -51,6 +51,7 @@ export interface BrandSettings {
   /** Partner sites the footer sends guests to; unset or empty means "ask us on WhatsApp". */
   partnerHotelsUrl?: string;
   partnerFlightsUrl?: string;
+  partnerCruisesUrl?: string;
   paypalMeLink: string;
   /**
    * A hosted card page the operator pasted in — their own Stripe Payment Link,
@@ -198,6 +199,7 @@ const normalizeBrandSettings = (input: Partial<BrandSettings> | null | undefined
   // Unset keeps the site's own partner; set but empty means there is none.
   ...(typeof input?.partnerHotelsUrl === 'string' ? { partnerHotelsUrl: input.partnerHotelsUrl.trim() } : {}),
   ...(typeof input?.partnerFlightsUrl === 'string' ? { partnerFlightsUrl: input.partnerFlightsUrl.trim() } : {}),
+  ...(typeof input?.partnerCruisesUrl === 'string' ? { partnerCruisesUrl: input.partnerCruisesUrl.trim() } : {}),
   paypalMeLink: typeof input?.paypalMeLink === 'string' ? input.paypalMeLink : '',
   verifoneLink: typeof input?.verifoneLink === 'string' ? input.verifoneLink : '',
   azulLink: typeof input?.azulLink === 'string' ? input.azulLink.trim() : '',

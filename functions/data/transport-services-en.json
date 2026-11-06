@@ -2,62 +2,62 @@
   {
     "id": 1,
     "title": "Private Transfers",
-    "image": "/imgs/edt/vehicles/minivan.webp",
+    "image": "/imgs/tourcanard/vehicles/private-transfer.webp",
     "description": "A private, air-conditioned minivan for 1 to 8 passengers — airport, hotel, villa or any point on the island. Safe and reliable service 24 hours a day.",
-    "price": "From USD 38",
+    "price": "From USD 25",
     "details": {
       "description": "Meet-and-greet at Punta Cana International Airport (PUJ), help with your luggage and a direct ride to your hotel. Options for 1 to 8 passengers, one way or return, any hour of the day or night.",
       "images": [
-        "/imgs/edt/vehicles/minivan.webp",
+        "/imgs/tourcanard/vehicles/private-transfer.webp",
         "/imgs/edt/banners/transfers.webp"
       ]
     },
     "pricingOptions": [
       {
         "tier": "People",
-        "price": "From USD 38",
-        "amount": 38
+        "price": "From USD 25",
+        "amount": 25
       }
     ]
   },
   {
     "id": 2,
     "title": "Luxury Transfers",
-    "image": "/imgs/edt/vehicles/suburban.webp",
+    "image": "/imgs/tourcanard/vehicles/luxury-transfer.webp",
     "description": "Chevrolet Suburban with a professional driver for 1 to 5 passengers. Don’t just get there — get there in style.",
-    "price": "From USD 80",
+    "price": "From USD 35",
     "details": {
       "description": "A black Suburban, a bilingual chauffeur and cold water waiting on board. For arrivals, weddings, golf days and every ride that should feel as good as the destination.",
       "images": [
-        "/imgs/edt/vehicles/suburban.webp",
+        "/imgs/tourcanard/vehicles/luxury-transfer.webp",
         "/imgs/edt/banners/transfers.webp"
       ]
     },
     "pricingOptions": [
       {
         "tier": "People",
-        "price": "From USD 80",
-        "amount": 80
+        "price": "From USD 35",
+        "amount": 35
       }
     ]
   },
   {
     "id": 3,
-    "title": "Transfers Bus",
-    "image": "/imgs/edt/vehicles/bus.webp",
+    "title": "Group Transfers",
+    "image": "/imgs/tourcanard/vehicles/group-transfer.webp",
     "description": "A full-size coach for groups of 30 to 45 passengers — weddings, incentives, families travelling together.",
-    "price": "From USD 159",
+    "price": "From USD 35",
     "details": {
       "description": "One bus, one schedule, everyone together: for groups of 30 to 45 guests between the airport, the hotels and every excursion departure point.",
       "images": [
-        "/imgs/edt/vehicles/bus.webp"
+        "/imgs/tourcanard/vehicles/group-transfer.webp"
       ]
     },
     "pricingOptions": [
       {
         "tier": "People",
-        "price": "From USD 159",
-        "amount": 159
+        "price": "From USD 35",
+        "amount": 35
       }
     ]
   }

@@ -10,18 +10,13 @@ import type { HeroMediaItem } from '../services/brandService';
 export const SITE_DEFAULTS: {
   showBrandName: boolean;
   heroMedia?: HeroMediaItem[];
-  partners?: { hotels: string; flights: string };
+  partners?: { hotels?: string; flights?: string; cruises?: string };
 } = {
   /** The company name beside the logo in the navigation bar. */
   showBrandName: true,
-  /**
-   * The partner sites the footer sends guests to for hotels and flights, until
-   * Admin › Marca names others (or none: an empty address asks on WhatsApp).
-   */
-  partners: {
-    hotels: 'https://exclusivehotelpuntacana.com/',
-    flights: 'https://exclusivehotelpuntacana.com/flights/',
-  },
+  // Partner links are opt-in per operator in Admin › Marca. This site has no
+  // preconfigured partners, so it never promotes another operator by default.
+  partners: {},
   /**
    * The home page's hero: eleven of the tours' own photographs, restored and
    * upscaled 4× by Cloudinary's AI (generative restore, then super-resolution)

@@ -1,15 +1,12 @@
 # ==============================================================================
-# Exclusive Dominican Tours — Cloudflare Worker (static assets + API routes)
+# Tour Cana RD VIP — Cloudflare Worker (static assets + API routes)
 # ==============================================================================
 #
 # A SEPARATE SITE out of the same repository, not a change to any existing one.
-# `nahiatours` is production; this is Exclusive Dominican Tours, forked from El
-# Cortecito's functionality in its own design (action photography, Anton and
-# Barlow, ivory, gold and green). `wrangler deploy` addresses a Worker by
-# name, so the name below is the only thing that decides where this lands, and
-# the deploy workflow asserts it before it uploads anything.
+# `wrangler deploy` addresses a Worker by name, so the name below is the only
+# thing that decides where this site lands.
 #
-# Served at https://exclusive-tours.johannes-neugschwentner.workers.dev
+# Served at https://tourcanardvip.johannes-neugschwentner.workers.dev
 #
 # The Cloudflare project deploys with `npx wrangler deploy`, the Workers
 # command. It needs `main` (a script entry point) and `[assets]` (a directory to
@@ -22,7 +19,7 @@
 # now Workers-shaped. worker/index.ts dispatches to the same functions/*
 # handlers the Pages deployment used, so no endpoint logic is duplicated.
 
-name = "exclusive-tours"
+name = "tourcanardvip"
 main = "worker/index.ts"
 compatibility_date = "2024-05-01"
 
@@ -69,27 +66,12 @@ binding = "AI"
 # KV
 # ==============================================================================
 #
-# Uncomment once the namespace exists and paste its id. Create it with either:
-#
-#   npx wrangler kv namespace create nahiatours-data
-#   ./scripts/deploy-cloudflare.sh      (creates, binds and deploys in one go)
-#
-# The handlers read DATA_KV_F first and fall back to DATA_KV
-# (functions/api/data.ts), so binding either name is enough.
-#
-# Until then the site still works: reads fall back to the JSON bundled at
-# /data/*.json. Only admin writes and /api/init-data need KV.
-#
-# Note this is a Worker, so wrangler.toml is the source of truth for bindings —
-# a binding added in the dashboard is overwritten by the next deploy.
-#
-# Pinned to exclusive-tours-data. Not resolved by title: a Cloudflare git
-# build has no KV_NAMESPACE_TITLE, and the script's default title is
-# nahiatours-data, so a title lookup could bind this site to nahia.tours's
-# data. A literal id cannot resolve wrongly.
+# This is Tour Cana RD VIP's own namespace. It is deliberately pinned by ID
+# so deployment can never fall back to another operator's stored data.
+# Namespace "tourcanardvip-data"
 [[kv_namespaces]]
 binding = "DATA_KV_F"
-id = "5c534450c0cf47fa9d50560f235c4630"
+id = "ea23758459834f69a115b9f7b848e9e4"
 
 # ==============================================================================
 # Environment variables
@@ -115,12 +97,12 @@ id = "5c534450c0cf47fa9d50560f235c4630"
 # serving another's pages there is otherwise nothing to read: these two lines
 # make a wrongly-routed domain say so in one request. They are labels, not
 # settings — nothing reads them but the health endpoint.
-SITE = "exclusive-tours"
-SITE_BRANCH = "exclusive-dominican-tours"
+SITE = "tourcanardvip"
+SITE_BRANCH = "tourcanardvip"
 # The address search engines should find this site under: every canonical
 # link, sitemap entry and social card points here (shared/seo.ts), and a
 # workers.dev host that is not this address is kept out of the index.
-SITE_URL = "https://exclusive-tours.johannes-neugschwentner.workers.dev"
+SITE_URL = "https://tourcanardvip.johannes-neugschwentner.workers.dev"
 # The language the site opens in, and so the language of its page titles.
 SITE_LOCALE = "en"
 

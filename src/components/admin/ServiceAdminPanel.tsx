@@ -25,14 +25,6 @@ interface ServiceAdminPanelProps {
   saveServices: (services: Tour[]) => Promise<void>;
 }
 
-/**
- * Label stored with every price.
- *
- * Services used to carry a list of tiers the operator typed themselves
- * ("Adultos", "Children", "VIP"). There is now one rate that everybody pays, so
- * the tier is no longer an editable field — it is this, and the reader sees it
- * translated (see perPersonTier in toursService).
- */
 const PER_PERSON_TIER = 'Persons';
 
 const createEmptyPricingOption = (): PricingOption => ({
@@ -73,7 +65,7 @@ const normalizeImageEntry = (value: string) => {
 const buildPricingOption = (option: PricingOption): PricingOption => {
   const numeric = Number(String(option.price ?? '').replace(/[^\d.]/g, ''));
   return {
-    tier: PER_PERSON_TIER,
+    tier: String(option.tier ?? '').trim() || PER_PERSON_TIER,
     price: String(option.price ?? '').trim(),
     amount: Number.isFinite(numeric) && numeric > 0 ? numeric : null,
   };
@@ -120,7 +112,9 @@ const ServiceAdminPanel: React.FC<ServiceAdminPanelProps> = ({
     setEditingId(service.id);
     setDraft({
       ...service,
-      pricingOptions: [service.pricingOptions[0] ?? createEmptyPricingOption()],
+      pricingOptions: category === 'tours'
+        ? (service.pricingOptions.length ? service.pricingOptions : [createEmptyPricingOption()])
+        : [service.pricingOptions[0] ?? createEmptyPricingOption()],
       transferRoutes: (service as any).transferRoutes?.length ? (service as any).transferRoutes : [createEmptyRoute()],
       details: {
         description: service.details.description || service.description,
@@ -129,10 +123,12 @@ const ServiceAdminPanel: React.FC<ServiceAdminPanelProps> = ({
     });
   };
 
-  const updatePrice = (value: string) => {
+  const updatePrice = (index: number, field: 'tier' | 'price', value: string) => {
     setDraft((current) => ({
       ...current,
-      pricingOptions: [{ ...(current.pricingOptions[0] ?? createEmptyPricingOption()), price: value }],
+      pricingOptions: current.pricingOptions.map((option, optionIndex) =>
+        optionIndex === index ? { ...option, [field]: value } : option
+      ),
     }));
   };
 
@@ -157,7 +153,8 @@ const ServiceAdminPanel: React.FC<ServiceAdminPanelProps> = ({
     }));
   };
   const buildDraft = (): Tour => {
-    const pricingOptions = [buildPricingOption(draft.pricingOptions[0] ?? createEmptyPricingOption())]
+    const pricingOptions = (category === 'tours' ? draft.pricingOptions : [draft.pricingOptions[0] ?? createEmptyPricingOption()])
+      .map(buildPricingOption)
       .filter((option) => option.price);
     const routes = (draft.transferRoutes ?? [])
       .map((route: any, index: number) => ({
@@ -317,17 +314,64 @@ const ServiceAdminPanel: React.FC<ServiceAdminPanelProps> = ({
         </div>
 
         <div className="mt-6 rounded-3xl border border-ink/15 p-5">
-          <h3 className="mb-1 text-lg font-semibold text-ink">Precio</h3>
-          <p className="mb-4 text-sm text-ink-soft">
-            Una sola tarifa por persona: la misma para adultos y niños.
-          </p>
-          <input
-            type="text"
-            value={draft.pricingOptions[0]?.price ?? ''}
-            onChange={(event) => updatePrice(event.target.value)}
-            placeholder={category === 'transport' ? 'From USD 15' : '$55'}
-            className="w-full rounded-2xl border border-ink/15 px-4 py-3 md:max-w-xs"
-          />
+          <div className="mb-4 flex items-start justify-between gap-4">
+            <div>
+              <h3 className="mb-1 text-lg font-semibold text-ink">Precio</h3>
+              <p className="text-sm text-ink-soft">
+                {category === 'tours'
+                  ? 'Configura tarifas independientes, por ejemplo Adultos (11+) y Niños (3–11).'
+                  : 'Una tarifa inicial para este servicio de traslado.'}
+              </p>
+            </div>
+            {category === 'tours' && (
+              <button
+                type="button"
+                onClick={() => setDraft((current) => ({
+                  ...current,
+                  pricingOptions: [...current.pricingOptions, { tier: 'Children (3–11)', price: '', amount: null }],
+                }))}
+                className="shrink-0 rounded-full border border-lagoon/30 px-4 py-2 text-sm font-semibold text-lagoon-dark"
+              >
+                Agregar tarifa
+              </button>
+            )}
+          </div>
+          <div className="space-y-3">
+            {draft.pricingOptions.map((option, index) => (
+              <div key={`${option.tier}-${index}`} className="grid gap-3 md:grid-cols-[minmax(0,1fr),minmax(0,1fr),auto]">
+                {category === 'tours' ? (
+                  <input
+                    type="text"
+                    value={option.tier}
+                    onChange={(event) => updatePrice(index, 'tier', event.target.value)}
+                    placeholder={index === 0 ? 'Adults (11+)' : 'Children (3–11)'}
+                    className="w-full rounded-2xl border border-ink/15 px-4 py-3"
+                  />
+                ) : <span className="flex items-center px-4 text-sm font-semibold text-ink-soft">Por servicio</span>}
+                <input
+                  type="text"
+                  value={option.price}
+                  onChange={(event) => updatePrice(index, 'price', event.target.value)}
+                  placeholder={category === 'transport' ? 'From USD 15' : '$55'}
+                  className="w-full rounded-2xl border border-ink/15 px-4 py-3"
+                />
+                {category === 'tours' && (
+                  <button
+                    type="button"
+                    onClick={() => setDraft((current) => ({
+                      ...current,
+                      pricingOptions: current.pricingOptions.length > 1
+                        ? current.pricingOptions.filter((_, optionIndex) => optionIndex !== index)
+                        : [createEmptyPricingOption()],
+                    }))}
+                    className="rounded-full px-3 py-2 text-sm font-semibold text-sunset-dark"
+                  >
+                    Quitar
+                  </button>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
 
         {category === 'tours' && (
@@ -519,7 +563,7 @@ const ServiceAdminPanel: React.FC<ServiceAdminPanelProps> = ({
             <p className="mt-2 text-sm text-ink-soft">{service.description.slice(0, 180)}{service.description.length > 180 ? '…' : ''}</p>
             <div className="mt-4 flex flex-wrap gap-2">
               <span className="rounded-full bg-paper-warm px-3 py-1 text-xs font-semibold text-ink-soft">
-                {service.pricingOptions[0]?.price || service.price || 'Sin precio'} por persona
+                {service.pricingOptions.map((option) => `${option.tier}: ${option.price}`).join(' · ') || service.price || 'Sin precio'}
               </span>
             </div>
             <p className="mt-3 text-xs font-medium text-ink-light">

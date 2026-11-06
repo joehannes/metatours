@@ -12,9 +12,6 @@ import { PlannerProvider } from './contexts/PlannerContext';
 import WhatsAppReturnGate from './components/WhatsAppReturnGate';
 // Asks "did the payment go through?" when a guest comes back from paying.
 import PaymentConfirmGate from './components/payment/PaymentConfirmGate';
-// "Inspire me": the full-screen show for the shop's TV. The show itself is a
-// separate chunk, fetched the first time somebody switches it on.
-import { InspireProvider } from './components/edt/inspire/InspireContext';
 
 /**
  * Every route but the home page is split out.
@@ -39,7 +36,6 @@ const Cart = lazy(() => import('./pages/Cart'));
 const About = lazy(() => import('./pages/About'));
 const Policy = lazy(() => import('./pages/Policy'));
 const AdminDestinations = lazy(() => import('./pages/AdminDestinations'));
-const AdminInspire = lazy(() => import('./pages/AdminInspire'));
 const AdminLook = lazy(() => import('./pages/AdminLook'));
 const AdminTrash = lazy(() => import('./pages/AdminTrash'));
 // The receipt shown when a guest comes back from Stripe, AZUL or CardNET.
@@ -78,7 +74,6 @@ const App = () => {
   return (
     <PlannerProvider>
       <Router>
-        <InspireProvider>
         <div className="flex min-h-screen flex-col">
           {/* The painted scene behind every page. */}
           <IllustratedBackdrop />
@@ -103,7 +98,6 @@ const App = () => {
                 <Route path="/admin" element={<ProtectedRoute component={Admin} />} />
                 <Route path="/admin/transport" element={<ProtectedRoute component={AdminTransport} />} />
                 <Route path="/admin/destinations" element={<ProtectedRoute component={AdminDestinations} />} />
-                <Route path="/admin/inspire" element={<ProtectedRoute component={AdminInspire} />} />
                 <Route path="/admin/look" element={<ProtectedRoute component={AdminLook} />} />
                 <Route path="/admin/trash" element={<ProtectedRoute component={AdminTrash} />} />
                 <Route path="/about" element={<About />} />
@@ -113,7 +107,6 @@ const App = () => {
           </main>
           <Footer />
         </div>
-        </InspireProvider>
       </Router>
     </PlannerProvider>
   );

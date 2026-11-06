@@ -70,12 +70,14 @@ export const saveSitePages = async (pages: SitePages, locale: Locale): Promise<v
   cache.delete(locale);
 };
 
-/** The address guests write to: the one set in Admin › Marca, else the stored contact one. */
-export const contactEmailOf = (brand: Pick<BrandSettings, 'contactEmail'>, pages: SitePages | null) =>
-  brand.contactEmail?.trim() || pages?.contact.email?.trim() || '';
+/** Contact information is owned by the brand record, never inherited from a copied site. */
+export const contactEmailOf = (brand: Pick<BrandSettings, 'contactEmail'>, _pages: SitePages | null) =>
+  brand.contactEmail?.trim() || '';
 
 const fill = <T,>(value: T, tokens: Record<string, string>): T => {
-  if (typeof value === 'string') return value.replace(/\{\{\s*(\w+)\s*\}\}/g, (token, key: string) => tokens[key] ?? token) as T;
+  if (typeof value === 'string') {
+    return value.replace(/\{\{\s*(\w+)\s*\}\}/g, (token, key: string) => tokens[key] ?? token) as T;
+  }
   if (Array.isArray(value)) return value.map((item) => fill(item, tokens)) as T;
   if (value && typeof value === 'object') {
     return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, fill(item, tokens)])) as T;
@@ -99,7 +101,15 @@ export const useSitePages = (locale: Locale): SitePages | null => {
   return useMemo(() => {
     if (!pages) return null;
     const email = contactEmailOf(brandSettings, pages);
-    const filled = fill(pages, { ...siteNames(brandSettings), email });
-    return { ...filled, contact: { ...filled.contact, email } };
+    const filled = fill(pages, { ...siteNames(brandSettings), email, whatsapp: brandSettings.phoneNumber?.trim() || '' });
+    return {
+      ...filled,
+      contact: {
+        ...filled.contact,
+        email,
+        whatsapp: brandSettings.phoneNumber?.trim() || '',
+        phone2: undefined,
+      },
+    };
   }, [pages, brandSettings]);
 };

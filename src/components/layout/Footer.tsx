@@ -52,7 +52,7 @@ const POLICY_FALLBACK = [
 
 /**
  * The page ends in charcoal and gold. First, set apart by a rule of its own,
- * the partner sites — hotels, flights, cruises — then the company: contact,
+ * configured partner sites — hotels, flights, cruises — then the company: contact,
  * links, the legal pages, the channels it posts on and how guests can pay.
  */
 const Footer = () => {
@@ -61,7 +61,7 @@ const Footer = () => {
   const pages = useSitePages(locale);
   const accounts = useSocialAccounts();
   const partnerSites = usePartners();
-  const contactEmail = pages?.contact.email || brandSettings.contactEmail || '';
+  const contactEmail = brandSettings.contactEmail || '';
   const year = new Date().getFullYear();
 
   const policies = POLICY_FALLBACK.map((item) => ({
@@ -69,38 +69,31 @@ const Footer = () => {
     title: pages?.policies.find((policy) => policy.slug === item.slug)?.title || t(locale, item.title),
   }));
 
-  // A partner site when Admin › Marca names one; otherwise the same question on WhatsApp the cruises card asks.
-  const partnerCard = (key: string, title: L, text: L, ask: L, image: string, href: string) => ({
+  // Partner cards are opt-in: this site only links to a company the operator
+  // explicitly configured in Admin › Marca.
+  const partnerCard = (key: string, title: L, text: L, image: string, href: string) => ({
     key,
     title: t(locale, title),
     text: t(locale, text),
     image,
-    href: href || generateWhatsAppMessage(brandSettings.phoneNumber, t(locale, ask)),
-    cta: t(locale, href ? COPY.visit : COPY.ask),
+    href,
+    cta: t(locale, COPY.visit),
     external: true,
   });
 
   const partners = [
-    partnerCard('hotels', COPY.hotels, COPY.hotelsText, COPY.hotelsAsk, '/imgs/edt/banners/hotels-sm.webp', partnerSites.hotels),
-    partnerCard('flights', COPY.flights, COPY.flightsText, COPY.flightsAsk, '/imgs/edt/banners/flights-sm.webp', partnerSites.flights),
-    {
-      key: 'cruises',
-      title: t(locale, COPY.cruises),
-      text: t(locale, COPY.cruisesText),
-      image: '/imgs/edt/banners/cruises-sm.webp',
-      href: generateWhatsAppMessage(brandSettings.phoneNumber, t(locale, COPY.cruisesAsk)),
-      cta: t(locale, COPY.ask),
-      external: true,
-    },
-  ];
+    partnerSites.hotels && partnerCard('hotels', COPY.hotels, COPY.hotelsText, '/imgs/edt/banners/hotels-sm.webp', partnerSites.hotels),
+    partnerSites.flights && partnerCard('flights', COPY.flights, COPY.flightsText, '/imgs/edt/banners/flights-sm.webp', partnerSites.flights),
+    partnerSites.cruises && partnerCard('cruises', COPY.cruises, COPY.cruisesText, '/imgs/edt/banners/cruises-sm.webp', partnerSites.cruises),
+  ].filter(Boolean) as Array<ReturnType<typeof partnerCard>>;
 
   const linkClass = 'text-[0.95rem] font-medium text-paper/75 no-underline transition-colors hover:text-mango-light';
   const headClass = 'mb-4 font-condensed text-[0.78rem] font-bold uppercase tracking-[0.24em] text-gold';
 
   return (
     <footer className="relative mt-auto">
-      {/* Partner sites: their own band, under a rule, before the company footer. */}
-      <section className="bg-paper-warm py-14 sm:py-16" aria-labelledby="partners-title">
+      {/* Partners are only visible when this operator configured at least one. */}
+      {partners.length > 0 && <section className="bg-paper-warm py-14 sm:py-16" aria-labelledby="partners-title">
         <div className="section-shell">
           <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
@@ -109,7 +102,7 @@ const Footer = () => {
             </div>
             <div className="hidden h-px flex-1 bg-gradient-to-r from-transparent via-gold/60 to-transparent sm:mx-10 sm:mb-3 sm:block" />
           </div>
-          <div className="grid gap-5 md:grid-cols-3">
+          <div className={`grid gap-5 ${partners.length === 1 ? 'md:grid-cols-1' : partners.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-3'}`}>
             {partners.map((partner) => (
               <a
                 key={partner.key}
@@ -135,7 +128,7 @@ const Footer = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section>}
 
       <div className="relative overflow-hidden bg-ink pb-10 pt-16 text-paper">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/70 to-transparent" />

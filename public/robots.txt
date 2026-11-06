@@ -8,4 +8,4 @@ Disallow: /admin
 Disallow: /cart
 Disallow: /payment
 
-Sitemap: https://elcortecito.johannes-neugschwentner.workers.dev/sitemap.xml
+Sitemap: https://tourcanardvip.johannes-neugschwentner.workers.dev/sitemap.xml

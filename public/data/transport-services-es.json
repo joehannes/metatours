@@ -2,62 +2,62 @@
   {
     "id": 1,
     "title": "Traslados privados",
-    "image": "/imgs/edt/vehicles/minivan.webp",
+    "image": "/imgs/tourcanard/vehicles/private-transfer.webp",
     "description": "Minivan privada con aire acondicionado para 1 a 8 pasajeros: aeropuerto, hotel, villa o cualquier punto de la isla. Un servicio seguro y confiable las 24 horas del día.",
-    "price": "Desde USD 38",
+    "price": "From USD 25",
     "details": {
       "description": "Te recibimos en el Aeropuerto Internacional de Punta Cana (PUJ), te ayudamos con el equipaje y te llevamos directo a tu hotel. Opciones para 1 a 8 pasajeros, solo ida o ida y vuelta, a cualquier hora del día o de la noche.",
       "images": [
-        "/imgs/edt/vehicles/minivan.webp",
+        "/imgs/tourcanard/vehicles/private-transfer.webp",
         "/imgs/edt/banners/transfers.webp"
       ]
     },
     "pricingOptions": [
       {
         "tier": "Personas",
-        "price": "Desde USD 38",
-        "amount": 38
+        "price": "From USD 25",
+        "amount": 25
       }
     ]
   },
   {
     "id": 2,
     "title": "Traslados de lujo",
-    "image": "/imgs/edt/vehicles/suburban.webp",
+    "image": "/imgs/tourcanard/vehicles/luxury-transfer.webp",
     "description": "Chevrolet Suburban con chofer profesional para 1 a 5 pasajeros. No te conformes con llegar: llega con estilo.",
-    "price": "Desde USD 80",
+    "price": "From USD 35",
     "details": {
       "description": "Una Suburban negra, un chofer bilingüe y agua fría esperándote a bordo. Para llegadas, bodas, días de golf y cada trayecto que deba sentirse tan bien como el destino.",
       "images": [
-        "/imgs/edt/vehicles/suburban.webp",
+        "/imgs/tourcanard/vehicles/luxury-transfer.webp",
         "/imgs/edt/banners/transfers.webp"
       ]
     },
     "pricingOptions": [
       {
         "tier": "Personas",
-        "price": "Desde USD 80",
-        "amount": 80
+        "price": "From USD 35",
+        "amount": 35
       }
     ]
   },
   {
     "id": 3,
     "title": "Autobús para traslados",
-    "image": "/imgs/edt/vehicles/bus.webp",
+    "image": "/imgs/tourcanard/vehicles/group-transfer.webp",
     "description": "Un autobús de gran capacidad para grupos de 30 a 45 pasajeros: bodas, viajes de incentivo y familias que viajan juntas.",
-    "price": "Desde USD 159",
+    "price": "From USD 35",
     "details": {
       "description": "Un autobús, un horario y todos juntos: para grupos de 30 a 45 invitados entre el aeropuerto, los hoteles y cada punto de salida de las excursiones.",
       "images": [
-        "/imgs/edt/vehicles/bus.webp"
+        "/imgs/tourcanard/vehicles/group-transfer.webp"
       ]
     },
     "pricingOptions": [
       {
         "tier": "Personas",
-        "price": "Desde USD 159",
-        "amount": 159
+        "price": "From USD 35",
+        "amount": 35
       }
     ]
   }

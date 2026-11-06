@@ -3,84 +3,81 @@
 @tailwind utilities;
 
 /* ══════════════════════════════════════════════════════════════════════════
-   THIS SITE — FULL THROTTLE, IN DAYLIGHT
+   TOUR CANA RD VIP — CARIBBEAN, REFINED
    ──────────────────────────────────────────────────────────────────────────
    Action photography graded like a jet-set film, on ivory instead of black.
    Four rules hold it together:
 
-     1. The photograph does the talking. Type is Anton, set big and tight,
-        straight on top of real pictures; everything else steps back.
-     2. Sport, then luxury. Hard edges, slanted cuts and amber energy — held
-        in by champagne-gold hairlines, small caps and a lot of air.
-     3. One green. WhatsApp green is only ever the booking button.
-     4. Cheap to draw. Every animation moves `transform` or `opacity`; nothing
-        full-width is blurred; grain is one static tile.
+     1. Island blue and palm teal come from the Tour Cana mark; warm coral is
+        reserved for movement, choices and sunshine.
+     2. Rounded cards, soft waves and generous room make the service feel
+        personal — never like a generic booking template.
+     3. Sora carries headings, Manrope keeps booking details calm and clear.
+     4. Motion stays quiet, using opacity and transform only.
 
    The class names are the ones every branch's shared markup asks for — only
    what they look like is this site's own.
    ══════════════════════════════════════════════════════════════════════════ */
 
 :root {
-  --ink: #14161a;
-  --ink-soft: #454b54;
-  --ink-light: #8a9099;
+  --ink: #093b70;
+  --ink-soft: #46627c;
+  --ink-light: #7b94a9;
 
-  --paper: #f7f4ee;
-  --paper-warm: #efe9df;
-  --paper-deep: #e2d9c9;
+  --paper: #fbf8f0;
+  --paper-warm: #eff8f5;
+  --paper-deep: #d7ebe4;
   --card: #ffffff;
 
-  --mango: #f2a33a;
-  --mango-light: #ffd08a;
-  --mango-dark: #c27812;
+  --mango: #f6ab48;
+  --mango-light: #ffdfaa;
+  --mango-dark: #bd6f16;
 
   --hibiscus: #e4553f;
   --hibiscus-light: #ffb8ac;
   --hibiscus-dark: #b63b28;
 
-  --lagoon: #1f7dc1;
-  --lagoon-light: #b5ddf2;
-  --lagoon-dark: #155b8f;
+  --lagoon: #0875aa;
+  --lagoon-light: #bce9ee;
+  --lagoon-dark: #075486;
 
-  --sky: #4ba7dd;
-  --sky-light: #d3ebf8;
-  --sky-dark: #1f6ea2;
+  --sky: #39a8d5;
+  --sky-light: #d3f2f5;
+  --sky-dark: #1479a9;
 
-  --jungle: #1e9e57;
-  --jungle-light: #abe2b9;
-  --jungle-dark: #11733d;
+  --jungle: #158d72;
+  --jungle-light: #bde8d7;
+  --jungle-dark: #0d6954;
 
-  --sunset: #ee7d30;
+  --sunset: #ef7b4f;
   --grape: #7a5dc3;
-  --abyss: #14161a;
+  --abyss: #06305d;
 
-  --gold: #c6a15b;
-  --gold-light: #eadcb7;
-  --gold-dark: #9a7a3b;
+  --gold: #d7a54b;
+  --gold-light: #f5dfb1;
+  --gold-dark: #a8711e;
   --wa: #25d366;
   --wa-dark: #128c4b;
 
-  --line: rgb(20 22 26 / 0.12);
-  --hairline-gold: rgb(198 161 91 / 0.55);
-  --shade-sm: 0 2px 8px -3px rgb(20 22 26 / 0.18);
-  --shade: 0 14px 32px -16px rgb(20 22 26 / 0.3);
-  --shade-lg: 0 26px 56px -26px rgb(20 22 26 / 0.38);
+  --line: rgb(7 84 134 / 0.13);
+  --hairline-gold: rgb(215 165 75 / 0.5);
+  --shade-sm: 0 3px 10px -5px rgb(5 72 111 / 0.18);
+  --shade: 0 16px 36px -18px rgb(5 72 111 / 0.28);
+  --shade-lg: 0 28px 64px -30px rgb(5 72 111 / 0.36);
 
-  /* Radii the shared stylesheet below still names. Sport: tight corners. */
-  --pebble-a: 10px;
-  --pebble-b: 10px;
-  --leaf: 14px;
+  --pebble-a: 18px;
+  --pebble-b: 24px;
+  --leaf: 30px;
 
-  --display: 'Anton', Impact, 'Arial Narrow', sans-serif;
-  --body: 'Barlow', system-ui, sans-serif;
-  --condensed: 'Barlow Condensed', 'Barlow', sans-serif;
-  --serif: 'Cormorant Garamond', Georgia, serif;
+  --display: 'Sora', system-ui, sans-serif;
+  --body: 'Manrope', system-ui, sans-serif;
+  --condensed: 'Sora', system-ui, sans-serif;
+  --serif: 'DM Serif Display', Georgia, serif;
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
-  /* The film grade: a warm highlight and a cool shadow, laid over photographs. */
-  --grade: linear-gradient(180deg, rgb(255 196 120 / 0.1) 0%, rgb(20 22 26 / 0) 40%, rgb(16 40 60 / 0.18) 100%);
+  --grade: linear-gradient(135deg, rgb(5 84 134 / 0.26), transparent 47%, rgb(14 143 111 / 0.18)), linear-gradient(0deg, rgb(4 48 91 / 0.24), transparent 48%);
   /* A static grain tile — no request, no per-frame cost. */
   --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
 }
@@ -102,7 +99,7 @@ body {
 body {
   min-height: 100vh;
   font-family: var(--body);
-  font-weight: 450;
+  font-weight: 500;
   font-size: 1.0625rem;
   color: var(--ink);
   background-color: var(--paper);
@@ -118,19 +115,19 @@ h5,
 h6,
 .font-lobster {
   font-family: var(--display);
-  font-weight: 400;
-  letter-spacing: 0.006em;
-  line-height: 0.98;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
   color: var(--ink);
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 /* Anton has one weight; the shared markup still asks for bold and extrabold. */
 .font-display,
 .font-heading {
-  font-weight: 400 !important;
-  letter-spacing: 0.008em;
-  text-transform: uppercase;
+  font-weight: 700 !important;
+  letter-spacing: -0.035em;
+  text-transform: none;
 }
 
 .font-condensed {
@@ -141,7 +138,7 @@ h6,
 .font-script,
 .font-serif {
   font-family: var(--serif);
-  font-style: italic;
+  font-style: normal;
   font-weight: 500;
   text-transform: none;
   letter-spacing: 0;
@@ -158,7 +155,7 @@ a:hover {
 }
 
 ::selection {
-  background: var(--mango-light);
+  background: var(--lagoon-light);
   color: var(--ink);
 }
 
@@ -260,8 +257,8 @@ a:hover {
 
 .band {
   position: relative;
-  padding-top: clamp(4.5rem, 9vw, 8rem);
-  padding-bottom: clamp(4.5rem, 9vw, 8rem);
+  padding-top: clamp(4.75rem, 9vw, 8.5rem);
+  padding-bottom: clamp(4.75rem, 9vw, 8.5rem);
 }
 
 .band-ivory { background: var(--paper); }
@@ -269,14 +266,15 @@ a:hover {
 .band-white { background: #ffffff; }
 .band-ink { background: var(--ink); color: var(--paper); }
 
-/* A slanted cut, the sport in the layout: the band's top edge runs uphill. */
+/* A subtle shoreline, not a hard-edged template divider. */
 .cut-top {
-  clip-path: polygon(0 3.5vw, 100% 0, 100% 100%, 0 100%);
-  margin-top: -3.5vw;
+  clip-path: ellipse(92% 100% at 50% 100%);
+  margin-top: -2.25rem;
+  padding-top: calc(clamp(4.75rem, 9vw, 8.5rem) + 2.25rem);
 }
 
 .cut-bottom {
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 3.5vw), 0 100%);
+  clip-path: ellipse(92% 100% at 50% 0%);
 }
 
 /* Bands the shared markup names. */
@@ -330,7 +328,7 @@ a:hover {
 .photo-sticker,
 .story-media-frame {
   overflow: hidden;
-  border-radius: 6px;
+  border-radius: var(--leaf);
   box-shadow: var(--shade-lg);
 }
 
@@ -344,14 +342,14 @@ a:hover {
 .artsy-title-card {
   background: #ffffff;
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: var(--pebble-b);
   box-shadow: var(--shade-sm), var(--shade);
 }
 
 .artsy-title-card-light {
   background: var(--paper);
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: var(--pebble-b);
 }
 
 /* Luxury frame: a gold hairline set 8px inside the edge. */
@@ -599,7 +597,7 @@ a:hover {
 .pathway-card {
   position: relative;
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: var(--pebble-b);
   background: #ffffff;
   border: 1px solid var(--line);
   box-shadow: var(--shade);
@@ -2044,14 +2042,6 @@ a:hover {
   .gallery-cue-icon { animation: none !important; }
 }
 
-/* While the "Inspire me" show is up, the page behind it has no scrollbar. */
-html.is-presenting {
-  scrollbar-width: none;
-}
-html.is-presenting::-webkit-scrollbar {
-  display: none;
-}
-
 /* The blog article's miniature gallery. */
 .article-thumb {
   position: relative;
@@ -2300,7 +2290,7 @@ html.is-presenting::-webkit-scrollbar {
   flex-shrink: 0;
   flex-direction: column;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: var(--pebble-b);
   background: #ffffff;
   border: 1px solid var(--line);
   box-shadow: var(--shade-sm), var(--shade);
@@ -2339,7 +2329,7 @@ html.is-presenting::-webkit-scrollbar {
   position: relative;
   flex-shrink: 0;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: var(--pebble-a);
   box-shadow: var(--shade);
 }
 
@@ -2382,12 +2372,12 @@ html.is-presenting::-webkit-scrollbar {
 .hero-line {
   font-size: clamp(3.1rem, min(10.5vw, 13.5vh), 8rem);
   line-height: 0.88;
-  letter-spacing: 0.004em;
+  letter-spacing: -0.055em;
 }
 
 .hero-best {
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 1.5rem 1.5rem 1.5rem 3.5rem;
   background: #ffffff;
   box-shadow: 0 30px 70px -30px rgb(0 0 0 / 0.65), 0 0 0 1px rgb(198 161 91 / 0.45);
   transition: transform 0.45s var(--ease-out);
@@ -2414,14 +2404,14 @@ html.is-presenting::-webkit-scrollbar {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   overflow: hidden;
-  border-radius: 8px 8px 0 0;
+  border-radius: 1.5rem 1.5rem 0 0;
   background: #ffffff;
   box-shadow: 0 -20px 50px -30px rgb(0 0 0 / 0.5);
 }
 
 @media (max-width: 1023px) {
   .hero-stats {
-    border-radius: 8px;
+    border-radius: 1.25rem;
   }
 }
 
@@ -2461,63 +2451,6 @@ html.is-presenting::-webkit-scrollbar {
 
 .hero-stat-cta:hover {
   background: var(--mango-light);
-}
-
-/* ── The "Inspire me" switch ────────────────────────────────────────────── */
-
-.inspire-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.7rem;
-  border-radius: 999px;
-  padding: 0.45rem 1.1rem 0.45rem 0.45rem;
-  background: rgb(20 22 26 / 0.55);
-  box-shadow: inset 0 0 0 1px rgb(198 161 91 / 0.85), 0 10px 30px -14px rgb(0 0 0 / 0.6);
-  color: #ffffff;
-  font-family: var(--condensed);
-  font-size: 0.95rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  transition: transform 0.25s var(--ease-out), background-color 0.25s ease;
-}
-
-.inspire-toggle:hover {
-  transform: translateY(-2px);
-  background: rgb(20 22 26 / 0.75);
-}
-
-.inspire-toggle-track {
-  position: relative;
-  display: block;
-  width: 3.1rem;
-  height: 1.75rem;
-  border-radius: 999px;
-  background: rgb(255 255 255 / 0.18);
-  transition: background-color 0.3s ease;
-}
-
-.inspire-toggle-knob {
-  position: absolute;
-  left: 0.2rem;
-  top: 0.2rem;
-  display: grid;
-  place-items: center;
-  width: 1.35rem;
-  height: 1.35rem;
-  border-radius: 999px;
-  background: var(--gold-light);
-  color: var(--ink);
-  transition: transform 0.35s var(--ease-spring), background-color 0.3s ease;
-}
-
-.inspire-toggle.is-on .inspire-toggle-track {
-  background: var(--mango);
-}
-
-.inspire-toggle.is-on .inspire-toggle-knob {
-  transform: translateX(1.35rem);
-  background: #ffffff;
 }
 
 /* ── Welcome ────────────────────────────────────────────────────────────── */
@@ -2709,440 +2642,6 @@ html.is-presenting::-webkit-scrollbar {
 
 .finder-range {
   accent-color: var(--mango-dark);
-}
-
-/* ── "Inspire me": the TV show ──────────────────────────────────────────── */
-
-@keyframes inspireDrift {
-  0% { transform: scale(1.06) translate3d(-1.2%, 0.6%, 0); }
-  100% { transform: scale(1.16) translate3d(1.4%, -1%, 0); }
-}
-
-.inspire-bg {
-  animation: inspireDrift 38s ease-in-out infinite alternate;
-  will-change: transform;
-}
-
-.inspire-headline {
-  font-family: var(--display);
-  font-size: clamp(2rem, 4.6vw, 6rem);
-  line-height: 0.92;
-  text-transform: uppercase;
-  color: #ffffff;
-  text-shadow: 0 8px 40px rgb(0 0 0 / 0.35);
-}
-
-.inspire-card {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: min(30vw, 46vh);
-  aspect-ratio: 4 / 5;
-  overflow: hidden;
-  border-radius: 12px;
-  background: var(--ink);
-  box-shadow: 0 40px 90px -40px rgb(0 0 0 / 0.9), 0 0 0 1px rgb(198 161 91 / 0.5);
-  transform-style: preserve-3d;
-}
-
-@keyframes inspireZoom {
-  0% { transform: scale(1); }
-  100% { transform: scale(1.12); }
-}
-
-.inspire-card-zoom {
-  animation: inspireZoom 9s ease-out forwards;
-}
-
-.inspire-explore {
-  display: inline-flex;
-  align-items: center;
-  border-radius: 999px;
-  background: var(--mango);
-  padding: 0.5vw 1.1vw;
-  font-family: var(--condensed);
-  font-size: 0.95vw;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink);
-}
-
-.inspire-round {
-  display: grid;
-  place-items: center;
-  width: 3.6rem;
-  height: 3.6rem;
-  border-radius: 999px;
-  background: rgb(20 22 26 / 0.45);
-  color: #ffffff;
-  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.35);
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.inspire-round:hover {
-  background: #ffffff;
-  color: var(--ink);
-}
-
-@keyframes inspireProgress {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
-}
-
-.inspire-progress {
-  animation: inspireProgress linear forwards;
-}
-
-.inspire-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.8vw;
-  border-radius: 6px;
-  background: #ffffff;
-  padding: 1.1vw 1.8vw;
-  font-family: var(--condensed);
-  font-size: 1.35vw;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink);
-  box-shadow: 0 20px 50px -20px rgb(0 0 0 / 0.7);
-  transition: transform 0.25s var(--ease-out), background-color 0.2s ease;
-}
-
-.inspire-cta:hover {
-  transform: translateY(-3px);
-  background: var(--mango);
-}
-
-/* ── The TV player's control bar, under the video ──────────────────────── */
-
-.inspire-tv-bar {
-  display: flex;
-  width: min(86vw, 100%);
-  flex-direction: column;
-  gap: 1.6vh;
-}
-
-.inspire-tv-progress {
-  position: relative;
-  height: max(6px, 0.55vh);
-  overflow: hidden;
-  border-radius: 999px;
-  background: rgb(255 255 255 / 0.2);
-  cursor: pointer;
-}
-
-.inspire-tv-progress-fill {
-  position: absolute;
-  inset: 0;
-  transform-origin: left center;
-  background: linear-gradient(90deg, var(--mango), var(--gold));
-  transition: transform 0.4s linear;
-}
-
-.inspire-tv-btn {
-  display: inline-grid;
-  grid-auto-flow: column;
-  place-items: center;
-  gap: 0.7vw;
-  min-width: max(3.4rem, 4.4vw);
-  height: max(3.4rem, 4.4vw);
-  border-radius: 999px;
-  padding: 0 0.9vw;
-  background: rgb(20 22 26 / 0.6);
-  color: #ffffff;
-  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.32);
-  transition: transform 0.2s var(--ease-out), background-color 0.2s ease, color 0.2s ease;
-}
-
-.inspire-tv-btn-wide {
-  padding: 0 1.6vw;
-  font-family: var(--condensed);
-  font-size: max(1rem, 1.3vw);
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-.inspire-tv-btn:hover {
-  background: #ffffff;
-  color: var(--ink);
-}
-
-/* What the remote has selected must be unmistakable from across the shop. */
-.inspire-tv-btn:focus-visible,
-.inspire-fs-prompt:focus-visible,
-.inspire-video:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 4px var(--ink), 0 0 0 8px var(--mango);
-}
-
-.inspire-tv-btn:focus-visible {
-  transform: scale(1.12);
-  background: #ffffff;
-  color: var(--ink);
-}
-
-.inspire-tv-btn:disabled {
-  opacity: 0.35;
-}
-
-.inspire-tv-readout {
-  min-width: 4.5vw;
-  text-align: center;
-  font-family: var(--condensed);
-  font-size: max(1rem, 1.25vw);
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  color: rgb(255 255 255 / 0.85);
-  font-variant-numeric: tabular-nums;
-}
-
-/* Full screen, offered back when the TV or the guest left it. */
-.inspire-fs-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  border-radius: 999px;
-  padding: 0.55rem 1rem;
-  background: rgb(20 22 26 / 0.55);
-  color: #ffffff;
-  font-family: var(--condensed);
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.3);
-}
-
-.inspire-fs-pill:hover {
-  background: #ffffff;
-  color: var(--ink);
-}
-
-.inspire-fs-prompt {
-  display: inline-flex;
-  align-items: center;
-  gap: 1vw;
-  border-radius: 999px;
-  padding: max(0.9rem, 1.2vw) max(1.6rem, 2.4vw);
-  background: var(--mango);
-  color: var(--ink);
-  font-family: var(--condensed);
-  font-size: max(1.1rem, 1.6vw);
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  box-shadow: 0 24px 60px -20px rgb(0 0 0 / 0.8);
-  transition: transform 0.25s var(--ease-out);
-}
-
-.inspire-fs-prompt:hover,
-.inspire-fs-prompt:focus-visible {
-  transform: translateY(-3px) scale(1.04);
-}
-
-.inspire-video {
-  position: relative;
-  overflow: hidden;
-  border-radius: 8px;
-  background: #000;
-  box-shadow: 0 20px 50px -24px rgb(0 0 0 / 0.9), 0 0 0 1px rgb(255 255 255 / 0.12);
-  transition: transform 0.35s var(--ease-out), box-shadow 0.35s ease;
-}
-
-.inspire-video:hover {
-  transform: scale(1.03);
-  box-shadow: 0 30px 60px -24px rgb(0 0 0 / 0.9), 0 0 0 2px var(--mango);
-  z-index: 2;
-}
-
-.inspire-music {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  width: 23.5rem;
-  max-width: 80vw;
-  border-radius: 999px;
-  background: rgb(20 22 26 / 0.62);
-  padding: 0.3rem 0.45rem;
-  box-shadow: inset 0 0 0 1px rgb(198 161 91 / 0.45), 0 14px 30px -16px rgb(0 0 0 / 0.8);
-}
-
-
-/* ── "Inspire me": transitions between pictures (InspireSlideshow) ───────
-   Transform and opacity only, so a TV's compositor does the work. --dir is
-   1 going forwards and -1 going back; distances and pivots multiply by it. */
-
-.tr-stage {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  perspective: 1800px;
-  contain: strict;
-}
-
-.tr-layer {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-
-.tr-picture {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  animation-fill-mode: both;
-  animation-timing-function: linear;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-
-.tr-anim {
-  animation-fill-mode: both;
-  animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
-  will-change: transform, opacity;
-}
-
-.tr-anim > .tr-picture {
-  animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
-}
-
-@keyframes tr-dissolve-in { from { opacity: 0; } to { opacity: 1; } }
-@keyframes tr-dissolve-out { from { opacity: 1; } to { opacity: 1; } }
-
-@keyframes tr-push-in {
-  from { transform: translate3d(calc(var(--dir, 1) * 100%), 0, 0); }
-  to { transform: translate3d(0, 0, 0); }
-}
-@keyframes tr-push-out {
-  from { transform: translate3d(0, 0, 0); }
-  to { transform: translate3d(calc(var(--dir, 1) * -100%), 0, 0); }
-}
-
-/* Slide over: the new picture covers the old, which sinks back and dims. */
-@keyframes tr-cover-in {
-  from { transform: translate3d(calc(var(--dir, 1) * 100%), 0, 0); }
-  to { transform: translate3d(0, 0, 0); }
-}
-@keyframes tr-cover-out {
-  from { transform: scale(1); opacity: 1; }
-  to { transform: translate3d(calc(var(--dir, 1) * -6%), 0, 0) scale(0.9); opacity: 0.3; }
-}
-
-/* A zoom without blur: scale and opacity only. */
-@keyframes tr-zoom-in {
-  from { transform: scale(1.22); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-@keyframes tr-zoom-out {
-  from { transform: scale(1); }
-  to { transform: scale(0.88); }
-}
-
-/* Wipe: the frame slides in while the picture inside slides the other way,
-   so the picture stands still and only its edge sweeps across. */
-@keyframes tr-wipe-in {
-  from { transform: translate3d(calc(var(--dir, 1) * -100%), 0, 0); }
-  to { transform: translate3d(0, 0, 0); }
-}
-@keyframes tr-wipe-inner {
-  from { transform: translate3d(calc(var(--dir, 1) * 100%), 0, 0); }
-  to { transform: translate3d(0, 0, 0); }
-}
-@keyframes tr-wipe-out { from { opacity: 1; } to { opacity: 1; } }
-
-/* Iris: a circle opening from the centre, the picture settling inside it.
-   The stage's size comes from InspireSlideshow (--tr-w, --tr-h, --tr-d). */
-.tr-layer.tr-iris {
-  inset: auto;
-  left: calc((var(--tr-w) - var(--tr-d)) / 2);
-  top: calc((var(--tr-h) - var(--tr-d)) / 2);
-  width: var(--tr-d);
-  height: var(--tr-d);
-  border-radius: 50%;
-}
-.tr-iris > .tr-picture {
-  inset: auto;
-  left: calc((var(--tr-d) - var(--tr-w)) / 2);
-  top: calc((var(--tr-d) - var(--tr-h)) / 2);
-  width: var(--tr-w);
-  height: var(--tr-h);
-}
-@keyframes tr-iris-in { from { transform: scale(0.001); } to { transform: scale(1); } }
-@keyframes tr-iris-inner { from { transform: scale(1.35); } to { transform: scale(1); } }
-@keyframes tr-iris-out { from { transform: scale(1); } to { transform: scale(1.05); } }
-
-/* Cube: the two pictures are neighbouring faces turning on their shared edge. */
-@keyframes tr-cube-in {
-  from {
-    transform-origin: calc(50% - var(--dir, 1) * 50%) 50%;
-    transform: translate3d(calc(var(--dir, 1) * 100%), 0, 0) rotateY(calc(var(--dir, 1) * 90deg));
-  }
-  to {
-    transform-origin: calc(50% - var(--dir, 1) * 50%) 50%;
-    transform: translate3d(0, 0, 0) rotateY(0deg);
-  }
-}
-@keyframes tr-cube-out {
-  from {
-    transform-origin: calc(50% + var(--dir, 1) * 50%) 50%;
-    transform: translate3d(0, 0, 0) rotateY(0deg);
-  }
-  to {
-    transform-origin: calc(50% + var(--dir, 1) * 50%) 50%;
-    transform: translate3d(calc(var(--dir, 1) * -100%), 0, 0) rotateY(calc(var(--dir, 1) * -90deg));
-  }
-}
-
-/* Flip: one card, the new picture on its back. */
-@keyframes tr-flip-in {
-  from { transform: rotateY(calc(var(--dir, 1) * 180deg)); }
-  to { transform: rotateY(0deg); }
-}
-@keyframes tr-flip-out {
-  from { transform: rotateY(0deg); }
-  to { transform: rotateY(calc(var(--dir, 1) * -180deg)); }
-}
-
-/* Ken Burns: four slow drifts, taken in turn. */
-@keyframes tr-drift-0 {
-  from { transform: scale(1.02) translate3d(0, 0, 0); }
-  to { transform: scale(1.14) translate3d(-1.6%, -1%, 0); }
-}
-@keyframes tr-drift-1 {
-  from { transform: scale(1.14) translate3d(1.6%, 0.6%, 0); }
-  to { transform: scale(1.03) translate3d(0, 0, 0); }
-}
-@keyframes tr-drift-2 {
-  from { transform: scale(1.04) translate3d(-1.2%, 1%, 0); }
-  to { transform: scale(1.15) translate3d(1.6%, -1.2%, 0); }
-}
-@keyframes tr-drift-3 {
-  from { transform: scale(1.12) translate3d(0, -1.4%, 0); }
-  to { transform: scale(1.02) translate3d(-1%, 1%, 0); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .tr-anim,
-  .tr-picture {
-    animation-duration: 1ms !important;
-  }
-}
-
-/* The music, drawn: a canvas over the background (InspireVisualizer). */
-.inspire-visualizer {
-  position: absolute;
-  inset-inline: 0;
-  pointer-events: none;
-  z-index: 5;
-  transition: opacity 600ms ease;
 }
 
 /* The tour page's booking buttons, in this site's button language. */

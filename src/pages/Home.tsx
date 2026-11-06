@@ -25,7 +25,7 @@ import RecognitionSection from '../components/edt/home/RecognitionSection';
 const HERO_BACKGROUND_IMAGE = '/imgs/edt/banners/hero-party.webp';
 
 /**
- * The landing page, top to bottom: the hero (with the "Inspire me" switch),
+ * The landing page, top to bottom: the hero,
  * the gallery of real moments, the ranked best sellers, the welcome and its
  * story, why us, the transfers, certifications, guest reviews, the call to
  * action and the two ways to build a day.

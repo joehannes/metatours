@@ -259,6 +259,16 @@ const Admin: React.FC = () => {
                     className="rounded-2xl border border-ink/15 px-4 py-3 font-normal text-ink"
                   />
                 </label>
+                <label className="grid gap-1 text-sm font-semibold text-ink-soft">
+                  Sitio aliado para cruceros
+                  <input
+                    type="url"
+                    value={brandSettings.partnerCruisesUrl ?? SITE_DEFAULTS.partners?.cruises ?? ''}
+                    onChange={(event) => setBrandSettings({ ...brandSettings, partnerCruisesUrl: event.target.value })}
+                    placeholder="https://… (vacío: no se muestra)"
+                    className="rounded-2xl border border-ink/15 px-4 py-3 font-normal text-ink"
+                  />
+                </label>
                 <input
                   type="text"
                   value={brandSettings.paypalMeLink}

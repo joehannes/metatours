@@ -4,14 +4,18 @@
     "description": "**Votre évasion caribéenne de rêve, à une simple traversée en bateau.** Mettez le cap sur l’**île Saona**, un joyau de la République dominicaine niché dans les eaux protégées du **parc national Cotubanamá**. Avec ses plages de sable blanc et fin, ses eaux turquoise et ses cocotiers majestueux, Saona offre l’expérience tropicale par excellence, tout droit sortie d’une carte postale.\n\n### Au programme\n\nAu départ de Bayahibe, cette aventure d’une journée vous emmène sur la **plus grande île** de la République dominicaine — un havre de paix de plus de 110 km². Que vous veniez pour vous détendre, explorer ou faire du snorkeling, chacun y trouve son bonheur.\n\n**Catamaran et vedette** — Profitez de deux traversées panoramiques — l’une relaxante, l’autre palpitante — à l’aller et au retour.\n\n**Halte à la piscine naturelle** — Avancez dans des eaux peu profondes et cristallines, célèbres pour leurs étoiles de mer géantes. Un moment de carte postale !\n\n**Temps libre à la plage** — Prélassez-vous sous les palmiers, nagez dans les eaux chaudes de la mer des Caraïbes ou flânez le long d’un littoral préservé.\n\n**Vie marine** — Faites du snorkeling dans des eaux calmes et découvrez des récifs coralliens colorés et des poissons tropicaux.\n\n**Déjeuner sur l’île** — Savourez un délicieux buffet dominicain servi directement sur la plage. Open bar inclus !\n\n**Durée :** 9 heures\n\n**Départ de :** Bayahíbe\n\n**Prix :** Adultes (11 ans et +) $65 · Enfants $40 · Bébés (0–2 ans) gratuit\n\n**Inclus :**\n• Transport aller-retour depuis l’hôtel\n• Traversées aller-retour en catamaran et en vedette\n• Halte à la piscine naturelle\n• Temps libre à la plage sur l’île Saona\n• Déjeuner buffet et open bar\n• Animation et musique à bord\n• Guides certifiés\n\n**À apporter :**\n• Tenue de plage\n• Serviettes\n• Lunettes de soleil\n• Protection solaire\n• Espèces pour les pourboires",
     "pricing": [
       {
-        "tier": "Persons",
-        "price": "$65"
+        "tier": "Adultes (11+)",
+        "price": "$55"
+      },
+      {
+        "tier": "Enfants (3–11)",
+        "price": "$40"
       }
     ],
     "images": [
       {
         "role": "detail_1",
-        "localPath": "imgs/edt/tours/saona-island-tour/1.webp"
+        "localPath": "imgs/tourcanard/tours/saona.webp"
       },
       {
         "role": "detail_2",
@@ -110,8 +114,12 @@
     "description": "**Plongez dans l’histoire et la culture au cœur des Caraïbes**\n\nSanto Domingo de Guzmán — Saint-Domingue —, la capitale animée de la République dominicaine, est la plus ancienne ville habitée sans interruption des Amériques. Berceau du Nouveau Monde, elle regorge de trésors d’histoire et de culture et d’une superbe architecture coloniale. Son centre historique, la Zone coloniale, est inscrit au patrimoine mondial de l’UNESCO et abonde en vestiges de son passé du XVIe siècle. Parmi ses monuments les plus célèbres figure la **Catedral Primada de América**, la toute première cathédrale construite dans les Amériques.\n\nLa ville est une métropole trépidante d’environ 3 millions d’habitants, divisée en plusieurs municipalités, dont Santo Domingo Este, le District national, Santo Domingo Oeste et Santo Domingo Norte. Si la ville vit au rythme de la modernité, son passé n’est jamais bien loin.\n\n**Durée :** 10 heures\n\n**Départ de :** Santo Domingo\n\n**Prix :** Adultes (11 ans et +) $90 · Enfants (3–11 ans) $45 · Bébés (0–2 ans) gratuit\n\n**Inclus :**\n• Prise en charge et retour à l’hôtel\n• Transport climatisé\n• Guide certifié\n• Visite des monuments de la Zone coloniale, notamment :\n• Catedral Primada de América\n• Alcázar de Colón\n• Forteresse Ozama\n• Parque Colón et Plaza de España\n• Une promenade à pied dans les rues pavées de la Zone coloniale\n• Du temps libre pour découvrir les marchés, les places et les cafés\n• Prise en charge et retour à l’hôtel\n• Boissons non alcoolisées\n• Déjeuner dominicain typique\n\n**À apporter :**\n• Tenue de plage\n• Serviettes\n• Lunettes de soleil\n• Protection solaire\n• Espèces pour les pourboires",
     "pricing": [
       {
-        "tier": "Persons",
-        "price": "$90"
+        "tier": "Adultes (11+)",
+        "price": "$55"
+      },
+      {
+        "tier": "Enfants (3–11)",
+        "price": "$45"
       }
     ],
     "images": [
@@ -157,14 +165,14 @@
     "description": "Préparez-vous à danser, à faire du snorkeling et à faire la fête à bord du **bateau-fête le plus animé de Punta Cana** — une aventure tropicale inoubliable sur les eaux cristallines des Caraïbes.\n\nNous longerons un littoral à couper le souffle, entre palmiers ondulant au vent et paysages éclatants. Notre équipe d’animateurs pleine d’énergie fera monter l’ambiance avec un mélange de bachata, de merengue, de reggaeton, de salsa et de tubes internationaux. La musique, les paysages et l’ambiance sont incomparables !\n\n**Durée :** 9 heures\n\n**Départ de :** Punta Cana\n\n**Prix :** Adultes (11 ans et +) $95\n\n**Inclus :**\n• Prise en charge et retour à l’hôtel\n• Balade en catamaran le long de la côte de Punta Cana\n• Snorkeling, équipement inclus\n• Halte à la piscine naturelle\n• Open bar (boissons locales)\n• En-cas à bord\n• Guides certifiés et équipe d’animation\n\n**À apporter :**\n• Serviette\n• Lunettes de soleil\n• Crème solaire\n• Espèces pour les pourboires ou les extras",
     "pricing": [
       {
-        "tier": "Persons",
-        "price": "$95"
+        "tier": "Conducteur",
+        "price": "$45"
       }
     ],
     "images": [
       {
         "role": "detail_1",
-        "localPath": "imgs/edt/tours/punta-cana-party-boat/1.webp"
+        "localPath": "imgs/tourcanard/tours/party-boat.webp"
       },
       {
         "role": "detail_2",
@@ -196,14 +204,14 @@
     "description": "Choisissez votre style d’aventure — une expérience tout-terrain inoubliable ! Préparez-vous à une journée riche en adrénaline sur les pistes accidentées de Punta Cana ! Avec **Adventure Boogies**, vous aurez l’occasion d’explorer des paysages magnifiques, de vous imprégner de la culture dominicaine et de libérer votre esprit d’aventure lors d’une excursion tout-terrain sans pareille.\n\nVous roulerez sur des sentiers boueux, à travers des villages animés et des chemins tropicaux luxuriants, et visiterez des lieux fascinants comme une **grotte naturelle** aux eaux cristallines. Pour couronner le tout, vous profiterez d’un moment de détente à la **plage de Macao**, l’une des plus belles plages de la République dominicaine.\n\nCette excursion s’adresse à tous les aventuriers, que vous partiez seul, en couple, en famille ou entre amis. Choisissez parmi quatre formules, chacune pensée pour répondre à vos envies et rendre votre expérience mémorable :\n\n### Choisissez votre véhicule\n\n### 🚙 Buggy individuel – $85 par personne\n\nParfait pour ceux qui aiment le frisson d’avoir le contrôle total. Pilotez en solo et parcourez les pistes en toute autonomie !\n\n### 🚙 Buggy double – $60 par personne\n\nIdéal pour les couples ou les amis qui veulent partager la route et l’aventure.\n\n### 🚙 Buggy familial – $45 par personne (jusqu’à 4 personnes)\n\nLa meilleure option pour les familles ou les petits groupes qui recherchent plus d’espace et de sécurité pour explorer la campagne.\n\n### 🚜 Buggy safari – $89 par personne\n\nPour ceux qui souhaitent une excursion plus longue et plus immersive, avec des haltes culturelles supplémentaires, des dégustations de produits locaux et des échanges plus approfondis avec les communautés rurales. Cette version comprend également une **balade à cheval**, une **descente en tyrolienne** et des **rafraîchissements** en cours de route.\n\n**Durée :** 4 heures\n\n**Départ de :** Punta Cana\n\n**Prix :** Buggy individuel $85 · Buggy double (60 x pax) $60 · Buggy familial $45 · Buggy + safari $89\n\n**Inclus :**\n• Prise en charge et retour à l’hôtel\n• Balade palpitante en buggy\n• Baignade dans un cénote\n• Visite d’une boutique typique\n• Équipement spécialisé inclus\n• Entrée à Domitai\n• Guides certifiés\n\n**À apporter :**\n• Tenue de plage\n• Serviettes\n• Lunettes de soleil\n• Protection solaire\n• Espèces pour les pourboires\n• Équipement de sécurité\n• Des vêtements que vous n’avez pas peur de salir (la boue fait partie du plaisir !)",
     "pricing": [
       {
-        "tier": "Persons",
-        "price": "$85"
+        "tier": "Conducteur",
+        "price": "$45"
       }
     ],
     "images": [
       {
         "role": "detail_1",
-        "localPath": "imgs/edt/tours/adventure-boogies/1.webp"
+        "localPath": "imgs/tourcanard/tours/buggies.webp"
       },
       {
         "role": "detail_2",
@@ -235,14 +243,18 @@
     "description": "**Un joyau caché des Caraïbes.** Découvrez la magie de l’île Catalina — une superbe escapade tropicale située au large de la côte sud-est de la République dominicaine, près de La Romana. Célèbre pour ses eaux turquoise cristallines, son sable blanc et fin et ses récifs coralliens éclatants, l’île Catalina est une destination de rêve pour les amoureux de la plage, les passionnés de snorkeling et tous ceux qui recherchent tout simplement le calme et la beauté de la nature.\n\nVotre voyage commence par une traversée panoramique en vedette sur la mer des Caraïbes. En chemin, nous ferons halte à la magnifique **Piscine naturelle**, un banc de sable peu profond où vous pourrez marcher dans l’eau, siroter un verre et profiter du soleil — un véritable coin de paradis !\n\nUne fois sur l’île Catalina, vous profiterez d’une **journée de plage décontractée**, avec tout le temps de vous détendre, de nager, d’explorer l’île ou de faire du snorkeling sur des récifs foisonnants de vie marine. Ouvrez l’œil : vous apercevrez des poissons tropicaux colorés, et peut-être même les vestiges de l’épave légendaire du « Capitaine Kidd » !\n\n**Durée :** 9 heures\n\n**Départ de :** Bayahíbe\n\n**Prix :** Adultes (11 ans et +) $115 · Enfants (3–11 ans) $60 · Bébés (0–2 ans) gratuit\n\n**Inclus :**\n• Prise en charge et retour à l’hôtel\n• Traversée aller-retour en vedette\n• Halte à la Piscine naturelle\n• Délicieux déjeuner buffet sur l’île\n• Open bar (bière, rhum, eau, boissons non alcoolisées)\n• Temps libre pour profiter de la plage et du récif de l’île Catalina\n• Animateurs et guides certifiés\n• Équipe d’animation et de divertissement\n\n**À apporter :**\n• Tenue de plage\n• Serviettes\n• Lunettes de soleil\n• Protection solaire\n• Espèces pour les pourboires",
     "pricing": [
       {
-        "tier": "Persons",
-        "price": "$115"
+        "tier": "Adultes (11+)",
+        "price": "$80"
+      },
+      {
+        "tier": "Enfants (3–11)",
+        "price": "$60"
       }
     ],
     "images": [
       {
         "role": "detail_1",
-        "localPath": "imgs/edt/tours/catalina-island-tour/1.webp"
+        "localPath": "imgs/tourcanard/tours/catalina.webp"
       },
       {
         "role": "detail_2",
@@ -314,8 +326,12 @@
     "description": "**Évadez-vous entre aventure et culture**\n\nPlongez dans une aventure qui allie activités palpitantes et immersion au cœur du patrimoine culturel de l’île. Des descentes vertigineuses en tyrolienne au-dessus des falaises à l’exploration de grottes cachées et à la baignade dans des bassins souterrains, cette formule d’entrée complète à Scape Park vous promet une expérience inoubliable. Glissez dans les airs sur des tyroliennes au-dessus de l’eau, rebondissez sur des hamacs aquatiques et découvrez la beauté éclatante de ce paradis luxuriant. En chemin, vous découvrirez aussi la riche histoire et la culture qui façonnent cette destination incroyable.\n\n### Ce qui est inclus\n\nToutes les attractions terrestres\n\nTransport aller-retour\n\n### À apporter\n\nChaussures aquatiques\n\nVêtements confortables\n\nMaillot de bain\n\nEspèces ou carte bancaire pour les repas, les boissons, les souvenirs et les photos\n\n### Restrictions\n\nDéconseillé aux personnes en situation de handicap, aux femmes enceintes et aux personnes souffrant de maladies graves\n\nLes participants à la tyrolienne doivent avoir au moins 6 ans\n\nPoids maximum pour la tyrolienne : 330 livres (environ 150 kg)\n\nAlcool et substances interdits\n\nNourriture, perches à selfie et drones interdits dans le parc\n\n### Attractions incluses\n\n**Route culturelle**\nRemontez le temps et explorez des répliques d’habitations du passé de l’île, des anciens Indiens taïnos aux conquistadors espagnols, en passant par les esclaves africains et les paysans dominicains. Ce mélange unique d’histoire et de nature est une façon captivante de renouer avec le patrimoine de l’île.\n\n**Baignade dans la grotte**\nOffrez-vous une baignade rafraîchissante dans une source souterraine mystique, autrefois sacrée pour les peuples autochtones. Ses eaux fraîches et cristallines offrent un moment de pure sérénité, idéal pour se reconnecter à la nature.\n\n**Saltos Azules**\nVivez des aventures palpitantes, dont la balançoire de corde Mabo, la Macuya Swing et la tyrolienne Monkey Bar. Laissez-vous porter par des hamacs aquatiques qui fendent des eaux fraîches, entre grottes et cascades spectaculaires — une expérience aussi rafraîchissante que grisante.\n\n**Hoyo Azul**\nAdmirez la beauté saisissante d’un cénote turquoise, une merveille naturelle qui révèle l’écosystème unique de l’île. Cette expérience inoubliable vous met en contact direct avec les merveilles de la nature.\n\n**Tyrolienne Eco Splash**\nRessentez la montée d’adrénaline en survolant la cime des arbres sur huit tyroliennes, le long d’une falaise spectaculaire. Une aventure en altitude incontournable pour les amateurs de sensations fortes.\n\n**Expédition dans les grottes**\nExplorez le monde souterrain en parcourant un réseau de salles et de tunnels aux formations géologiques remarquables. Ce voyage dans les profondeurs offre un aperçu saisissant des trésors cachés de la nature.\n\n**Iguanaland**\nRencontrez les majestueux iguanes rhinocéros, originaires de l’île, dans cet espace interactif. Avec l’aide de soigneurs expérimentés, vous observerez de près ces créatures fascinantes dans un cadre ludique et pédagogique pour tous les âges.\n\n**Durée :** 9 heures\n\n**Départ de :** Punta Cana\n\n**Prix :** Adultes (11 ans et +) $129 · Enfants (3–11 ans) $65 · Bébés (0–2 ans) gratuit\n\n**Inclus :**\n• Prise en charge et retour à l’hôtel\n• Guides certifiés\n\n**À apporter :**\n• Tenue de plage\n• Serviettes\n• Lunettes de soleil\n• Protection solaire\n• Espèces pour les pourboires",
     "pricing": [
       {
-        "tier": "Persons",
+        "tier": "Adultes (11+)",
         "price": "$129"
+      },
+      {
+        "tier": "Enfants (3–11)",
+        "price": "$65"
       }
     ],
     "images": [
@@ -775,8 +791,12 @@
     "description": "Vivez une aventure unique en son genre à Monkeyland Punta Cana, où nature, culture et faune se rencontrent pour une expérience ludique et inoubliable ! Cette visite guidée offre le parfait mélange entre culture dominicaine et rencontres rapprochées avec nos sympathiques singes-écureuils, dans un cadre tropical luxuriant.\n\n### Au plus près des singes-écureuils\n\nEntrez dans l’habitat naturel des singes et interagissez librement avec ces créatures curieuses et joueuses. Ils sauteront volontiers sur vos épaules, poseront pour des selfies et mangeront même dans vos mains — le tout sous la surveillance de notre personnel qualifié, pour une expérience sûre et respectueuse.\n\n### Expérience culturelle\n\nVotre visite commence par la découverte d’une maison de campagne dominicaine traditionnelle. Découvrez comment les familles locales vivent de la terre, pratiquent une agriculture biologique et préparent des produits traditionnels comme le café et le cacao. Cette partie de la visite offre un aperçu unique de la vie quotidienne et du patrimoine de la République dominicaine.\n\n### Au programme\n\nVisite d’une maison de campagne dominicaine\n\nDémonstration culturelle des pratiques agricoles et des produits locaux\n\nRencontre interactive avec les singes-écureuils dans un habitat naturel\n\nVisite sur 5 magnifiques acres de terrain en montagne\n\nDisponible en visite guidée avec transport ou en formule autonome avec votre propre véhicule (attention : la visite guidée a un horaire de départ précis)\n\n**Durée :** 5 heures\n\n**Départ de :** Punta Cana\n\n**Prix :** Adultes (11 ans et +) $95 · Enfants (3–11 ans) $60 · Bébés (0–2 ans) gratuit\n\n**Inclus :**\n• Prise en charge et retour à l’hôtel (en option avec la formule transport)\n• Transport en camion safari (si cette option est choisie)\n• Entrée à Monkeyland et aux espaces culturels\n• Guides certifiés et bilingues\n\n**À apporter :**\n• Tenue de plage\n• Serviettes\n• Lunettes de soleil\n• Protection solaire\n• Espèces pour les pourboires",
     "pricing": [
       {
-        "tier": "Persons",
+        "tier": "Adultes (11+)",
         "price": "$95"
+      },
+      {
+        "tier": "Enfants (3–11)",
+        "price": "$60"
       }
     ],
     "images": [
@@ -860,8 +880,12 @@
     "description": "Envolez-vous au-dessus des eaux cristallines des Caraïbes ! Préparez-vous à une aventure grisante qui allie le frisson du vol à des vues aériennes spectaculaires sur les plages préservées de Punta Cana ! Le **parachute ascensionnel à Punta Cana** est la meilleure façon de profiter du magnifique littoral sous un angle totalement nouveau, pour une expérience inoubliable aussi bien pour les amateurs de sensations fortes que pour les amoureux de la nature.\n\nVotre aventure commence par un briefing de sécurité, bref mais essentiel, donné par nos guides expérimentés pour vous préparer parfaitement au vol. Une fois à bord d’une vedette, on vous équipera d’un harnais et d’un parachute avant de vous hisser haut dans le ciel — à plus de 100 mètres au-dessus des eaux des Caraïbes ! Pendant l’ascension, vous profiterez de vues panoramiques sur un littoral à couper le souffle, des plages de sable blanc et une mer turquoise éclatante. Vous apercevrez peut-être même les complexes hôteliers exclusifs et la végétation tropicale luxuriante qui borde le rivage.\n\nLe vol dure généralement entre 10 et 15 minutes, ce qui vous laisse tout le temps de vous détendre, d’admirer ce paysage grandiose et de savourer l’excitation de voler dans les airs. Pour ceux qui recherchent un peu plus d’aventure, certains opérateurs proposent de descendre jusqu’à effleurer l’eau avant de remonter pour le retour.\n\nCette activité est idéale pour les **familles**, les **couples** ou les **amis** qui souhaitent partager une expérience à la fois palpitante et relaxante, tout en admirant la beauté de la République dominicaine vue du ciel.\n\nAprès votre vol, vous regagnerez le bateau et pourrez vous détendre sur le chemin du retour vers le rivage, en repensant aux moments inoubliables de votre aventure en parachute ascensionnel.\n\n**Durée :** 3 heures\n\n**Départ de :** Punta Cana\n\n**Prix :** Adultes (11 ans et +) $75 · Enfants (3–11 ans) $38 · Bébés (0–2 ans) gratuit\n\n**Inclus :**\n• Prise en charge et retour à l’hôtel\n• Arrivée au centre de parachute ascensionnel\n• Équipement\n• Atterrissage\n• Vol en parachute ascensionnel\n• Briefing de sécurité\n• Guides certifiés\n\n**À apporter :**\n• Tenue de plage\n• Serviettes\n• Lunettes de soleil\n• Protection solaire\n• Espèces pour les pourboires",
     "pricing": [
       {
-        "tier": "Persons",
-        "price": "$75"
+        "tier": "Adultes (11+)",
+        "price": "$60"
+      },
+      {
+        "tier": "Enfants (3–11)",
+        "price": "$38"
       }
     ],
     "images": [
@@ -953,8 +977,12 @@
     "description": "### Safari à travers la campagne dominicaine\n\nDécouvrez le cœur et l’âme de la République dominicaine lors de ce voyage immersif façon safari à travers ses riches paysages ruraux. Montez à bord d’un camion ouvert spécialement aménagé et partez à travers les collines ondulantes et la campagne colorée pour une journée riche en découvertes culturelles, en beautés naturelles et en saveurs locales.\n\nVotre aventure commence par la visite de plantations locales où vous découvrirez comment sont cultivés et transformés le café, le cacao et la canne à sucre, trois piliers qui ont façonné l’histoire de l’île. En chemin, faites halte dans la ville animée de Higüey pour goûter des fruits tropicaux frais et d’autres douceurs locales.\n\nL’un des temps forts de la journée est la visite d’une maison familiale dominicaine, où l’on vous accueillera chaleureusement autour d’une tasse de café fraîchement préparé pour vous faire découvrir la vie quotidienne et les traditions des communautés rurales de l’île.\n\nEnsuite, respirez l’air frais des montagnes en explorant les ranchs pittoresques des collines d’Anamuya. Rafraîchissez-vous par une baignade dans la rivière Anamuya et savourez un copieux déjeuner à la dominicaine composé de plats traditionnels.\n\nL’expérience s’achève sur la magnifique plage de Macao, où vous pourrez vous détendre sur le sable blanc et fin ou piquer une tête dans les eaux turquoise des Caraïbes. Avec des haltes pour découvrir les cigares roulés à la main et déguster de la canne à sucre en chemin, cette excursion offre le parfait mélange de culture, de nature et de détente.\n\n**Durée :** 6 heures\n\n**Départ de :** Punta Cana\n\n**Prix :** Adultes (11 ans et +) $89 · Enfants $50 · Bébés (0–2 ans) gratuit\n\n**Inclus :**\n• Prise en charge et retour à l’hôtel\n• Visite de la basilique de Higüey\n• Déjeuner dominicain typique\n• Dégustation de fruits frais\n• Visite de plantations locales\n• Visite d’une maison typique\n• Guide et équipe pour vous accompagner tout au long du parcours\n\n**À apporter :**\n• Tenue de plage\n• Serviettes\n• Lunettes de soleil\n• Protection solaire\n• Espèces pour les pourboires",
     "pricing": [
       {
-        "tier": "Persons",
-        "price": "$89"
+        "tier": "Adultes (11+)",
+        "price": "$75"
+      },
+      {
+        "tier": "Enfants (3–11)",
+        "price": "$50"
       }
     ],
     "images": [
@@ -1365,8 +1393,12 @@
     "description": "Préparez-vous à ressentir la montée d’adrénaline en survolant la cime des arbres avec notre aventure **Tyrolienne à Punta Cana** — un parcours palpitant à travers les paysages luxuriants de la République dominicaine. Située au cœur des **montagnes d’Anamuya**, cette expérience offre le parfait mélange de sensations, de beauté naturelle et de panoramas inoubliables.\n\nConçue aussi bien pour les amateurs d’aventure que pour ceux qui s’essaient à la tyrolienne pour la première fois, cette excursion propose une **série de tyroliennes à double câble**, qui vous permettent de voler côte à côte avec un ami ou un proche. Avec des lignes de plus de **800 mètres de long** et jusqu’à **200 pieds (environ 60 mètres) de haut**, vous glisserez au-dessus de la canopée en profitant de vues panoramiques sur les montagnes et les forêts tropicales environnantes.\n\nNos guides professionnels vous garantissent une expérience **sûre et ludique** du début à la fin. Que vous souhaitiez vaincre votre peur du vide ou vivre votre prochain grand frisson, la Tyrolienne à Punta Cana vous offre une évasion grisante qui vous laissera à bout de souffle — dans le meilleur sens du terme.\n\n**Durée :** 5 heures\n\n**Départ de :** Punta Cana\n\n**Prix :** Adultes (11 ans et +) $90 · Enfants (3–11 ans) $45 · Bébés (0–2 ans) gratuit\n\n**Inclus :**\n• Prise en charge et retour à l’hôtel\n• Tout l’équipement de tyrolienne et de sécurité\n• Eau en bouteille\n• Briefing et orientation\n• Guides certifiés\n\n**À apporter :**\n• Tenue de plage\n• Serviettes\n• Lunettes de soleil\n• Protection solaire\n• Espèces pour les pourboires",
     "pricing": [
       {
-        "tier": "Persons",
-        "price": "$90"
+        "tier": "Adultes (11+)",
+        "price": "$65"
+      },
+      {
+        "tier": "Enfants (3–11)",
+        "price": "$45"
       }
     ],
     "images": [

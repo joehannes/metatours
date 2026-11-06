@@ -49,8 +49,6 @@ export const PROTECTED_RESOURCES = new Set([
   'pay-attempts',
   // Written only through /api/wallet-config (functions/api/wallet-config.ts).
   'apple-pay-domain-association',
-  // A site's YouTube Data API key (functions/api/youtube.ts).
-  'youtube-secret',
   // The AI providers' API keys (functions/api/ai-settings.ts). This one was
   // readable by anyone until it was listed here.
   'ai-settings',

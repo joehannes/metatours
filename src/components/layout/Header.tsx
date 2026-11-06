@@ -190,7 +190,7 @@ const Header: React.FC = () => {
           className="fixed left-2 top-1.5 z-[60] grid h-9 w-9 place-items-center overflow-hidden rounded-full bg-white no-underline ring-2 ring-ink/10"
         >
           {brandSettings.brandicon ? (
-            <img src={brandSettings.brandicon} alt="" className="h-7 w-7 object-contain" />
+            <img src={brandSettings.brandicon} alt="" className="h-7 w-7 rounded-full object-contain" />
           ) : (
             <span className="font-display text-sm text-ink">{brandSettings.brandName.trim().charAt(0)}</span>
           )}

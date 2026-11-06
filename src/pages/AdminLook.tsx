@@ -5,8 +5,6 @@ import { adminLang } from '../lib/adminNav';
 import { adminText, uploadAdminFile } from '../edt/adminUpload';
 import { apiGet, apiPut } from '../services/apiClient';
 import { defaultHeroMedia, HeroMediaItem, MAX_HERO_MEDIA } from '../services/brandService';
-import { isYouTube, youtubeId, youtubeThumb } from '../lib/youtube';
-import type { InspireTransition } from '../edt/inspireConfig';
 import {
   DEFAULT_GALLERY_MOTION,
   GalleryMotion,
@@ -15,57 +13,7 @@ import {
   saveGalleryMotion,
 } from '../edt/galleryConfig';
 
-/**
- * Whether a pasted YouTube link can really play as the background: checked
- * with YouTube itself (through /api/youtube?check=), so a private, deleted or
- * embedding-forbidden video is caught here instead of leaving the home page
- * without its video.
- */
-const YouTubeLinkStatus: React.FC<{ url: string; say: (text: { en: string; es: string }) => string }> = ({ url, say }) => {
-  const id = youtubeId(url);
-  const [state, setState] = useState<{ id: string; ok: boolean; reason: string; title: string } | null>(null);
-  useEffect(() => {
-    if (!id) return undefined;
-    let alive = true;
-    setState(null);
-    const timer = window.setTimeout(() => {
-      fetch(`/api/youtube?check=${id}`)
-        .then((response) => response.json())
-        .then((result) => alive && setState(result))
-        .catch(() => undefined);
-    }, 400);
-    return () => {
-      alive = false;
-      window.clearTimeout(timer);
-    };
-  }, [id]);
-  if (!id) return null;
-  if (!state) return <p className="text-xs text-ink-soft">YouTube · {say({ en: 'checking the video…', es: 'comprobando el video…' })}</p>;
-  if (state.ok) return <p className="text-xs font-semibold text-jungle-dark">✓ YouTube{state.title ? ` · ${state.title}` : ''}</p>;
-  return (
-    <p className="rounded bg-hibiscus-light/30 px-2 py-1 text-xs font-semibold text-hibiscus-dark">
-      {state.reason === 'no-embed'
-        ? say({ en: 'Its owner does not allow this video on other websites, so it cannot play here. Choose another one.', es: 'Su autor no permite este video en otras webs, así que aquí no se puede reproducir. Elige otro.' })
-        : say({ en: 'This video is private, deleted or does not exist, so it cannot play. The home page shows its photos instead.', es: 'Este video es privado, se borró o no existe, así que no se puede reproducir. La portada muestra sus fotos en su lugar.' })}
-    </p>
-  );
-};
-
-/** How the hero's photographs give way to each other (the show's transitions). */
-const HERO_TRANSITIONS: Array<{ value: InspireTransition; en: string; es: string }> = [
-  { value: 'kenburns', en: 'Ken Burns — dissolve and a slow drift (cinematic)', es: 'Ken Burns — fundido y deriva lenta (cinematográfico)' },
-  { value: 'dissolve', en: 'Cross-dissolve', es: 'Fundido encadenado' },
-  { value: 'zoom', en: 'Zoom through', es: 'Zoom' },
-  { value: 'push', en: 'Push', es: 'Empujar' },
-  { value: 'cover', en: 'Slide over', es: 'Deslizar encima' },
-  { value: 'wipe', en: 'Wipe', es: 'Barrido' },
-  { value: 'iris', en: 'Iris (circle)', es: 'Iris (círculo)' },
-  { value: 'cube', en: 'Cube', es: 'Cubo' },
-  { value: 'flip', en: 'Flip', es: 'Voltear' },
-  { value: 'random', en: 'A different one each time', es: 'Una distinta cada vez' },
-];
-
-const isVideo = (url: string) => /\.(mp4|webm|mov)(\?|$)/i.test(url) || /\/video\/upload\//.test(url) || isYouTube(url);
+const isVideo = (url: string) => /\.(mp4|webm|mov)(\?|$)/i.test(url) || /\/video\/upload\//.test(url);
 
 /**
  * Admin → Look: what the home page opens with and how the galleries move.
@@ -84,8 +32,6 @@ const AdminLook: React.FC = () => {
   const [brand, setBrand] = useState<Record<string, unknown> | null>(null);
   const [loadError, setLoadError] = useState('');
   const [slides, setSlides] = useState<HeroMediaItem[]>([]);
-  const [heroTransition, setHeroTransition] = useState<InspireTransition>('kenburns');
-  const [heroSeconds, setHeroSeconds] = useState(7);
   const [motion, setMotion] = useState<GalleryMotion>(DEFAULT_GALLERY_MOTION);
   const [busy, setBusy] = useState<string | null>(null);
   const [status, setStatus] = useState<{ tone: 'ok' | 'bad'; text: string } | null>(null);
@@ -100,8 +46,6 @@ const AdminLook: React.FC = () => {
         setBrand(record);
         const stored = Array.isArray(record.heroMedia) ? (record.heroMedia as HeroMediaItem[]).filter((item) => item?.url) : [];
         setSlides(stored.length ? stored : defaultHeroMedia);
-        if (HERO_TRANSITIONS.some((option) => option.value === record.heroTransition)) setHeroTransition(record.heroTransition as InspireTransition);
-        if (Number(record.heroSeconds) >= 3) setHeroSeconds(Number(record.heroSeconds));
       })
       .catch((error) => setLoadError(error instanceof Error ? error.message : String(error)));
     getGalleryMotion(true)
@@ -159,7 +103,7 @@ const AdminLook: React.FC = () => {
     try {
       const heroMedia = slides.filter((item) => item.url.trim()).map((item) => ({ ...item, url: item.url.trim() }));
       if (!heroMedia.length) throw new Error(say({ en: 'Keep at least one photograph or video.', es: 'Deja al menos una foto o un video.' }));
-      const next = { ...brand, heroMedia, heroTransition, heroSeconds: Math.min(30, Math.max(3, Math.round(heroSeconds))) };
+      const next = { ...brand, heroMedia };
       await apiPut('brand', next);
       setBrand(next);
       setStatus({ tone: 'ok', text: say({ en: 'Hero background saved. Reload the home page to see it.', es: 'Fondo de portada guardado. Recarga la portada para verlo.' }) });
@@ -214,8 +158,8 @@ const AdminLook: React.FC = () => {
           <h2 className="text-xl font-bold text-ink">{say({ en: 'Home page background', es: 'Fondo de la portada' })}</h2>
           <p className="mt-1 text-sm text-ink-soft">
             {say({
-              en: `Photographs and videos behind the big headline, shown one after another (up to ${MAX_HERO_MEDIA}), with the transition chosen below. One entry simply stays. Videos play muted and are only loaded on fast connections; landscape, at least 1600 px wide, works best. A YouTube link works too (youtube.com/watch, youtu.be, Shorts): it plays muted and looping, and its still shows until it does.`,
-              es: `Fotos y videos detrás del gran titular, uno tras otro (hasta ${MAX_HERO_MEDIA}), con la transición elegida abajo. Con uno solo, se queda fijo. Los videos se reproducen sin sonido y solo se cargan con buena conexión; mejor en horizontal y de al menos 1600 px de ancho. También sirve un enlace de YouTube (youtube.com/watch, youtu.be, Shorts): se reproduce sin sonido y en bucle, y mientras carga se ve su imagen fija.`,
+              en: `Photographs and self-hosted videos behind the big headline, shown one after another (up to ${MAX_HERO_MEDIA}). One entry simply stays. Videos play muted and are only loaded on fast connections; landscape, at least 1600 px wide, works best.`,
+              es: `Fotos y videos propios detrás del gran titular, uno tras otro (hasta ${MAX_HERO_MEDIA}). Con uno solo, se queda fijo. Los videos se reproducen sin sonido y solo se cargan con buena conexión; mejor en horizontal y de al menos 1600 px de ancho.`,
             })}
           </p>
 
@@ -232,20 +176,17 @@ const AdminLook: React.FC = () => {
                 {slides.map((item, index) => (
                   <li key={`${index}-${item.url}`} className="overflow-hidden rounded-lg ring-1 ring-ink/10">
                     <div className="relative aspect-video bg-ink">
-                      {youtubeId(item.url) ? (
-                        <img src={youtubeThumb(youtubeId(item.url)!, 'hqdefault')} alt="" className="h-full w-full object-cover" />
-                      ) : item.type === 'video' || isVideo(item.url) ? (
+                      {item.type === 'video' || isVideo(item.url) ? (
                         <video src={item.url} muted playsInline loop autoPlay preload="metadata" className="h-full w-full object-cover" />
                       ) : (
                         <img src={item.url} alt="" className="h-full w-full object-cover" />
                       )}
                       <span className="absolute left-2 top-2 rounded bg-ink/80 px-2 py-0.5 text-xs font-bold text-white">
-                        {index + 1} · {isYouTube(item.url) ? 'YouTube' : item.type === 'video' ? 'Video' : say({ en: 'Photo', es: 'Foto' })}
+                        {index + 1} · {item.type === 'video' ? 'Video' : say({ en: 'Photo', es: 'Foto' })}
                       </span>
                     </div>
                     <div className="space-y-2 p-3">
                       <input className={field} value={item.url} onChange={(event) => setSlide(index, { url: event.target.value, type: isVideo(event.target.value) ? 'video' : item.type })} placeholder="https://…" />
-                      <YouTubeLinkStatus url={item.url} say={say} />
                       <input className={field} value={item.alt ?? ''} onChange={(event) => setSlide(index, { alt: event.target.value })} placeholder={say({ en: 'What it shows (for screen readers)', es: 'Qué muestra (para lectores de pantalla)' })} />
                       <div className="flex flex-wrap items-center gap-1.5">
                         <select className="rounded-md border border-ink/15 bg-white px-2 py-1.5 text-sm" value={item.type} onChange={(event) => setSlide(index, { type: event.target.value as HeroMediaItem['type'] })}>
@@ -296,28 +237,6 @@ const AdminLook: React.FC = () => {
                 <button type="button" onClick={() => setSlides(defaultHeroMedia)} className="rounded-full px-4 py-2 text-sm font-bold text-ink-soft ring-1 ring-ink/15 hover:bg-paper-warm">
                   {say({ en: 'Back to the defaults (the AI-enhanced photos)', es: 'Volver a los predeterminados (las fotos mejoradas con IA)' })}
                 </button>
-              </div>
-              <div className="mt-4 grid gap-4 sm:grid-cols-[2fr,1fr]">
-                <label className="text-sm font-semibold text-ink">
-                  {say({ en: 'Transition between photographs', es: 'Transición entre fotos' })}
-                  <select className={`${field} mt-1`} value={heroTransition} onChange={(event) => setHeroTransition(event.target.value as InspireTransition)}>
-                    {HERO_TRANSITIONS.map((option) => (
-                      <option key={option.value} value={option.value}>
-                        {say(option)}
-                      </option>
-                    ))}
-                  </select>
-                  <span className="mt-1 block text-xs font-normal text-ink-soft">
-                    {say({
-                      en: 'Used when the background is photographs only; with a video among them, they cross-fade and drift.',
-                      es: 'Se usa cuando el fondo es solo de fotos; con un video entre ellas, se funden y derivan.',
-                    })}
-                  </span>
-                </label>
-                <label className="text-sm font-semibold text-ink">
-                  {say({ en: 'Seconds per photograph', es: 'Segundos por foto' })}
-                  <input type="number" min={3} max={30} className={`${field} mt-1`} value={heroSeconds} onChange={(event) => setHeroSeconds(Number(event.target.value))} />
-                </label>
               </div>
               <div className="mt-4 flex flex-wrap items-center gap-3">
                 <button type="button" disabled={busy === 'hero'} onClick={saveHero} className="ml-auto rounded-full bg-ink px-6 py-2 text-sm font-bold text-white hover:bg-ink-soft disabled:opacity-50">

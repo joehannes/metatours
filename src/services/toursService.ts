@@ -109,26 +109,21 @@ export const perPersonTier = (locale: Locale): string => {
   return 'Persons';
 };
 
-/**
- * Every service is priced at one rate per person.
- *
- * Services used to carry a list of tiers — typically "Adults" and "Children"
- * at different rates. That is gone: there is one price and everybody pays it.
- * Stored data may still hold several tiers (KV, JSONBin and the seed files
- * predate the change), so they are collapsed here rather than migrated, which
- * means old and new records both load. The first tier with a usable price
- * wins, since that was the adult/full rate.
- */
+/** Keep every configured rate — excursions commonly have adult and child prices. */
 const normalizePricingOptions = (raw: RawService, locale: Locale): PricingOption[] => {
   const rawPricing = Array.isArray(raw.pricing) ? raw.pricing : [];
+  const rates = rawPricing
+    .map((item) => {
+      const price = String(item.price ?? '').trim();
+      const tier = String(item.tier ?? '').trim() || perPersonTier(locale);
+      return price ? { tier, price, amount: extractAmountFromPrice(price) } : null;
+    })
+    .filter((item): item is PricingOption => item !== null);
 
-  const price =
-    rawPricing.map((item) => item.price?.trim()).find((value) => Boolean(value)) ||
-    String(raw.price ?? '').trim();
+  if (rates.length) return rates;
 
-  return price
-    ? [{ tier: perPersonTier(locale), price, amount: extractAmountFromPrice(price) }]
-    : [];
+  const price = String(raw.price ?? '').trim();
+  return price ? [{ tier: perPersonTier(locale), price, amount: extractAmountFromPrice(price) }] : [];
 };
 
 const normalizeService = (

@@ -1,27 +1,15 @@
 {
   "accounts": [
     {
-      "platform": "instagram",
-      "username": "@exclusivedominicantours",
-      "url": "https://www.instagram.com/exclusivedominicantours/",
-      "enabled": true
-    },
-    {
       "platform": "facebook",
-      "username": "exclusivedominicantours",
-      "url": "https://www.facebook.com/exclusivedominicantours/",
-      "enabled": true
-    },
-    {
-      "platform": "tiktok",
-      "username": "@exclusivedominicantours",
-      "url": "https://www.tiktok.com/@exclusivedominicantours",
+      "username": "Tour Cana RD VIP",
+      "url": "https://www.facebook.com/profile.php?id=100083593201245",
       "enabled": true
     },
     {
       "platform": "tripadvisor",
-      "username": "Exclusive Dominican Tours",
-      "url": "https://www.tripadvisor.es/Attraction_Review-g147293-d33094646-Reviews-Exclusive_Dominican_Tours-Punta_Cana_La_Altagracia_Province_Dominican_Republic.html",
+      "username": "Tourcanard",
+      "url": "https://www.tripadvisor.es/Attraction_Review-g147288-d27990778-Reviews-Tourcanard-Dominican_Republic.html",
       "enabled": true
     }
   ],

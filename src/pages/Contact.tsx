@@ -2,20 +2,19 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import ContactForm from '../components/ContactForm';
 import { useBrand } from '../contexts/BrandContext';
+import { useI18n } from '../contexts/I18nContext';
+import { useSitePages } from '../edt/sitePages';
 import PageHeader from '../components/layout/PageHeader';
 import { Toucan, Hibiscus } from '../components/ui/Illustrations';
 import QuickPay from '../components/payment/QuickPay';
 
-/**
- * The office: Los Corales, Bávaro — on Calle Mare, right behind King Lobster
- * beach restaurant, where the path from the beach comes out on the street.
- * (Apple Maps' pin for King Lobster; Huracán and the pier are on the beach
- * just east of it.)
- */
-const OFFICE = { lat: 18.685353, lng: -68.4148214 };
+const OFFICE = { lat: 18.683542, lng: -68.416016 };
 
 const Contact = () => {
   const { brandSettings } = useBrand();
+  const { locale } = useI18n();
+  const pages = useSitePages(locale);
+  const address = pages?.contact.address || 'Punta Cana, Dominican Republic';
 
   return (
     <div className="pb-20">
@@ -34,7 +33,7 @@ const Contact = () => {
           <ContactForm />
           <div className="glass-card rounded-[28px] p-8">
             <h2 className="mb-5 font-display text-3xl font-extrabold text-ink"><FormattedMessage id="contact.getInTouch" /></h2>
-            <p className="mb-2 text-ink-soft"><FormattedMessage id="contact.addressLabel" />: Bávaro, Punta Cana</p>
+            <p className="mb-2 text-ink-soft"><FormattedMessage id="contact.addressLabel" />: {address}</p>
             <p className="mb-6 text-ink-soft"><FormattedMessage id="contact.phoneLabel" />: {brandSettings.phoneNumber}</p>
             <iframe
               src={`https://www.google.com/maps?q=${OFFICE.lat},${OFFICE.lng}&z=18&output=embed`}
@@ -43,7 +42,7 @@ const Contact = () => {
               className="mt-6 rounded-[18px] border-[2.5px] border-ink"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Office location · Los Corales, Bávaro"
+              title="Tour Cana RD VIP location"
             ></iframe>
             <a
               href={`https://www.google.com/maps/search/?api=1&query=${OFFICE.lat},${OFFICE.lng}`}

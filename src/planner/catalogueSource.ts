@@ -31,14 +31,20 @@ const normalizeStatic = (raw: RawTour, index: number, locale: Locale): Tour => {
     .filter(Boolean)
     .map((path) => (/^https?:\/\//.test(path) ? path : `/${path.replace(/^\//, '')}`));
 
-  // One per-person rate, exactly as the live API path produces. Bundled files
-  // may still list several tiers, so the first priced one is taken.
-  const price =
-    (raw.pricing ?? []).map((tier) => tier.price?.trim()).find(Boolean) ||
-    String(raw.price ?? '').trim();
-  const pricingOptions = price
-    ? [{ tier: perPersonTier(locale), price, amount: amountFrom(price) }]
-    : [];
+  const pricingOptions = (raw.pricing ?? [])
+    .map((tier) => {
+      const price = String(tier.price ?? '').trim();
+      return price ? {
+        tier: String(tier.tier ?? '').trim() || perPersonTier(locale),
+        price,
+        amount: amountFrom(price),
+      } : null;
+    })
+    .filter((tier): tier is NonNullable<typeof tier> => tier !== null);
+  if (!pricingOptions.length && raw.price) {
+    const price = String(raw.price).trim();
+    if (price) pricingOptions.push({ tier: perPersonTier(locale), price, amount: amountFrom(price) });
+  }
 
   const image = images[0] || '/imgs/placeholder.jpg';
 

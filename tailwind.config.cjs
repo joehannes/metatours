@@ -1,5 +1,5 @@
 /**
- * This site — Full Throttle, in daylight.
+ * Tour Cana RD VIP — polished Caribbean colour.
  *
  * Action-documentary photography graded like a jet-set film: ivory and sand
  * where the other cut was black, charcoal ink, amber for energy, a thin line
@@ -17,24 +17,24 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Charcoal, not pure black: it reads as black on ivory without the glare.
+        // Deep blue, sea glass and warm sand taken from the Tour Cana mark.
         ink: {
-          DEFAULT: '#14161A',
-          soft: '#454B54',
-          light: '#8A9099',
+          DEFAULT: '#093B70',
+          soft: '#46627C',
+          light: '#7B94A9',
         },
         // Ivory, sand and the white of a card.
         paper: {
-          DEFAULT: '#F7F4EE',
-          warm: '#EFE9DF',
-          deep: '#E2D9C9',
+          DEFAULT: '#FBF8F0',
+          warm: '#EFF8F5',
+          deep: '#D7EBE4',
           card: '#FFFFFF',
         },
         // Amber: the energy colour. Buttons, ranks, the price.
         mango: {
-          light: '#FFD08A',
-          DEFAULT: '#F2A33A',
-          dark: '#C27812',
+          light: '#FFDFAA',
+          DEFAULT: '#F6AB48',
+          dark: '#BD6F16',
         },
         hibiscus: {
           light: '#FFB8AC',
@@ -43,25 +43,25 @@ module.exports = {
         },
         // The logo's Caribbean blue.
         lagoon: {
-          light: '#B5DDF2',
-          DEFAULT: '#1F7DC1',
-          dark: '#155B8F',
+          light: '#BCE9EE',
+          DEFAULT: '#0875AA',
+          dark: '#075486',
         },
         sky: {
-          light: '#D3EBF8',
-          DEFAULT: '#4BA7DD',
-          dark: '#1F6EA2',
+          light: '#D3F2F5',
+          DEFAULT: '#39A8D5',
+          dark: '#1479A9',
         },
         // The logo's palm green; WhatsApp gets its own brighter one below.
         jungle: {
-          light: '#ABE2B9',
-          DEFAULT: '#1E9E57',
-          dark: '#11733D',
+          light: '#BDE8D7',
+          DEFAULT: '#158D72',
+          dark: '#0D6954',
         },
         sunset: {
-          light: '#FFC79E',
-          DEFAULT: '#EE7D30',
-          dark: '#BF561A',
+          light: '#FFD0BD',
+          DEFAULT: '#EF7B4F',
+          dark: '#C95B36',
         },
         grape: {
           light: '#D8CCF0',
@@ -70,9 +70,9 @@ module.exports = {
         },
         // Champagne gold: hairlines, small caps, the luxury.
         gold: {
-          light: '#EADCB7',
-          DEFAULT: '#C6A15B',
-          dark: '#9A7A3B',
+          light: '#F5DFB1',
+          DEFAULT: '#D7A54B',
+          dark: '#A8711E',
         },
         whatsapp: {
           DEFAULT: '#25D366',
@@ -90,38 +90,38 @@ module.exports = {
           light: '#23272E',
         },
 
-        tropicalGreen: '#1E9E57',
-        tropicalBlue: '#4BA7DD',
-        sandyBeige: '#EFE9DF',
-        sunsetOrange: '#EE7D30',
-        oceanWave: '#1F7DC1',
+        tropicalGreen: '#158D72',
+        tropicalBlue: '#39A8D5',
+        sandyBeige: '#EFF8F5',
+        sunsetOrange: '#EF7B4F',
+        oceanWave: '#0875AA',
       },
       // `border-ink` is everywhere in the shared markup: here a fine hairline.
       borderColor: {
         ink: {
-          DEFAULT: 'rgb(20 22 26 / 0.14)',
-          soft: 'rgb(20 22 26 / 0.22)',
-          light: 'rgb(20 22 26 / 0.08)',
+          DEFAULT: 'rgb(7 84 134 / 0.14)',
+          soft: 'rgb(7 84 134 / 0.22)',
+          light: 'rgb(7 84 134 / 0.08)',
         },
       },
       fontFamily: {
-        heading: ['Anton', 'Impact', 'sans-serif'],
-        display: ['Anton', 'Impact', 'sans-serif'],
-        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
-        sans: ['Barlow', 'system-ui', 'sans-serif'],
-        body: ['Barlow', 'system-ui', 'sans-serif'],
-        condensed: ['"Barlow Condensed"', 'Barlow', 'sans-serif'],
-        accent: ['"Cormorant Garamond"', 'Georgia', 'serif'],
-        script: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+        heading: ['Sora', 'system-ui', 'sans-serif'],
+        display: ['Sora', 'system-ui', 'sans-serif'],
+        serif: ['"DM Serif Display"', 'Georgia', 'serif'],
+        sans: ['Manrope', 'system-ui', 'sans-serif'],
+        body: ['Manrope', 'system-ui', 'sans-serif'],
+        condensed: ['Sora', 'system-ui', 'sans-serif'],
+        accent: ['"DM Serif Display"', 'Georgia', 'serif'],
+        script: ['"DM Serif Display"', 'Georgia', 'serif'],
       },
       backgroundImage: {
-        'sun-rays': 'radial-gradient(circle at 70% 20%, rgba(242,163,58,0.35) 0%, transparent 60%)',
-        'sky-wash': 'linear-gradient(180deg, #FFFFFF 0%, #F7F4EE 100%)',
-        'sunset-wash': 'linear-gradient(135deg, #FFD08A 0%, #F2A33A 55%, #EE7D30 100%)',
-        'lagoon-wash': 'linear-gradient(135deg, #B5DDF2 0%, #1F7DC1 100%)',
-        'jungle-wash': 'linear-gradient(135deg, #ABE2B9 0%, #1E9E57 100%)',
-        'paper-wash': 'linear-gradient(180deg, #F7F4EE 0%, #EFE9DF 100%)',
-        'abyss-wash': 'linear-gradient(180deg, #23272E 0%, #14161A 100%)',
+        'sun-rays': 'radial-gradient(circle at 70% 20%, rgba(246,171,72,0.32) 0%, transparent 60%)',
+        'sky-wash': 'linear-gradient(180deg, #FFFFFF 0%, #FBF8F0 100%)',
+        'sunset-wash': 'linear-gradient(135deg, #FFDFAA 0%, #F6AB48 55%, #EF7B4F 100%)',
+        'lagoon-wash': 'linear-gradient(135deg, #BCE9EE 0%, #0875AA 100%)',
+        'jungle-wash': 'linear-gradient(135deg, #BDE8D7 0%, #158D72 100%)',
+        'paper-wash': 'linear-gradient(180deg, #FBF8F0 0%, #EFF8F5 100%)',
+        'abyss-wash': 'linear-gradient(180deg, #075486 0%, #06305D 100%)',
       },
       boxShadow: {
         'ink-sm': '0 2px 8px -3px rgba(20, 22, 26, 0.18)',
@@ -136,12 +136,12 @@ module.exports = {
         'gold': '0 0 0 1px rgba(198, 161, 91, 0.45)',
       },
       borderRadius: {
-        'sm': '4px',
-        'md': '6px',
-        'lg': '10px',
-        'xl': '14px',
-        '2xl': '18px',
-        '3xl': '24px',
+        'sm': '8px',
+        'md': '12px',
+        'lg': '18px',
+        'xl': '24px',
+        '2xl': '28px',
+        '3xl': '34px',
         'blob': '18px',
         'leaf': '999px',
         'pebble': '14px',

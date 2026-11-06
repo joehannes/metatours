@@ -16,7 +16,7 @@
       },
       {
         "title": "Hébergement",
-        "text": "Hôtels et complexes hôteliers au meilleur prix grâce à notre partenaire Exclusive Hotel Punta Cana."
+        "text": "Séjours en hôtels et complexes disponibles sur demande."
       },
       {
         "title": "Les meilleurs guides",
@@ -53,10 +53,9 @@
   ],
   "contact": {
     "address": "Punta Cana, République dominicaine",
-    "email": "booking@exclusivedominicantours.com",
-    "whatsapp": "+1 (829) 783-8842",
-    "phone2": "+1 (809) 982-6438",
-    "mapUrl": "https://www.google.com/maps/search/?api=1&query=Punta+Cana+Dominican+Republic",
+    "email": "laodiosa545@gmail.com",
+    "whatsapp": "+1 (809) 354-9206",
+    "mapUrl": "https://www.google.com/maps/search/18.683542,+-68.416016",
     "intro": "Votre prochaine aventure dans les Caraïbes vous attend ! Une question sur les excursions, les transferts, les hôtels ou même les croisières ? Contactez-nous, tout simplement. Chez {{name}}, nous accueillons chaque voyageur comme un membre de la famille."
   },
   "policies": [

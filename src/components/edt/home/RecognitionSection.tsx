@@ -15,7 +15,6 @@ const COPY = {
     fr: 'Nous présentons avec fierté les institutions qui soutiennent et reconnaissent notre engagement pour l’excellence touristique.',
     de: 'Stolz zeigen wir die Institutionen, die unser Engagement für exzellenten Tourismus bestätigen und anerkennen.',
   },
-  mitur: { en: 'Registered tour operator with the Dominican Ministry of Tourism.', es: 'Operador turístico registrado en el Ministerio de Turismo de la República Dominicana.', fr: 'Voyagiste enregistré auprès du ministère du Tourisme dominicain.', de: 'Beim dominikanischen Tourismusministerium registrierter Reiseveranstalter.' },
   trip: { en: 'Reviewed by travellers on Tripadvisor — read what they say.', es: 'Reseñado por viajeros en Tripadvisor: lee lo que dicen.', fr: 'Évalué par les voyageurs sur Tripadvisor — lisez leurs avis.', de: 'Von Reisenden auf Tripadvisor bewertet — lies, was sie sagen.' },
   read: { en: 'Read reviews', es: 'Leer reseñas', fr: 'Lire les avis', de: 'Bewertungen lesen' },
 };
@@ -26,10 +25,11 @@ const RecognitionSection: React.FC = () => {
   const reduced = useReducedMotion();
   const tripadvisor = useSocialAccounts().find((account) => account.platform === 'tripadvisor')?.url;
 
-  const items = [
-    { key: 'mitur', logo: '/imgs/edt/cert/ministerio-turismo.webp', alt: 'Ministerio de Turismo — República Dominicana', text: COPY.mitur[locale], href: 'https://www.mitur.gob.do/' },
-    { key: 'tripadvisor', logo: '/imgs/edt/cert/tripadvisor.webp', alt: 'Tripadvisor', text: COPY.trip[locale], href: tripadvisor },
-  ];
+  const items = tripadvisor
+    ? [{ key: 'tripadvisor', logo: '/imgs/edt/cert/tripadvisor.webp', alt: 'Tripadvisor', text: COPY.trip[locale], href: tripadvisor }]
+    : [];
+
+  if (!items.length) return null;
 
   return (
     <section className="home-section relative bg-paper py-20 sm:py-24">
@@ -39,7 +39,7 @@ const RecognitionSection: React.FC = () => {
           <h2 className="display-md mt-4">{COPY.title[locale]}</h2>
           <p className="lede mt-4">{COPY.text[locale]}</p>
         </div>
-        <div className="mx-auto mt-12 grid max-w-4xl gap-6 md:grid-cols-2">
+        <div className="mx-auto mt-12 grid max-w-2xl gap-6">
           {items.map((item, index) => (
             <motion.a
               key={item.key}
