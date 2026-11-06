@@ -1,9 +1,9 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { localeTag } from '../lib/localeText';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
 import { FaWhatsapp } from 'react-icons/fa';
-import { HiCheck, HiChevronDown, HiClock, HiLocationMarker } from 'react-icons/hi';
+import { HiCheck, HiChevronDown, HiClock, HiLocationMarker, HiMinus, HiPlus } from 'react-icons/hi';
 import { generateWhatsAppMessage } from '../utils/whatsapp';
 import { useBrand } from '../contexts/BrandContext';
 import { PricingOption, perPersonTier } from '../services/toursService';
@@ -41,6 +41,7 @@ const COPY: Record<string, Record<Lang, string>> = {
   details: { en: 'Details', es: 'Detalles', fr: 'Détails', de: 'Details' },
   pay: { en: 'Book & pay online', es: 'Reservar y pagar en línea', fr: 'Réserver et payer en ligne', de: 'Online buchen & bezahlen' },
   guests: { en: 'Guests', es: 'Personas', fr: 'Personnes', de: 'Personen' },
+  rates: { en: 'Choose guests', es: 'Elige participantes', fr: 'Choisissez les participants', de: 'Gäste wählen' },
 };
 
 /**
@@ -69,14 +70,30 @@ const TourCard: React.FC<TourCardProps> = ({
   const brandName = siteNames(brandSettings).name;
   const locale = (['es', 'de', 'fr'].includes(intl.locale) ? intl.locale : 'en') as Lang;
 
-  // Everyone pays the same rate, so a tour has one price and the only thing
-  // to ask for is how many people are coming.
-  const rate: PricingOption = pricingOptions[0] ?? { tier: perPersonTier(locale), price, amount: null };
+  const rates: PricingOption[] = pricingOptions.length
+    ? pricingOptions
+    : [{ tier: perPersonTier(locale), price, amount: null }];
+  const rate = rates[0];
+  const multi = rates.length > 1;
+  const rateSignature = rates.map((option) => `${option.tier}:${option.price}`).join('|');
 
   const [open, setOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState('');
-  const [persons, setPersons] = useState(2);
-  const totalAmount = useMemo(() => (rate.amount ?? 0) * persons, [rate.amount, persons]);
+  const [counts, setCounts] = useState<Record<string, number>>(() =>
+    Object.fromEntries(rates.map((option, index) => [option.tier, index === 0 ? 2 : 0]))
+  );
+  useEffect(() => {
+    setCounts(Object.fromEntries(rates.map((option, index) => [option.tier, index === 0 ? 2 : 0])));
+  }, [rateSignature]);
+  const persons = Math.max(1, rates.reduce((sum, option) => sum + (counts[option.tier] ?? 0), 0));
+  const totalAmount = useMemo(
+    () => rates.reduce((sum, option) => sum + (option.amount ?? 0) * (counts[option.tier] ?? 0), 0),
+    [rates, counts]
+  );
+  const breakdown = rates
+    .filter((option) => (counts[option.tier] ?? 0) > 0)
+    .map((option) => `${counts[option.tier]} × ${option.tier}${option.amount ? ` ($${option.amount})` : ''}`)
+    .join(', ');
 
   const formattedSelectedDate = selectedDate
     ? new Intl.DateTimeFormat(localeTag(intl.locale), { dateStyle: 'full' }).format(new Date(`${selectedDate}T00:00:00`))
@@ -95,9 +112,10 @@ const TourCard: React.FC<TourCardProps> = ({
     description: facts.intro,
     detailsPath,
     date: selectedDate || undefined,
-    persons: Math.max(1, persons),
-    unitPrice: rate.amount ?? null,
-    tier: rate.tier,
+    persons,
+    ...(multi
+      ? { quantities: counts, fixedTotal: totalAmount > 0 ? totalAmount : null, tier: breakdown }
+      : { unitPrice: rate.amount ?? null, tier: rate.tier }),
     duration: lasts || undefined,
     included: facts.included,
     goodToKnow: facts.goodToKnow,
@@ -105,14 +123,24 @@ const TourCard: React.FC<TourCardProps> = ({
 
   const whatsapp = () => {
     let message = `Hello, I want to book ${excursionName} with ${brandName}\n`;
-    message += `Participants: ${persons} ${persons === 1 ? 'person' : 'persons'}\n`;
+    message += `Participants: ${multi ? breakdown : `${persons} ${persons === 1 ? 'person' : 'persons'}`}\n`;
     message += `Preferred date: ${formattedSelectedDate || 'Not specified'}\n`;
     message += `Price: ${totalAmount > 0 ? totalAmount : price} USD\n`;
     message += `Hola, deseo reservar el ${excursionName} con ${brandName}\n`;
-    message += `Participantes: ${persons} ${persons === 1 ? 'persona' : 'personas'}\n`;
+    message += `Participantes: ${multi ? breakdown : `${persons} ${persons === 1 ? 'persona' : 'personas'}`}\n`;
     message += `Fecha preferida: ${formattedSelectedDate || 'No especificada'}\n`;
     message += `Precio: ${totalAmount > 0 ? totalAmount : price} USD`;
     return generateWhatsAppMessage(brandSettings.phoneNumber, message);
+  };
+
+  const step = (tier: string, delta: number) => {
+    playClickFx();
+    setCounts((current) => {
+      const next = Math.max(0, Math.min(40, (current[tier] ?? 0) + delta));
+      const updated = { ...current, [tier]: next };
+      if (Object.values(updated).every((count) => count === 0)) updated[rates[0].tier] = 1;
+      return updated;
+    });
   };
 
   return (
@@ -155,6 +183,11 @@ const TourCard: React.FC<TourCardProps> = ({
                 <span className="block font-condensed text-[0.7rem] font-bold uppercase tracking-[0.2em] text-gold-dark">{COPY.from[locale]}</span>
                 <span className="font-display text-[2.3rem] leading-none text-ink">{rate.price || price}</span>
                 <span className="ml-1.5 text-xs font-semibold text-ink-light">{COPY.person[locale]}</span>
+                {multi && (
+                  <span className="mt-2 flex flex-wrap gap-1.5">
+                    {rates.map((option) => <span key={option.tier} className="tour-rate-chip">{option.tier} {option.price}</span>)}
+                  </span>
+                )}
               </div>
             )}
             <div className="flex items-center gap-2">
@@ -184,17 +217,37 @@ const TourCard: React.FC<TourCardProps> = ({
               </button>
               {open && (
                 <div className="mt-3 space-y-3">
-                  <div className="grid grid-cols-2 gap-3">
-                    <label className="block text-left">
-                      <span className="mb-1 block font-condensed text-xs font-bold uppercase tracking-[0.14em] text-ink-soft">{COPY.guests[locale]}</span>
-                      <input
-                        type="number"
-                        min="1"
-                        value={persons}
-                        onChange={(event) => setPersons(Math.max(1, Number(event.target.value) || 1))}
-                        className="w-full rounded-[4px] border border-ink/15 bg-white px-3 py-2.5 text-sm font-semibold text-ink outline-none focus:border-mango"
-                      />
-                    </label>
+                  <div className={`grid gap-3 ${multi ? '' : 'grid-cols-2'}`}>
+                    {multi ? (
+                      <div className="tour-rate-picker">
+                        <span className="mb-2 block font-condensed text-xs font-bold uppercase tracking-[0.14em] text-ink-soft">{COPY.rates[locale]}</span>
+                        {rates.map((option) => {
+                          const count = counts[option.tier] ?? 0;
+                          const floor = rates.every((other) => other.tier === option.tier || (counts[other.tier] ?? 0) === 0) ? 1 : 0;
+                          return (
+                            <div key={option.tier} className="tour-rate-row">
+                              <span><strong>{option.tier}</strong><small>{option.price} {COPY.person[locale]}</small></span>
+                              <span className="tour-rate-stepper">
+                                <button type="button" onClick={() => step(option.tier, -1)} disabled={count <= floor} aria-label={`${option.tier} -1`}><HiMinus /></button>
+                                <output>{count}</output>
+                                <button type="button" onClick={() => step(option.tier, 1)} disabled={count >= 40} aria-label={`${option.tier} +1`}><HiPlus /></button>
+                              </span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ) : (
+                      <label className="block text-left">
+                        <span className="mb-1 block font-condensed text-xs font-bold uppercase tracking-[0.14em] text-ink-soft">{COPY.guests[locale]}</span>
+                        <input
+                          type="number"
+                          min="1"
+                          value={persons}
+                          onChange={(event) => step(rate.tier, (Math.max(1, Number(event.target.value) || 1)) - persons)}
+                          className="w-full rounded-[14px] border border-ink/15 bg-white px-3 py-2.5 text-sm font-semibold text-ink outline-none focus:border-mango"
+                        />
+                      </label>
+                    )}
                     <label className="block text-left">
                       <span className="mb-1 block font-condensed text-xs font-bold uppercase tracking-[0.14em] text-ink-soft">
                         <FormattedMessage id="tours.dateLabel" defaultMessage="Preferred date" />
@@ -203,7 +256,7 @@ const TourCard: React.FC<TourCardProps> = ({
                         type="date"
                         value={selectedDate}
                         onChange={(event) => setSelectedDate(event.target.value)}
-                        className="w-full rounded-[4px] border border-ink/15 bg-white px-3 py-2.5 text-sm font-semibold text-ink outline-none focus:border-mango"
+                        className="w-full rounded-[14px] border border-ink/15 bg-white px-3 py-2.5 text-sm font-semibold text-ink outline-none focus:border-mango"
                       />
                     </label>
                   </div>
@@ -218,8 +271,10 @@ const TourCard: React.FC<TourCardProps> = ({
                     selectedPrice={totalAmount > 0 ? `$${totalAmount} USD` : price}
                     amount={totalAmount > 0 ? totalAmount : undefined}
                     persons={Math.max(1, persons)}
+                    {...(multi ? { quantities: counts } : {})}
                     bookingDate={formattedSelectedDate}
                     category="tours"
+                    serviceId={/\/(\d+)/.exec(detailsPath)?.[1]}
                     locale={intl.locale}
                     className="w-full"
                   />

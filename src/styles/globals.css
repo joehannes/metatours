@@ -103,6 +103,9 @@ body {
   font-size: 1.0625rem;
   color: var(--ink);
   background-color: var(--paper);
+  background-image:
+    radial-gradient(circle at 8% 2%, rgb(57 168 213 / 0.08), transparent 24rem),
+    radial-gradient(circle at 95% 14%, rgb(246 171 72 / 0.08), transparent 22rem);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -279,12 +282,90 @@ a:hover {
 
 /* Bands the shared markup names. */
 .shore-section,
-.dawn-section { background: var(--paper); }
+.dawn-section,
+.band-ivory {
+  background:
+    radial-gradient(circle at 92% 8%, rgb(57 168 213 / 0.14), transparent 22rem),
+    linear-gradient(135deg, #fffdf8 0%, var(--paper) 58%, #edf8f6 100%);
+}
 .lagoon-section,
-.cove-section { background: var(--paper-warm); }
-.bay-section { background: #ffffff; }
+.cove-section,
+.band-sand {
+  background:
+    radial-gradient(circle at 10% 75%, rgb(246 171 72 / 0.12), transparent 19rem),
+    radial-gradient(circle at 91% 13%, rgb(8 117 170 / 0.13), transparent 22rem),
+    linear-gradient(135deg, #f5fbf8 0%, var(--paper-warm) 55%, #e2f3f1 100%);
+}
+.bay-section,
+.band-white {
+  background:
+    radial-gradient(circle at 10% 8%, rgb(215 165 75 / 0.10), transparent 16rem),
+    linear-gradient(160deg, #fff 0%, #fbfdfc 64%, #eef8f7 100%);
+}
 .reef-section,
-.sunset-section { background: var(--ink); color: var(--paper); }
+.sunset-section,
+.band-ink {
+  background:
+    radial-gradient(circle at 88% 10%, rgb(57 168 213 / 0.30), transparent 20rem),
+    radial-gradient(circle at 10% 82%, rgb(21 141 114 / 0.22), transparent 18rem),
+    linear-gradient(135deg, #06305d 0%, var(--ink) 62%, #075486 100%);
+  color: var(--paper);
+}
+
+/* A discreet dot-and-wave texture carries through all story/page bands. */
+.home-section,
+.wavy-band,
+.wavy-band-top,
+.wavy-band-bottom {
+  isolation: isolate;
+}
+
+.home-section::before,
+.wavy-band::before,
+.wavy-band-top::before,
+.wavy-band-bottom::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.34;
+  background-image: radial-gradient(rgb(7 84 134 / 0.18) 0.75px, transparent 0.9px);
+  background-size: 18px 18px;
+  mask-image: linear-gradient(110deg, transparent 3%, black 25%, transparent 68%);
+}
+
+.home-section > *,
+.wavy-band > *,
+.wavy-band-top > *,
+.wavy-band-bottom > * {
+  position: relative;
+  z-index: 1;
+}
+
+.wavy-band::after,
+.wavy-band-bottom::after {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  right: -2%;
+  bottom: -1px;
+  left: -2%;
+  height: clamp(1.75rem, 4vw, 4rem);
+  pointer-events: none;
+  background: var(--paper);
+  clip-path: polygon(0 58%, 7% 30%, 16% 48%, 26% 22%, 38% 48%, 50% 20%, 62% 46%, 74% 22%, 85% 47%, 94% 28%, 100% 52%, 100% 100%, 0 100%);
+}
+
+.wavy-band-top::before {
+  top: -1px;
+  bottom: auto;
+  height: clamp(1.75rem, 4vw, 4rem);
+  opacity: 1;
+  background: var(--paper);
+  clip-path: polygon(0 0, 100% 0, 100% 42%, 94% 70%, 85% 53%, 74% 78%, 62% 54%, 50% 80%, 38% 52%, 26% 78%, 16% 52%, 7% 70%, 0 48%);
+  mask-image: none;
+}
 
 .wavy-band,
 .wavy-band-top,
@@ -362,7 +443,7 @@ a:hover {
   position: absolute;
   inset: 8px;
   border: 1px solid var(--hairline-gold);
-  border-radius: 4px;
+  border-radius: 999px 999px 999px 1rem;
   pointer-events: none;
 }
 
@@ -495,7 +576,7 @@ a:hover {
 }
 
 .btn-wa {
-  background: var(--wa);
+  background: linear-gradient(135deg, #35dd78, var(--wa));
   color: #06301a;
   box-shadow: 0 14px 30px -16px rgb(18 140 75 / 0.8);
 }
@@ -504,6 +585,46 @@ a:hover {
   background: #1fbf5b;
   transform: translateY(-2px);
 }
+
+/* The map and direct WhatsApp actions in the top viewport line. */
+.top-location-map,
+.top-whatsapp-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: rgb(255 255 255 / 0.84);
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s var(--ease-out);
+}
+
+.top-location-map {
+  min-width: 10rem;
+  height: 1.8rem;
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 0.19);
+  border-radius: 999px;
+  padding-right: 0.7rem;
+  background: rgb(255 255 255 / 0.07);
+}
+
+.top-location-map img {
+  width: 2.9rem;
+  height: 1.8rem;
+  object-fit: cover;
+  opacity: 0.86;
+}
+
+.top-location-map span,
+.top-whatsapp-link { white-space: nowrap; }
+.top-location-map > span { display: inline-flex; align-items: center; gap: 0.3rem; }
+
+.top-location-map:hover,
+.top-whatsapp-link:hover {
+  color: var(--mango-light);
+  transform: translateY(-1px);
+}
+
+.top-whatsapp-link { font-variant-numeric: tabular-nums; }
 
 .btn-lagoon {
   box-shadow: inset 0 0 0 1.5px var(--lagoon);
@@ -2291,8 +2412,8 @@ a:hover {
   flex-direction: column;
   overflow: hidden;
   border-radius: var(--pebble-b);
-  background: #ffffff;
-  border: 1px solid var(--line);
+  background: linear-gradient(#fff, #fff) padding-box, linear-gradient(145deg, rgb(57 168 213 / 0.36), rgb(215 165 75 / 0.18), rgb(21 141 114 / 0.26)) border-box;
+  border: 1px solid transparent;
   box-shadow: var(--shade-sm), var(--shade);
   transition: transform 0.45s var(--ease-out), box-shadow 0.45s ease;
 }
@@ -2306,6 +2427,67 @@ a:hover {
 .tour-card {
   height: 100%;
 }
+
+.tour-rate-chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.28rem 0.52rem;
+  background: linear-gradient(135deg, var(--lagoon-light), #effcf9);
+  color: var(--lagoon-dark);
+  font-family: var(--condensed);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.tour-rate-picker {
+  border: 1px solid var(--line);
+  border-radius: 1rem 1rem 1rem 0.35rem;
+  background: linear-gradient(135deg, #f9fdfd, #f4faf8);
+  padding: 0.85rem;
+}
+
+.tour-rate-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  padding: 0.55rem 0;
+}
+
+.tour-rate-row + .tour-rate-row { border-top: 1px dashed rgb(7 84 134 / 0.18); }
+
+.tour-rate-row > span:first-child {
+  display: grid;
+  gap: 0.1rem;
+  font-size: 0.8rem;
+  color: var(--ink);
+}
+
+.tour-rate-row small { color: var(--ink-soft); }
+
+.tour-rate-stepper {
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid rgb(7 84 134 / 0.18);
+  border-radius: 999px;
+  background: #fff;
+}
+
+.tour-rate-stepper button {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  color: var(--lagoon-dark);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.tour-rate-stepper button:hover:not(:disabled) { background: var(--lagoon); color: #fff; }
+.tour-rate-stepper button:disabled { opacity: 0.35; cursor: not-allowed; }
+.tour-rate-stepper output { min-width: 1.7rem; text-align: center; font-weight: 800; font-variant-numeric: tabular-nums; }
 
 .ranked-number {
   position: absolute;

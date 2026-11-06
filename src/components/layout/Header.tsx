@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { MdShoppingCart } from 'react-icons/md';
 import { FaWhatsapp } from 'react-icons/fa';
-import { HiOutlineMail, HiOutlineLocationMarker, HiPhone } from 'react-icons/hi';
+import { HiOutlineMail, HiOutlineLocationMarker } from 'react-icons/hi';
 import AdminNav from './AdminNav';
 import CartBadge from '../cart/CartBadge';
 import { onNavLinkClick } from '../../lib/navScroll';
@@ -143,7 +143,10 @@ const MobileMenu: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 const Header: React.FC = () => {
   const { brandSettings } = useBrand();
   const { locale } = useI18n();
-  const contactEmail = useSitePages(locale)?.contact.email || brandSettings.contactEmail || '';
+  const sitePages = useSitePages(locale);
+  const contactEmail = sitePages?.contact.email || brandSettings.contactEmail || '';
+  const officeAddress = sitePages?.contact.address || CONTACT.address;
+  const officeMap = sitePages?.contact.mapUrl || 'https://www.google.com/maps/search/?api=1&query=18.683542,-68.416016';
   const location = useLocation();
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -226,14 +229,32 @@ const Header: React.FC = () => {
         >
           <div className="section-shell flex h-9 items-center justify-between text-[0.8rem] font-medium">
             <div className="flex items-center gap-6">
-              <span className="inline-flex items-center gap-1.5"><HiOutlineLocationMarker className="h-3.5 w-3.5 text-gold" /> {CONTACT.address}</span>
+              <a
+                href={officeMap}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={`Open ${officeAddress} in Google Maps`}
+                className="top-location-map"
+              >
+                <img src="/imgs/edt/dest/punta-cana-views.webp" alt="Bávaro beach" />
+                <span><HiOutlineLocationMarker className="h-3.5 w-3.5 text-gold" /> <span className="hidden xl:inline">{officeAddress}</span><span className="xl:hidden">Our Bávaro office</span></span>
+              </a>
+              {brandSettings.phoneNumber && (
+                <a
+                  href={generateWhatsAppMessage(brandSettings.phoneNumber, WA_HELLO[locale])}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="top-whatsapp-link"
+                  title="Chat with Tour Cana RD VIP on WhatsApp"
+                  onClick={() => playClickFx()}
+                >
+                  <FaWhatsapp className="h-3.5 w-3.5 text-gold" /> {brandSettings.phoneNumber}
+                </a>
+              )}
               {contactEmail && (
                 <a href={`mailto:${contactEmail}`} className="inline-flex items-center gap-1.5 font-medium text-paper/80 no-underline hover:text-mango-light">
                   <HiOutlineMail className="h-3.5 w-3.5 text-gold" /> {contactEmail}
                 </a>
-              )}
-              {brandSettings.phoneNumber && (
-                <span className="inline-flex items-center gap-1.5"><HiPhone className="h-3.5 w-3.5 text-gold" /> {brandSettings.phoneNumber}</span>
               )}
             </div>
             <SocialIcons itemClassName="grid h-7 w-7 place-items-center rounded-full text-paper/75 transition hover:bg-white/10 hover:text-mango-light" />
