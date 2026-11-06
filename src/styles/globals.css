@@ -335,10 +335,10 @@ a:hover {
   mask-image: linear-gradient(110deg, transparent 3%, black 25%, transparent 68%);
 }
 
-.home-section > *,
-.wavy-band > *,
-.wavy-band-top > *,
-.wavy-band-bottom > * {
+.home-section > *:not([aria-hidden]),
+.wavy-band > *:not([aria-hidden]),
+.wavy-band-top > *:not([aria-hidden]),
+.wavy-band-bottom > *:not([aria-hidden]) {
   position: relative;
   z-index: 1;
 }
