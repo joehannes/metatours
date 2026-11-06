@@ -285,7 +285,7 @@ const StorySection: React.FC<StorySectionProps> = ({
                   )
                 ) : (
                   <iframe
-                    src={isInView ? getVimeoAutoplayUrl(vimeoUrl) : vimeoUrl}
+                    src={isInView && vimeoUrl ? getVimeoAutoplayUrl(vimeoUrl) : vimeoUrl}
                     className="mt-6 relative h-[22rem] w-full rounded-[32px_14px_36px_20px] shadow-[0_25px_60px_rgba(4,19,29,0.3)] transition-transform duration-500 sm:h-96 md:h-[520px]"
                     frameBorder="0"
                     allowFullScreen

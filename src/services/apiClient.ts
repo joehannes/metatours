@@ -71,7 +71,7 @@ const apiFetch = async <T>(resource: string, params?: Record<string, string | nu
     ...options,
     headers: {
       Accept: 'application/json',
-      'Content-Type': options?.body ? 'application/json' : undefined,
+      ...(options?.body ? { 'Content-Type': 'application/json' } : {}),
       ...(options?.headers ?? {}),
     },
     cache: options?.cache ?? 'no-cache',

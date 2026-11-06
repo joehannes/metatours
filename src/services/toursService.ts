@@ -255,14 +255,14 @@ const serializeTransportForSave = (services: Tour[]): RawService[] =>
       role: `detail_${index + 1}`,
       localPath: toLocalPath(image),
     })),
-    transferRoutes: service.transferRoutes?.map((route) => ({
+    transferRoutes: (service.transferRoutes ?? []).map((route) => ({
       id: route.id,
       origin: route.origin,
       destination: route.destination,
       price: route.price,
-      amount: route.amount ?? null,
-      distanceKm: route.distanceKm ?? null,
-      durationMinutes: route.durationMinutes ?? null,
+      ...(route.amount != null ? { amount: route.amount } : {}),
+      ...(route.distanceKm != null ? { distanceKm: route.distanceKm } : {}),
+      ...(route.durationMinutes != null ? { durationMinutes: route.durationMinutes } : {}),
     })),
   }));
 
