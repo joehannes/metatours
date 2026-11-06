@@ -34,8 +34,14 @@ const Admin: React.FC = () => {
   });
   const [editingBrand, setEditingBrand] = useState(false);
   const [uploadingIcon, setUploadingIcon] = useState(false);
-  /** File picked but not yet framed — drives the crop editor. */
+  /** File picked but not yet framed — drives the crop editor (static images only). */
   const [pendingIconFile, setPendingIconFile] = useState<File | null>(null);
+  /**
+   * Whether the CSS-only styler overlay is open.
+   * Used for animated logos (webm, mp4, animated webp) that cannot be edited
+   * on a canvas and so bypass BrandIconEditor.
+   */
+  const [stylingAnimatedLogo, setStylingAnimatedLogo] = useState(false);
   const [tours, setTours] = useState<Tour[]>([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const activeSection = searchParams.get('section') || 'brand';
@@ -48,12 +54,23 @@ const Admin: React.FC = () => {
     fetchBrand();
   }, []);
 
+  /**
+   * Returns true for animated formats that cannot be drawn on a canvas:
+   * mp4, webm, and webp (always treated as potentially animated).
+   */
+  const isAnimatedFormat = (file: File) =>
+    /^(video\/|image\/webp$)/.test(file.type) ||
+    /\.(mp4|webm|webp)$/i.test(file.name);
+
+  /** After BrandIconEditor hands back a finished static PNG. */
   const handleBrandIconUpload = async (file: File) => {
     setUploadingIcon(true);
     try {
       const iconUrl = await uploadBrandIcon(file);
       if (iconUrl) {
-        setBrandSettings({ ...brandSettings, brandicon: iconUrl });
+        const next = { ...brandSettings, brandicon: iconUrl, brandIconType: 'static' as const };
+        setBrandSettings(next);
+        await saveBrandSettings(next);
       }
       setPendingIconFile(null);
     } catch (error) {
@@ -63,12 +80,45 @@ const Admin: React.FC = () => {
     }
   };
 
+  /**
+   * Upload an animated logo (webm / mp4 / animated webp) directly — no editor.
+   * Saves brandIconType:'animated' so the renderer knows to skip canvas logic.
+   */
+  const handleAnimatedLogoUpload = async (file: File) => {
+    setUploadingIcon(true);
+    try {
+      const iconUrl = await uploadBrandIcon(file);
+      if (iconUrl) {
+        const next = {
+          ...brandSettings,
+          brandicon: iconUrl,
+          brandIconType: 'animated' as const,
+          // Keep existing logoCorners if set; otherwise default to 50 (pill/circle)
+          logoCorners: brandSettings.logoCorners ?? 50,
+        };
+        setBrandSettings(next);
+        await saveBrandSettings(next);
+        // Open the CSS styler so the user can tweak corners right away
+        setStylingAnimatedLogo(true);
+      }
+    } catch (error) {
+      console.error('No se pudo subir el logo animado:', error);
+    } finally {
+      setUploadingIcon(false);
+    }
+  };
+
   const triggerBrandIconUpload = () => fileInputRef.current?.click();
 
-  /** Open the current logo in the editor, to crop, reshape or clean it up again. */
+  /** Open the current logo in the editor — or the CSS styler if it is animated. */
   const [loadingCurrentIcon, setLoadingCurrentIcon] = useState(false);
   const editCurrentBrandIcon = async () => {
     if (!brandSettings.brandicon) return;
+    // Animated logos cannot go through the canvas editor.
+    if (brandSettings.brandIconType === 'animated') {
+      setStylingAnimatedLogo(true);
+      return;
+    }
     setLoadingCurrentIcon(true);
     try {
       const response = await fetch(brandSettings.brandicon, { mode: 'cors' });
@@ -110,11 +160,21 @@ const Admin: React.FC = () => {
                   <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
                     <div className="flex h-20 w-28 items-center justify-center overflow-hidden rounded-lg bg-paper-warm p-1.5 ring-1 ring-slate-200">
                       {brandSettings.brandicon ? (
-                        <img
-                          src={brandSettings.brandicon}
-                          alt="Vista previa del logo"
-                          className="max-h-full max-w-full object-contain"
-                        />
+                        /\.(mp4|webm)(\?|$)/i.test(brandSettings.brandicon) ? (
+                          <video
+                            src={brandSettings.brandicon}
+                            autoPlay loop muted playsInline
+                            className="max-h-full max-w-full object-contain"
+                            style={{ borderRadius: `${brandSettings.logoCorners ?? 50}%` }}
+                          />
+                        ) : (
+                          <img
+                            src={brandSettings.brandicon}
+                            alt="Vista previa del logo"
+                            className="max-h-full max-w-full object-contain"
+                            style={brandSettings.brandIconType === 'animated' ? { borderRadius: `${brandSettings.logoCorners ?? 50}%` } : undefined}
+                          />
+                        )
                       ) : (
                         <div className="flex h-full w-full items-center justify-center text-ink-light text-xs uppercase tracking-[.2em]">
                           Sin logo
@@ -137,12 +197,12 @@ const Admin: React.FC = () => {
                           disabled={uploadingIcon || loadingCurrentIcon}
                           className="ml-2 inline-flex items-center justify-center rounded-full border border-ink/20 px-4 py-2 text-sm font-semibold text-ink transition hover:bg-ink hover:text-paper disabled:opacity-50"
                         >
-                          {loadingCurrentIcon ? 'Abriendo…' : 'Editar el logo actual'}
+                          {loadingCurrentIcon ? 'Abriendo…' : brandSettings.brandIconType === 'animated' ? 'Ajustar forma' : 'Editar el logo actual'}
                         </button>
                       )}
                       <p className="text-xs text-ink-light">
-                        Al subirlo o editarlo puedes recortarlo, elegir forma cuadrada u original, redondear las esquinas (de recto a círculo), hacer
-                        transparente su color de fondo y, con la IA de Cloudinary, quitar cualquier fondo o mejorar su calidad.
+                        Las imágenes estáticas (PNG, JPG…) pasan por el estudio: recorte, forma, redondeo de esquinas, eliminación de fondo y mejora con IA.
+                        Los animados (WebM, MP4, WebP animado, GIF) se suben tal cual y solo se ajustan con CSS (redondeo de esquinas).
                       </p>
                     </div>
                   </div>
@@ -151,13 +211,18 @@ const Admin: React.FC = () => {
                       fileInputRef.current = ref;
                     }}
                     type="file"
-                    accept="image/*"
+                    accept="image/*,video/mp4,video/webm"
                     className="hidden"
                     onChange={(event) => {
                       const file = event.target.files?.[0];
                       if (file) {
-                        // Frame it first; the editor hands back the crop.
-                        setPendingIconFile(file);
+                        if (isAnimatedFormat(file)) {
+                          // Animated formats bypass the canvas editor — upload directly.
+                          void handleAnimatedLogoUpload(file);
+                        } else {
+                          // Static images go through the crop / edit studio.
+                          setPendingIconFile(file);
+                        }
                       }
                       // Reset, so picking the same file twice still fires.
                       event.target.value = '';
@@ -432,6 +497,77 @@ const Admin: React.FC = () => {
           onCancel={() => setPendingIconFile(null)}
           onApply={handleBrandIconUpload}
         />
+      )}
+
+      {/* CSS-only styler for animated logos (webm / mp4 / animated webp). */}
+      {stylingAnimatedLogo && (
+        <div className="fixed inset-0 z-[10000] flex items-center justify-center bg-ink/60 p-4" role="dialog" aria-modal="true" aria-label="Ajustar logo animado">
+          <div className="w-full max-w-sm rounded-[22px] border border-ink/15 bg-paper p-6 shadow-ink-lg">
+            <h3 className="mb-1 font-display text-xl font-semibold text-ink">Logo animado</h3>
+            <p className="mb-5 text-xs text-ink-light">
+              Los logos animados (WebM, MP4, WebP) se muestran tal cual. Aquí puedes ajustar su forma con CSS.
+            </p>
+
+            {/* Live preview */}
+            <div className="mb-5 flex justify-center">
+              {/\.(mp4|webm)(\?|$)/i.test(brandSettings.brandicon) ? (
+                <video
+                  src={brandSettings.brandicon}
+                  autoPlay loop muted playsInline
+                  className="h-24 w-24 object-contain"
+                  style={{ borderRadius: `${brandSettings.logoCorners ?? 50}%` }}
+                />
+              ) : (
+                <img
+                  src={brandSettings.brandicon}
+                  alt="Vista previa"
+                  className="h-24 w-24 object-contain"
+                  style={{ borderRadius: `${brandSettings.logoCorners ?? 50}%` }}
+                />
+              )}
+            </div>
+
+            <label className="mb-4 block text-sm font-semibold text-ink-soft">
+              Redondeo de esquinas · {brandSettings.logoCorners ?? 50} %
+              <span className="ml-2 text-xs font-normal">
+                {(brandSettings.logoCorners ?? 50) === 0 ? '(cuadrado)' : (brandSettings.logoCorners ?? 50) === 50 ? '(pastilla/círculo)' : (brandSettings.logoCorners ?? 50) === 100 ? '(elipse completa)' : ''}
+              </span>
+              <input
+                type="range"
+                min={0}
+                max={100}
+                value={brandSettings.logoCorners ?? 50}
+                onChange={(event) => setBrandSettings({ ...brandSettings, logoCorners: Number(event.target.value) })}
+                className="mt-1 w-full accent-[var(--mango-dark,#bd6f16)]"
+              />
+              <span className="flex justify-between text-[0.65rem] text-ink-light">
+                <span>0 % cuadrado</span>
+                <span>50 % pastilla</span>
+                <span>100 % elipse</span>
+              </span>
+            </label>
+
+            <div className="flex justify-end gap-3">
+              <button
+                type="button"
+                onClick={() => setStylingAnimatedLogo(false)}
+                className="rounded-full border border-ink/20 px-4 py-2 text-sm font-semibold text-ink transition hover:bg-ink hover:text-paper"
+              >
+                Cancelar
+              </button>
+              <button
+                type="button"
+                onClick={async () => {
+                  await saveBrandSettings(brandSettings);
+                  setStylingAnimatedLogo(false);
+                }}
+                className="rounded-full bg-lagoon-dark px-4 py-2 text-sm font-semibold text-white"
+              >
+                Guardar
+              </button>
+            </div>
+          </div>
+        </div>
       )}
 
     </div>

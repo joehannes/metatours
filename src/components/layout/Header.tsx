@@ -192,9 +192,18 @@ const Header: React.FC = () => {
           title={brandSettings.brandName}
           className="fixed left-2 top-1.5 z-[60] grid h-9 w-9 place-items-center overflow-hidden rounded-full bg-white no-underline ring-2 ring-ink/10"
         >
-          {brandSettings.brandicon ? (
-            <img src={brandSettings.brandicon} alt="" className="h-7 w-7 rounded-full object-contain" />
-          ) : (
+          {brandSettings.brandicon ? (() => {
+            const isVid = /\.(mp4|webm)(\?|$)/i.test(brandSettings.brandicon);
+            const isAnimated = brandSettings.brandIconType === 'animated';
+            const cornersPct = isAnimated ? (brandSettings.logoCorners ?? 50) : undefined;
+            const style = cornersPct !== undefined ? { borderRadius: `${cornersPct}%` } : undefined;
+            const cls = 'h-7 w-7 object-contain';
+            return isVid ? (
+              <video src={brandSettings.brandicon} autoPlay loop muted playsInline aria-hidden className={cls} style={style} />
+            ) : (
+              <img src={brandSettings.brandicon} alt="" className={isAnimated ? cls : `${cls} rounded-full`} style={style} />
+            );
+          })() : (
             <span className="font-display text-sm text-ink">{brandSettings.brandName.trim().charAt(0)}</span>
           )}
         </Link>

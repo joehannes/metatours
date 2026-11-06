@@ -100,6 +100,19 @@ export interface BrandSettings {
    * the admin can push it up to 2× or down to 0.75× in Admin › Marca.
    */
   navbarLogoScale?: number;
+  /**
+   * Border-radius for the logo as a percentage (0 = square, 100 = circle/pill).
+   * Applied via CSS; relevant for animated logos that bypass the canvas editor.
+   * When unset the previous default of `rounded-full` (50 %) is used for
+   * animated icons; static PNGs already have their corners baked in.
+   */
+  logoCorners?: number;
+  /**
+   * Whether the logo file is an animated format (webm, mp4, animated webp).
+   * When 'animated' the browser-side canvas editor is skipped and the asset
+   * is rendered as a <video> or <img> and sized / rounded with CSS only.
+   */
+  brandIconType?: 'static' | 'animated';
 }
 
 export type BrandNameCase = 'upper' | 'asis';
@@ -224,6 +237,8 @@ const normalizeBrandSettings = (input: Partial<BrandSettings> | null | undefined
   ...(typeof input?.heroTransition === 'string' && input.heroTransition ? { heroTransition: input.heroTransition.slice(0, 24) } : {}),
   ...(Number.isFinite(Number(input?.heroSeconds)) && Number(input?.heroSeconds) > 0 ? { heroSeconds: Math.min(30, Math.max(3, Number(input?.heroSeconds))) } : {}),
   ...(Number.isFinite(Number(input?.navbarLogoScale)) && Number(input?.navbarLogoScale) > 0 ? { navbarLogoScale: Math.min(2, Math.max(0.75, Number(input?.navbarLogoScale))) } : {}),
+  ...(Number.isFinite(Number(input?.logoCorners)) ? { logoCorners: Math.min(100, Math.max(0, Math.round(Number(input?.logoCorners)))) } : {}),
+  ...(input?.brandIconType === 'animated' || input?.brandIconType === 'static' ? { brandIconType: input.brandIconType } : {}),
 });
 
 export const getBrandSettings = async (): Promise<BrandSettings> => {

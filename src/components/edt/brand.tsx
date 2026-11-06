@@ -7,9 +7,19 @@ import { SITE_DEFAULTS } from '../../config/siteDefaults';
 import { getSocialMediaData, SocialMediaAccount } from '../../services/socialMediaService';
 
 /**
+ * Returns true when the logo URL is a video format that must be rendered as
+ * a <video> element (mp4 or webm); animated webp plays fine in an <img>.
+ */
+const isVideoUrl = (url: string) => /\.(mp4|webm)(\?|$)/i.test(url);
+
+/**
  * The logo, with the name beside it as the admin set it (Marca → "Nombre junto
  * al logo"): in capitals, exactly as entered, or hidden — the logo alone.
  * Without a logo uploaded, the name is the logo.
+ *
+ * Animated logos (webm, mp4, animated webp) are rendered as-is; CSS handles
+ * their size and border-radius (`logoCorners`).  Static PNGs already have
+ * their corners baked in by the canvas editor.
  */
 export const BrandLogo: React.FC<{ tone?: 'colour' | 'white'; className?: string; size?: 'sm' | 'md' | 'lg' }> = ({
   tone = 'colour',
@@ -23,13 +33,45 @@ export const BrandLogo: React.FC<{ tone?: 'colour' | 'white'; className?: string
   const withName = Boolean(name) && (style !== 'hidden' || !icon);
   const height = size === 'lg' ? 'h-14' : size === 'sm' ? 'h-9' : 'h-11';
   const scale = brandSettings.navbarLogoScale ?? 1;
+  const isAnimated = brandSettings.brandIconType === 'animated';
+
+  // border-radius: for animated logos use the logoCorners setting (default 50%
+  // = pill/circle, matching the former rounded-full default). For static PNGs
+  // the corners are already in the image pixels, so no extra radius needed.
+  const cornersPct = isAnimated
+    ? (brandSettings.logoCorners ?? 50)
+    : undefined;
+  const iconStyle = cornersPct !== undefined ? { borderRadius: `${cornersPct}%` } : undefined;
+
+  const iconClass = `${height} aspect-square w-auto select-none object-contain`;
 
   return (
     <span
       className={`inline-flex items-center gap-2.5 origin-left ${className}`}
       style={scale !== 1 ? { transform: `scale(${scale})` } : undefined}
     >
-      {icon && <img src={icon} alt={withName ? '' : name} className={`${height} aspect-square w-auto select-none rounded-full bg-white object-contain p-0.5 ring-1 ring-lagoon/20 shadow-sm`} draggable={false} />}
+      {icon && (
+        isVideoUrl(icon) ? (
+          <video
+            src={icon}
+            autoPlay
+            loop
+            muted
+            playsInline
+            aria-label={withName ? '' : name}
+            className={iconClass}
+            style={iconStyle}
+          />
+        ) : (
+          <img
+            src={icon}
+            alt={withName ? '' : name}
+            className={isAnimated ? iconClass : `${iconClass} rounded-full bg-white p-0.5 ring-1 ring-lagoon/20 shadow-sm`}
+            style={iconStyle}
+            draggable={false}
+          />
+        )
+      )}
       {withName && (
         <span
           className={`max-w-[12rem] font-display text-lg leading-none ${tone === 'white' ? 'text-white' : 'text-ink'}`}
