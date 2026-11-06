@@ -22,9 +22,13 @@ export const BrandLogo: React.FC<{ tone?: 'colour' | 'white'; className?: string
   const style = brandNameStyle(brandSettings);
   const withName = Boolean(name) && (style !== 'hidden' || !icon);
   const height = size === 'lg' ? 'h-14' : size === 'sm' ? 'h-9' : 'h-11';
+  const scale = brandSettings.navbarLogoScale ?? 1;
 
   return (
-    <span className={`inline-flex items-center gap-2.5 ${className}`}>
+    <span
+      className={`inline-flex items-center gap-2.5 origin-left ${className}`}
+      style={scale !== 1 ? { transform: `scale(${scale})` } : undefined}
+    >
       {icon && <img src={icon} alt={withName ? '' : name} className={`${height} aspect-square w-auto select-none rounded-full bg-white object-contain p-0.5 ring-1 ring-lagoon/20 shadow-sm`} draggable={false} />}
       {withName && (
         <span

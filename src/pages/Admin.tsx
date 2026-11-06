@@ -190,6 +190,21 @@ const Admin: React.FC = () => {
                     <option value="hidden">Oculto (solo el logo)</option>
                   </select>
                 </label>
+                <label className="grid gap-1 text-sm font-semibold text-ink-soft md:col-span-2">
+                  Tamaño del logo en la barra de navegación: {Math.round((brandSettings.navbarLogoScale ?? 1) * 100)} %
+                  <input
+                    type="range"
+                    min={0.75}
+                    max={2}
+                    step={0.05}
+                    value={brandSettings.navbarLogoScale ?? 1}
+                    onChange={(event) => setBrandSettings({ ...brandSettings, navbarLogoScale: Number(event.target.value) })}
+                    className="w-full accent-[var(--mango-dark,#bd6f16)]"
+                  />
+                  <span className="text-xs font-normal">
+                    100 % es el tamaño normal. Sube para agrandar el logo o baja para reducirlo.
+                  </span>
+                </label>
                 <input
                   type="text"
                   value={brandSettings.phoneNumber}

@@ -95,6 +95,11 @@ export interface BrandSettings {
   heroTransition?: string;
   /** Seconds each hero photograph holds the stage. */
   heroSeconds?: number;
+  /**
+   * A multiplier for the navbar logo's rendered size. 1 is the designed size;
+   * the admin can push it up to 2× or down to 0.75× in Admin › Marca.
+   */
+  navbarLogoScale?: number;
 }
 
 export type BrandNameCase = 'upper' | 'asis';
@@ -218,6 +223,7 @@ const normalizeBrandSettings = (input: Partial<BrandSettings> | null | undefined
   ...(input?.brandNameCase === 'upper' || input?.brandNameCase === 'asis' ? { brandNameCase: input.brandNameCase } : {}),
   ...(typeof input?.heroTransition === 'string' && input.heroTransition ? { heroTransition: input.heroTransition.slice(0, 24) } : {}),
   ...(Number.isFinite(Number(input?.heroSeconds)) && Number(input?.heroSeconds) > 0 ? { heroSeconds: Math.min(30, Math.max(3, Number(input?.heroSeconds))) } : {}),
+  ...(Number.isFinite(Number(input?.navbarLogoScale)) && Number(input?.navbarLogoScale) > 0 ? { navbarLogoScale: Math.min(2, Math.max(0.75, Number(input?.navbarLogoScale))) } : {}),
 });
 
 export const getBrandSettings = async (): Promise<BrandSettings> => {
